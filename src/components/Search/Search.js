@@ -47,7 +47,7 @@ const Search = () => {
                     <option value="">Dưới 2 triệu</option>
                 </select>
               </div>
-              <button className="w-full uppercase px-5 py-1 mt-3 bg-[#007BFF] rounded-md text-gray-100 hover:bg-blue-600">Search Advance</button>
+              <button className="w-full uppercase px-5 py-1 mt-3 bg-gradient-to-r from-blue-400 to-red-400 rounded-md text-gray-100 hover:opacity-90 transition-all">Search Advance</button>
             </div>
           </form>
         </div>

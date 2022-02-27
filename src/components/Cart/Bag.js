@@ -35,7 +35,7 @@ const Bag = () => {
           </div>
           <button className="mt-3 text-gray-300 border-b border-red-400 hover:text-gray-100 transition-transform">Remove</button>
         </div>
-        <h3 className="w-[20%] text-gray-100">4.699.000</h3>
+        <h3 className="w-[20%] text-gray-100">4.699.000₫</h3>
       </div>
       <div className="mt-3 border-b border-solid border-[#ccc] flex justify-start py-5">
         <img className="w-[150px] h-[150px] object-cover rounded-md w-[30%]" src="https://source.unsplash.com/random"></img>
@@ -65,7 +65,7 @@ const Bag = () => {
           </div>
           <button className="mt-3 text-gray-300 border-b border-red-400 hover:text-gray-100 transition-transform">Remove</button>
         </div>
-        <h3 className="w-[20%] text-gray-100">4.699.000</h3>
+        <h3 className="w-[20%] text-gray-100">4.699.000₫</h3>
       </div>
       <div className="mt-3 border-b border-solid border-[#ccc] flex justify-start py-5">
         <img className="w-[150px] h-[150px] object-cover rounded-md w-[30%]" src="https://source.unsplash.com/random"></img>
@@ -95,7 +95,7 @@ const Bag = () => {
           </div>
           <button className="mt-3 text-gray-300 border-b border-red-400 hover:text-gray-100 transition-transform">Remove</button>
         </div>
-        <h3 className="w-[20%] text-gray-100">4.699.000</h3>
+        <h3 className="w-[20%] text-gray-100">4.699.000₫</h3>
       </div>
       </div>
     </div>

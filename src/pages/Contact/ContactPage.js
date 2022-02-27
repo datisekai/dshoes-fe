@@ -76,7 +76,7 @@ const ContactPage = () => {
             </div>
           </div>
 
-          <button className="w-full uppercase text-gray-100 px-5 py-2 hover:bg-blue-700 transition-all mt-3 bg-[#007BFF] rounded-md" onClick={() => navigate('/')}>Go back home</button>
+          <button className="w-full uppercase text-gray-100 px-5 py-2 bg-gradient-to-r from-blue-400 to-red-400 hover:opacity-90 transition-all mt-3  rounded-md" onClick={() => navigate('/')}>Go back home</button>
         </div>
       </div>
       <Footer />

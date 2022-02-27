@@ -13,7 +13,7 @@ const ShoesList = ({type,list}) => {
                     {list.map((item,index) => (
                         <Link to={`/detail/${item.id}`}  key={index}><div className='relative'>
                         <img src={item.img} className='w-[266px] h-[266px] rounded-md'></img>
-                        <p className='absolute text-[#007BFF] bottom-10 md:px-5 text-xl py-2 left-[25%]'>2.999.999</p>
+                        <p className='absolute text-[#007BFF] bottom-10 md:px-5 text-xl py-2 left-[25%]'>2.999.999₫</p>
                         <h2 className='text-gray-100 truncate py-2'>{item.name}</h2>
                     </div></Link>
                     ))}

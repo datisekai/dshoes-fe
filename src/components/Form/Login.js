@@ -22,8 +22,8 @@ const Login = () => {
                 </div>
 
                 <div className='mt-3 flex flex-col md:flex-row justify-between'>
-                    <button className='w-full md:w-[49%] text-md bg-[#007BFF] rounded-md px-5 md:px-2 lg:px-5 py-1 text-gray-100 hover:bg-[blue] transition-transform'>Login Now</button>
-                    <button className='w-full mt-2 md:mt-0 md:w-[49%] text-md bg-red-400 text-gray-100 rounded-md px-5 py-1 hover:bg-red-500 transition-transform' onClick={() => navigate('/register')}>Create Account</button>
+                    <button className='w-full md:w-[49%] text-md bg-gradient-to-r from-blue-400 to-red-400 hover:opacity-90 rounded-md px-5 md:px-2 lg:px-5 py-1 text-gray-100 transition-transform'>Login Now</button>
+                    <button className='w-full mt-2 md:mt-0 md:w-[49%] text-md bg-gradient-to-r from-red-400 to-blue-400 hover:opacity-90 text-gray-100 rounded-md px-5 py-1  transition-transform' onClick={() => navigate('/register')}>Create Account</button>
                 </div>
 
                 

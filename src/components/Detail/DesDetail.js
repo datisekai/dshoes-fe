@@ -54,7 +54,7 @@ const DesDetail = () => {
           </button>
         </div>
       </div>
-      <button className="w-full mt-3 px-4 py-1 bg-[#007BFF] rounded-lg text-gray-100 hover:bg-blue-700 transition-transform">
+      <button className="w-full mt-3 px-4 py-1 rounded-lg text-gray-100 hover:opacity-90 bg-gradient-to-r from-blue-400 to-red-400 transition-all">
         ADD TO BAG
       </button>
       <p className="mt-3 py-2 text-[#ccc] text-md">
