@@ -23,7 +23,7 @@ const ImageDetail = () => {
             <img
               key={index}
               src={item}
-              className="rounded-md object-cover"
+              className="rounded-md object-cover w-full h-full"
             ></img>
           ))}
       </div>

@@ -9,12 +9,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "../../assets/css/index.css";
 import "swiper/css";
 import "swiper/css/navigation";
-import useWidth from '../../customHook/useWidth'
+import useWidth from "../../customHook/useWidth";
 import { Link } from "react-router-dom";
 
 const Shoes = ({ type, list }) => {
   SwiperCore.use([Navigation, Autoplay, Pagination, EffectCoverflow]);
-  const width = useWidth()
+  const width = useWidth();
 
   let slide;
 
@@ -39,15 +39,17 @@ const Shoes = ({ type, list }) => {
           autoplay
           effect="coverflow"
         >
-          {list.map((item,index) => (
+          {list.map((item, index) => (
             <SwiperSlide key={index}>
-              <Link to={`/detail/${item.id}`}><div
-                className="w-[100%] h-[250px] md:h-[300px] rounded-md relative bg-no-repeat bg-cover"
-                style={{ backgroundImage: `url(${item.img})` }}
-              ></div>
-              <h1 className="absolute bottom-0 px-5 py-3 text-lg text-[#2A2A2A] shadow-sm">
-                {item.name}
-              </h1></Link>
+              <Link to={`/detail/${item.id}`}>
+                <div
+                  className="w-[100%] h-[250px] md:h-[300px] rounded-md relative bg-no-repeat bg-cover"
+                  style={{ backgroundImage: `url(${item.img})` }}
+                ></div>
+                <h1 className="absolute bottom-0 px-5 py-3 text-md md:text-lg text-red-400 text-shadow">
+                  {item.name}
+                </h1>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -4,7 +4,7 @@ import ReviewDetail from "./ReviewDetail";
 
 const DesDetail = () => {
   return (
-    <div className="md:w-[50%] lg:w-[40%] p-5">
+    <div className="md:w-[50%] lg:w-[40%] px-0 py-5 md:px-5">
       <h3 className="text-red-400">Sustainable Materials</h3>
       <h1 className="underlined-blue text-gray-100 text-2xl mt-2">
         Nike Air Max 2021

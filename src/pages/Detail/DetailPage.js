@@ -7,11 +7,13 @@ import Header from "../../components/Header/Header";
 import { scrollTop } from "../../utils/ScrollTop";
 import uuid from 'react-uuid'
 import Back from "../../components/Back/Back";
+import { useParams } from "react-router-dom";
 
 const DetailPage = () => {
+  const {id} = useParams()
   useEffect(() => {
     scrollTop();
-  }, []);
+  }, [id]);
 
   const nikes = [
     {

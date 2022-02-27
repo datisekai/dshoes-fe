@@ -8,10 +8,11 @@ const Search = () => {
     <div className="min-h-screen bg-[#222222]">
       <div className="max-w-[1200px] mx-auto py-10 pt-5">
         <div className="mx-auto w-[280px] sm:w-[400px] md:w-[450px] lg:w-[550px] bg-[#2A2A2A] p-4 md:px-5 rounded-md">
-          <h1 className="text-gray-100 underlined-blue text-md md:text-xl">
+          <h1 className="text-gray-100 underlined-blue text-lg md:text-xl">
             Search
           </h1>
           <form action="">
+            <h2 className="mt-3 text-gray-100 text-lg">Basic</h2>
             <div className="flex justify-center items-center mt-4">
               <input
                 type="text"
@@ -46,6 +47,7 @@ const Search = () => {
                     <option value="">Dưới 2 triệu</option>
                 </select>
               </div>
+              <button className="w-full uppercase px-5 py-1 mt-3 bg-[#007BFF] rounded-md text-gray-100 hover:bg-blue-600">Search Advance</button>
             </div>
           </form>
         </div>

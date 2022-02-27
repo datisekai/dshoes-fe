@@ -125,7 +125,7 @@ const ContentHome = () => {
                 className="w-[100%] h-[200px] sm:h-[220px] md:h-[250px] lg:h-[300px] rounded-md relative bg-no-repeat bg-cover"
                 style={{ backgroundImage: `url(${slide})` }}
               ></div>
-              <h1 className="absolute bottom-0 px-5 py-3 text-lg text-gray-500">
+              <h1 className="absolute bottom-0 px-5 py-3 text-lg text-gray-100">
                 Name Shoes is here
               </h1>
             </SwiperSlide>
@@ -133,8 +133,11 @@ const ContentHome = () => {
         </Swiper>
       </div>
 
+
+      <Shoes type="RECENTLY" list={nikes} />
       <Shoes type="NIKE" list={nikes} />
       <Shoes type="JORDAN" list={jordans} />
+      <Shoes type="ADIDAS" list={jordans} />
     </div>
   );
 };

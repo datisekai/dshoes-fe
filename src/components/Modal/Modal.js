@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../assets/css/index.css";
 import { useSideBar } from "../../store/displayBar";
 
@@ -25,40 +25,40 @@ const Modal = () => {
         </div>
 
         <ul className="mt-3">
-          <Link to={"/"}>
+          <Link to={"/"} onClick={() => setSidebar(false)}>
             {" "}
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-house"></i> Home
             </li>
           </Link>
-          <Link to={"/nike"}>
+          <Link to={"/nike"} onClick={() => setSidebar(false)}>
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-brands fa-atlassian"></i> NIKE
             </li>
           </Link>
-          <Link to={"/adidas"}>
+          <Link to={"/adidas"} onClick={() => setSidebar(false)}>
             {" "}
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-brands fa-atlassian"></i> ADIDAS
             </li>
           </Link>
-          <Link to={"/jordan"}>
+          <Link to={"/jordan"} onClick={() => setSidebar(false)}> 
             {" "}
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-brands fa-atlassian"></i> JORDAN
             </li>
           </Link>
-          <Link to={"/cart"}>
+          <Link to={"/cart"} onClick={() => setSidebar(false)}>
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-cart-shopping"></i> Cart
             </li>
           </Link>
-          <Link to={"/contact"}>
+          <Link to={"/contact"} onClick={() => setSidebar(false)}>
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-address-card"></i> Contact
             </li>
           </Link>
-          <Link to={"/login"}>
+          <Link to={"/login"} onClick={() => setSidebar(false)}>
             {" "}
             <li className="text-red-400 uppercase py-2">
               <i className="fa-solid fa-right-to-bracket"></i> Login
