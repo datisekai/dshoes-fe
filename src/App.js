@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header/Header";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Menu from "./pages/Menu/Menu";
+import SearchPage from "./pages/Search/SearchPage";
+import LoginPage from "./pages/Login/LoginPage";
+import RegisterPage from "./pages/Register/RegisterPage";
+import DetailPage from "./pages/Detail/DetailPage";
+import CartPage from "./pages/Cart/CartPage";
+import ContactPage from "./pages/Contact/ContactPage";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/search" element={<SearchPage />}></Route>
+        <Route exact path="/login" element={<LoginPage />}></Route>
+        <Route exact path="/cart" element={<CartPage   />}></Route>
+        <Route exact path="/contact" element={<ContactPage   />}></Route>
+        <Route exact path="/detail/:id" element={<DetailPage />}></Route>
+        <Route exact path="/register" element={<RegisterPage />}></Route>
+        <Route exact path="/:type" element={<Menu />}></Route>
+      </Routes>
+      <Modal/>
     </div>
   );
 }

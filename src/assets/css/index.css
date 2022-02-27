@@ -1,0 +1,12 @@
+.underlined-blue::after{
+    content: "";
+    width: 50px;
+    height: 5px;
+    background-image: linear-gradient( to right, #007BFF,#F87171 );
+    display: block;
+    border-radius: 5px;
+}
+
+#menuParent:hover #menuChildren{
+    display: block !important;
+}

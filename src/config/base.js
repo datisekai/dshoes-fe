@@ -1,0 +1,1 @@
+export const logo = 'https://i.imgur.com/Kk5WH4q.png'
