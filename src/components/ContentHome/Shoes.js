@@ -41,7 +41,7 @@ const Shoes = ({ type, list }) => {
         >
           {list.map((item,index) => (
             <SwiperSlide key={index}>
-              <Link to={`detail/${item.id}`}><div
+              <Link to={`/detail/${item.id}`}><div
                 className="w-[100%] h-[250px] md:h-[300px] rounded-md relative bg-no-repeat bg-cover"
                 style={{ backgroundImage: `url(${item.img})` }}
               ></div>

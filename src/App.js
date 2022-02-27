@@ -16,13 +16,13 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/search" element={<SearchPage />}></Route>
-        <Route exact path="/login" element={<LoginPage />}></Route>
-        <Route exact path="/cart" element={<CartPage   />}></Route>
-        <Route exact path="/contact" element={<ContactPage   />}></Route>
-        <Route exact path="/detail/:id" element={<DetailPage />}></Route>
-        <Route exact path="/register" element={<RegisterPage />}></Route>
-        <Route exact path="/:type" element={<Menu />}></Route>
+        <Route path="/search" element={<SearchPage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/cart" element={<CartPage   />}></Route>
+        <Route path="/contact" element={<ContactPage   />}></Route>
+        <Route path="/detail/:id" element={<DetailPage />}></Route>
+        <Route path="/register" element={<RegisterPage />}></Route>
+        <Route path="/:type" element={<Menu />}></Route>
       </Routes>
       <Modal/>
     </div>
