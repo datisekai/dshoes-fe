@@ -16,28 +16,15 @@ const Header = () => {
   return (
     <header className="flex justify-around items-center bg-[#2A2A2A]">
       <div>
-        {/* <Link to="/">
+        <Link to="/">
           {" "}
           <img
             className="w-[60%] sm:w-[60%] md:w-[50%] lg:w-[70%] cursor-pointer"
             src={logo}
             alt=""
           />
-        </Link> */}
-        <a href="m.me/100049563423579">
-        <img
-            className="w-[60%] sm:w-[60%] md:w-[50%] lg:w-[70%] cursor-pointer"
-            src={logo}
-            alt=""
-          />
-        </a>
-        <a href="tel:0886249022">
-        <img
-            className="w-[60%] sm:w-[60%] md:w-[50%] lg:w-[70%] cursor-pointer"
-            src={logo}
-            alt=""
-          />
-        </a>
+        </Link>
+        
       </div>
       <ul className=" justify-center hidden md:flex">
         <li
