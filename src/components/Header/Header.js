@@ -24,7 +24,7 @@ const Header = () => {
             alt=""
           />
         </Link> */}
-        <a href="m.me/datisekai">
+        <a href="m.me/100049563423579">
         <img
             className="w-[60%] sm:w-[60%] md:w-[50%] lg:w-[70%] cursor-pointer"
             src={logo}
