@@ -1,19 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Shoes from "../../components/ContentHome/Shoes";
 import DesDetail from "../../components/Detail/DesDetail";
 import ImageDetail from "../../components/Detail/ImageDetail";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { scrollTop } from "../../utils/ScrollTop";
-import uuid from 'react-uuid'
+import uuid from "react-uuid";
 import Back from "../../components/Back/Back";
 import { useParams } from "react-router-dom";
+import { base_products } from "../../api/config";
+import axios from "axios";
+import Title from "../../utils/Title";
+import { toast } from "react-toastify";
+import { BarWave, Messaging } from "react-cssfx-loading/lib";
+import "../../index.css";
+import { setLocal } from "../../utils/local";
 
 const DetailPage = () => {
-  const {id} = useParams()
-  useEffect(() => {
-    scrollTop();
-  }, [id]);
+  const { id } = useParams();
+  const [shoes, setShoes] = useState();
+  const [load, setLoad] = useState(false);
+  const [same, setSame] = useState();
+  const [loadSame, setLoadSame] = useState(false);
 
   const nikes = [
     {
@@ -58,16 +66,71 @@ const DetailPage = () => {
     },
   ];
 
+  useEffect(() => {
+    scrollTop();
+  }, [id]);
+
+  useEffect(() => {
+    shoes && setLocal(shoes);
+  },[id,shoes])
+
+  useEffect(() => {
+    getDetail();
+  }, [id]);
+
+  const getDetail = async () => {
+    try {
+      setLoad(true);
+      const res = await axios.get(`${base_products}/${id}`);
+      setShoes(res.data);
+    } catch (err) {
+      err.response.message && toast.error(err.response.message);
+    }
+    setLoad(false);
+  };
+
+  useEffect(() => {
+    shoes && getSameProduct(shoes.product.typeId._id);
+  }, [id, shoes]);
+
+  const getSameProduct = async (type) => {
+    try {
+      setLoadSame(true);
+      const res = await axios.get(`${base_products}/type/${type}`);
+      setSame(res.data.products);
+    } catch (err) {
+      err.response.message && toast.error(err.response.message);
+    }
+    setLoadSame(false);
+  };
+
   return (
     <>
+      <Title Title={shoes && shoes.success && shoes.product.name} />
       <Header />
       <div className="min-h-screen bg-[#222222] relative">
-        <Back/>
+        <Back />
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between pt-2 p-8">
-          <ImageDetail />
-          <DesDetail />
+          <ImageDetail image={shoes && shoes.success && shoes.product.image} />
+          <DesDetail desc={shoes && shoes.success && shoes} />
         </div>
-        <Shoes type={"Same products"} list={nikes} />
+        {loadSame ? (
+          <div className="flex justify-center items-center pb-10">
+            <Messaging
+              color="#007BFF"
+              width="12px"
+              height="12px"
+              duration="1s"
+            />
+          </div>
+        ) : (
+          <Shoes type={"Same products"} list={same && same} />
+        )}
+        {load && (
+          <div className="fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay">
+            <BarWave color="#007BFF" width="25px" height="25px" duration="2s" />
+          </div>
+        )}
       </div>
       <Footer />
     </>

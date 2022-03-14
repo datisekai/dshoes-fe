@@ -1,13 +1,47 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import Footer from '../../components/Footer/Footer'
-import Header from '../../components/Header/Header'
-import ShoesList from './ShoesList'
-import uuid from 'react-uuid'
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import ShoesList from "./ShoesList";
+import uuid from "react-uuid";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { base_products } from "../../api/config";
+import axios from "axios";
+import { setType } from "../../redux/typeReducer";
+import { BarWave } from "react-cssfx-loading/lib";
 
 const Menu = () => {
+  const { type } = useParams();
+  const types = useSelector((state) => state.type.type);
+  const [page, setPage] = useState(1);
+  const [products, setProducts] = useState();
+  const [limit, setLimit] = useState(8);
+  const [skip, setSkip] = useState(1);
+  const [total, setTotal] = useState(0);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const dispatch = useDispatch();
+  const [load, setLoad] = useState(false);
 
-  const {type} = useParams()
+  useEffect(() => {
+    getTypes();
+  }, []);
+
+  const getTypes = async () => {
+    try {
+      const res = await axios.get(
+        "https://dshoes-server-production.up.railway.app/api/products/types/all"
+      );
+      dispatch(setType(res.data.types));
+    } catch (err) {
+      err.response && toast(err.response.message);
+    }
+  };
+
+  useEffect(() => {
+    getProductsByType(searchParams.get("id"));
+  }, [type]);
 
   const nikes = [
     {
@@ -51,13 +85,52 @@ const Menu = () => {
       name: "RUNNING REACT ELEMENT 87 [AQ1090-002]",
     },
   ];
+
+  const getProductsByType = async (id) => {
+    setLoad(true);
+    try {
+      const res = await axios.get(
+        `${base_products}/type/${id}?limit=${limit}&page=${page}`
+      );
+      setProducts(res.data.products);
+      setTotal(res.data.total);
+      setSkip((page - 1) * limit + 1);
+    } catch (err) {
+      err.response && toast.error(err.response.message);
+    }
+    setLoad(false);
+  };
+
+  const handleNext = () => {
+    const totalPage = Math.ceil(total / limit);
+    if (page < totalPage) {
+      setPage(page + 1);
+    }
+  };
+
+  const handlePre = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
   return (
     <>
-    <Header/>
-    <ShoesList type={type} list={nikes}/>
-    <Footer/>
+      <Header />
+      <ShoesList
+        type={type}
+        list={products && products}
+        pagination={total && { skip, limit, page, total, to: products.length }}
+        handle={{ handleNext, handlePre }}
+      />
+      {load && (
+        <div className="fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay">
+          <BarWave color="#007BFF" width="25px" height="25px" duration="2s" />
+        </div>
+      )}
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

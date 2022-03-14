@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ImageDetail = () => {
+const ImageDetail = ({image}) => {
 
   const navigate = useNavigate()
 
@@ -18,8 +18,8 @@ const ImageDetail = () => {
   return (
     <>
       <div className="hidden md:grid md:w-[50%] lg:w-[60%] grid-cols-2 gap-4">
-        {imgTest.length > 0 &&
-          imgTest.map((item, index) => (
+        {image && image.length > 0 &&
+          image.map((item, index) => (
             <img
               key={index}
               src={item}
@@ -27,7 +27,7 @@ const ImageDetail = () => {
             ></img>
           ))}
       </div>
-      <img src={imgTest[0]} alt="" className="rounded-md block md:hidden w-full h-[300px] object-cover"/>
+      <img src={image && image[0]} alt="" className="rounded-md block md:hidden w-full h-[300px] object-cover"/>
     </>
   );
 };
