@@ -75,7 +75,9 @@ const ContentHome = () => {
           ))}
         </Swiper>
       </div>
-      {recently && <Shoes type="RECENTLY" list={recently} />}
+      {recently && recently.length > 0 && (
+        <Shoes type="RECENTLY" list={recently} />
+      )}
       {products &&
         products.length > 0 &&
         products.map((item, index) => (
