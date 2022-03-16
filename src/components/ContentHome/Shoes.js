@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 const Shoes = ({ type, list }) => {
   SwiperCore.use([Navigation, Autoplay, Pagination, EffectCoverflow]);
   const width = useWidth();
-
   let slide;
   let space;
 
