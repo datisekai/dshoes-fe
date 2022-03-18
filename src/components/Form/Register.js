@@ -10,6 +10,7 @@ import setHeaderAxios from "../../utils/setHeaderAxios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userReducer";
 import { FlippingSquare } from "react-cssfx-loading/lib";
+import { useQuery } from "../../customHook/useQuery";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +18,9 @@ const Register = () => {
   const [rep, setRep] = useState("");
   const [phone, setPhone] = useState("");
   const [load, setLoad] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const queryParams = useQuery()
+  const query = queryParams.get("productId");
 
   const emailRef = useRef();
 
@@ -25,7 +28,7 @@ const Register = () => {
     emailRef.current.focus();
   }, []);
 
-  const handleRegister = async(e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (!checkEmail(email) || !checkPhone(phone)) {
       toast.error("Sai định dang email or phone!");
@@ -43,7 +46,7 @@ const Register = () => {
         setHeaderAxios(res.data.token);
         toast.success("Register successfull");
         getUser();
-        navigate("/");
+        query ? navigate(`/detail/${query}`) : navigate("/");
       } catch (err) {
         err.response && toast.error(err.response.data.message);
       }
@@ -152,7 +155,7 @@ const Register = () => {
               </button>
               <button
                 className="w-full mt-2 md:mt-0  md:w-[49%] text-md rounded-md px-5 md:px-2 bg-gradient-to-r from-blue-400 to-red-400 lg:px-5 py-1 text-gray-100 hover:opacity-90 transition-transform"
-                onClick={() => navigate("/login")}
+                onClick={() => query ? navigate(`/login?productId=${query}`) : navigate('/login')}
               >
                 Login Now
               </button>

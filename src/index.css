@@ -14,3 +14,22 @@ body::-webkit-scrollbar {
 .overlay {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.skeleton{
+  animation: skeleton 1s linear infinite alternate;
+}
+
+.active{
+  background-color: #007BFF;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+@keyframes skeleton {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../../assets/css/index.css";
 import { useSideBar } from "../../store/displayBar";
@@ -6,6 +7,8 @@ import { useSideBar } from "../../store/displayBar";
 const Modal = () => {
   const sidebar = useSideBar((state) => state.sidebar);
   const setSidebar = useSideBar((state) => state.setSidebar);
+  const userInfo = useSelector((state) => state.user.user.userInfo);
+  const { type } = useSelector((state) => state.type);
 
   return (
     <div className={`w-full h-full ${sidebar ? "block" : "hidden"}`}>
@@ -31,23 +34,12 @@ const Modal = () => {
               <i className="fa-solid fa-house"></i> Home
             </li>
           </Link>
-          <Link to={"/nike"} onClick={() => setSidebar(false)}>
+         {type && type.map(item =>   <Link key={item._id} to={`/${item.type}?id=${item._id}`} onClick={() => setSidebar(false)}>
             <li className="text-gray-200 uppercase py-2">
-              <i className="fa-brands fa-atlassian"></i> NIKE
+              <i className="fa-brands fa-atlassian"></i> {item.type}
             </li>
-          </Link>
-          <Link to={"/adidas"} onClick={() => setSidebar(false)}>
-            {" "}
-            <li className="text-gray-200 uppercase py-2">
-              <i className="fa-brands fa-atlassian"></i> ADIDAS
-            </li>
-          </Link>
-          <Link to={"/jordan"} onClick={() => setSidebar(false)}> 
-            {" "}
-            <li className="text-gray-200 uppercase py-2">
-              <i className="fa-brands fa-atlassian"></i> JORDAN
-            </li>
-          </Link>
+          </Link>)}
+         
           <Link to={"/cart"} onClick={() => setSidebar(false)}>
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-cart-shopping"></i> Cart
@@ -58,12 +50,14 @@ const Modal = () => {
               <i className="fa-solid fa-address-card"></i> Contact
             </li>
           </Link>
-          <Link to={"/login"} onClick={() => setSidebar(false)}>
-            {" "}
-            <li className="text-red-400 uppercase py-2">
-              <i className="fa-solid fa-right-to-bracket"></i> Login
-            </li>
-          </Link>
+          {!userInfo && (
+            <Link to={"/login"} onClick={() => setSidebar(false)}>
+              {" "}
+              <li className="text-red-400 uppercase py-2">
+                <i className="fa-solid fa-right-to-bracket"></i> Login
+              </li>
+            </Link>
+          )}
         </ul>
       </div>
     </div>

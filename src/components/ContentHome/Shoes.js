@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import useWidth from "../../customHook/useWidth";
 import { Link } from "react-router-dom";
+import Shoe from './Shoe'
 
 const Shoes = ({ type, list }) => {
   SwiperCore.use([Navigation, Autoplay, Pagination, EffectCoverflow]);
@@ -48,15 +49,7 @@ const Shoes = ({ type, list }) => {
           {list && list.map((item, index) => {
             return (
               <SwiperSlide key={index}>
-                <Link to={`/detail/${item._id}`}>
-                  <div
-                    className="w-[100%] h-[250px] md:h-[300px] rounded-md relative bg-no-repeat bg-cover aspect-video"
-                    style={{ backgroundImage: `url(${item.image && item.image.length > 0 && item.image[0]})` }}
-                  ></div>
-                  <h1 className="absolute bottom-0 top-[25%] left-[25%] text-md md:text-xl text-red-500 uppercase">
-                    {item.name}
-                  </h1>
-                </Link>
+                <Shoe product={item}/>
               </SwiperSlide>
             );
           })}

@@ -9,13 +9,16 @@ import "../../assets/css/index.css";
 import { setUser } from "../../redux/userReducer";
 import setHeaderAxios from "../../utils/setHeaderAxios";
 import { checkEmail } from "../../utils/Validate";
+import { useQuery } from "../../customHook/useQuery";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const queryParams = useQuery();
+  const query = queryParams.get("productId");
 
   const emailRef = useRef();
 
@@ -33,10 +36,10 @@ const Login = () => {
         setLoading(true);
         const res = await axios.post(`${base_auth}/login`, { email, password });
         sessionStorage.setItem("token", res.data.token);
-        setHeaderAxios(res.data.token)
+        setHeaderAxios(res.data.token);
         toast.success("Login successfull");
-        getUser()
-        navigate('/')
+        getUser();
+        query ? navigate(`/detail/${query}`) : navigate("/");
       } catch (err) {
         toast.error(err.response.data.message);
       }
@@ -108,7 +111,9 @@ const Login = () => {
               </button>
               <button
                 className="w-full mt-2 md:mt-0 md:w-[49%] text-md bg-gradient-to-r from-red-400 to-blue-400 hover:opacity-90 text-gray-100 rounded-md px-5 py-1  transition-transform"
-                onClick={() => navigate("/register")}
+                onClick={() =>
+                  query ? navigate(`/register?productId=${query}`) : navigate("/register")
+                }
               >
                 Create Account
               </button>

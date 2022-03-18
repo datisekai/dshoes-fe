@@ -122,12 +122,10 @@ const Menu = () => {
         list={products && products}
         pagination={total && { skip, limit, page, total, to: products.length }}
         handle={{ handleNext, handlePre }}
+        loading={load}
+        types={types}
       />
-      {load && (
-        <div className="fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay">
-          <BarWave color="#007BFF" width="25px" height="25px" duration="2s" />
-        </div>
-      )}
+  
       <Footer />
     </>
   );

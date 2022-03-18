@@ -3,7 +3,7 @@ import "../../assets/css/index.css";
 import ReviewDetail from "./ReviewDetail";
 import NumberFormat from "react-number-format";
 
-const DesDetail = ({ desc }) => {
+const DesDetail = ({ desc, handleAddToCart }) => {
   const [size, setSize] = useState(null);
   const [color, setColor] = useState(null);
 
@@ -69,7 +69,20 @@ const DesDetail = ({ desc }) => {
             ))}
         </div>
       </div>
-      <button className="w-full mt-5 px-4 py-1 rounded-lg text-gray-100 hover:opacity-90 bg-gradient-to-r from-blue-400 to-red-400 transition-all">
+      <button
+        onClick={() =>
+          handleAddToCart({
+            productId: desc.product._id,
+            color,
+            size,
+            quantify: 1,
+            image: desc.product.image[0],
+            name: desc.product.name,
+            prices: desc.product.prices,
+          })
+        }
+        className="w-full mt-5 px-4 py-1 rounded-lg text-gray-100 hover:opacity-90 bg-gradient-to-r from-blue-400 to-red-400 transition-all"
+      >
         ADD TO BAG
       </button>
       <p className="mt-3 py-2 text-[#ccc] text-md">
