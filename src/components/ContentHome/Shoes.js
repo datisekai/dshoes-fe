@@ -16,7 +16,6 @@ import Shoe from './Shoe'
 const Shoes = ({ type, list }) => {
   SwiperCore.use([Navigation, Autoplay, Pagination, EffectCoverflow]);
   const width = useWidth();
-
   let slide;
   let space;
 

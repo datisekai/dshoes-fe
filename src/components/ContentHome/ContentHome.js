@@ -33,12 +33,12 @@ const ContentHome = () => {
     "https://media.istockphoto.com/photos/fashionable-snakeskin-leather-sneakers-black-sneakers-with-bright-red-picture-id1253612860?k=20&m=1253612860&s=170667a&w=0&h=acZ64dtfmENfyLkohjkXliVk4_7FR0K_sfcono6n7p8=",
   ];
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState();
   const { type } = useSelector((state) => state.type);
 
   useEffect(() => {
     getProductsByTypeId();
-  }, [type]);
+  }, []);
 
   const getProductsByTypeId = async () => {
     setLoad(true);
