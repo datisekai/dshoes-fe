@@ -89,9 +89,16 @@ const Menu = () => {
   const getProductsByType = async (id) => {
     setLoad(true);
     try {
-      const res = await axios.get(
-        `${base_products}/type/${id}?limit=${limit}&page=${page}`
-      );
+      let res;
+      if (type) {
+        res = await axios.get(
+          `${base_products}/type/${id}?limit=${limit}&page=${page}`
+        );
+      } else {
+        res = await axios.get(
+          `${base_products}?limit=${limit}&page=${page}`
+        );
+      }
       setProducts(res.data.products);
       setTotal(res.data.total);
       setSkip((page - 1) * limit + 1);
@@ -125,7 +132,7 @@ const Menu = () => {
         loading={load}
         types={types}
       />
-  
+
       <Footer />
     </>
   );

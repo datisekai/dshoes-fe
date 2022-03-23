@@ -42,45 +42,54 @@ const Header = () => {
   return (
     <div className="bg-[#2A2A2A]">
       <header className="flex justify-between items-center max-w-[1200px] mx-auto">
-        <div>
+        <div className="w-[20%]">
           <Link to="/">
             {" "}
             <img
-              className="w-[60%] sm:w-[60%] md:w-[50%] lg:w-[70%] cursor-pointer"
+              className="w-[100%] sm:w-[60%] md:w-[50%] lg:w-[70%] cursor-pointer"
               src={logo}
               alt=""
             />
           </Link>
         </div>
-        <ul className=" justify-center hidden md:flex items-center">
+        <div className="w-[40%]">
+          <form action="">
+            <input
+              type="text"
+              className="text-sm  md:text-md w-full py-1 rounded-md outline-none bg-transparent border-b px-5 text-gray-100 border-blue-400"
+              placeholder="Enter your somethings..."
+            />
+          </form>
+        </div>
+        <ul className=" justify-end hidden md:flex items-center w-[40%]">
           <NavLink to="/" activeclassname="active">
             {" "}
             <li className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 hover:text-gray-400 transition-transform cursor-pointer">
               Home
             </li>
           </NavLink>
-          <NavLink activeclassname='active' to='/products'>
-          <li
-            className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 transition-transform cursor-pointer relative"
-            id="menuParent"
-          >
-            Products
-          </li>
+          <NavLink activeclassname="active" to="/products">
+            <li
+              className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 transition-transform cursor-pointer relative"
+              id="menuParent"
+            >
+              Products
+            </li>
           </NavLink>
 
-          <NavLink activeclassname='active' to="/cart">
+          <NavLink activeclassname="active" to="/cart">
             {" "}
             <li className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 hover:text-gray-400 transition-transform cursor-pointer">
               Cart
             </li>
           </NavLink>
 
-          <NavLink activeclassname='active' to="/contact">
+          {/* <NavLink activeclassname='active' to="/contact">
             {" "}
             <li className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 hover:text-gray-400 transition-transform cursor-pointer">
               Contact
             </li>
-          </NavLink>
+          </NavLink> */}
           {!userInfo && (
             <Link to="/login">
               <li className="px-1 sm:px-2 md:px-3 lg:px-4 text-red-400 hover:text-red-500 transition-transform cursor-pointer">
@@ -150,11 +159,11 @@ const Header = () => {
               </ul>
             </li>
           )}
-          <Link to="/search">
+          {/* <Link to="/search">
             <li className="text-red-400 px-2 cursor-pointer">
               <i className="fa-solid fa-magnifying-glass"></i>
             </li>
-          </Link>
+          </Link> */}
           <li className="text-red-300 px-2 cursor-pointer">
             <FontAwesomeIcon
               icon={faBarsStaggered}

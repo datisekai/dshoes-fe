@@ -1,6 +1,6 @@
 import React from "react";
 import { SkeletonTheme } from "react-loading-skeleton";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../assets/css/index.css";
 import Pagination from "../../components/Pagination/Pagination";
 import SkeletonShoes from "../../components/Skeleton/SkeletonShoes";
@@ -13,27 +13,25 @@ const ShoesList = ({ type, list, pagination, handle, loading, types }) => {
         <div className="w-full md:w-[20%] bg-[#2a2a2a] mt-6 rounded-md py-2 px-5">
           <h1 className="text-gray-100 text-xl underlined-blue">Category</h1>
           <ul className="mt-5">
-          <NavLink
-                activeclassname="active"
+          <Link
                 to={`/products`}
-                className="capitalize block text-gray-100 py-[4px] mt-1 hover:text-gray-300 transition-all"
+                className={`${!type && 'active'} capitalize block text-gray-100 py-[4px] mt-1 hover:text-gray-300 transition-all`}
               >
                 All Products
-              </NavLink>
+              </Link>
             {types?.map((item) => (
-              <NavLink
-                activeclassname="active"
+              <Link
                 to={`/products/${item.type}?id=${item._id}`}
-                className="capitalize block text-gray-100 py-[4px] mt-1 hover:text-gray-300 transition-all"
+                className={`${item.type === type ? 'active' : ''} capitalize block text-gray-100 py-[4px] mt-1 hover:text-gray-300 transition-all`}
               >
                 {item.type}
-              </NavLink>
+              </Link>
             ))}
           </ul>
         </div>
         <div className="w-full md:w-[80%] px-5">
           <h1 className="text-gray-100 text-2xl p-5 underlined-blue uppercase">
-            {type && type}
+            {type && type || 'ALL PRODUCT'}
           </h1>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8 p-2 sm:p-4 md:p-5">
             {loading && <SkeletonShoes item={8} />}

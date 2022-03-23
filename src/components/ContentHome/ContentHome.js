@@ -38,7 +38,7 @@ const ContentHome = () => {
 
   useEffect(() => {
     getProductsByTypeId();
-  }, []);
+  }, [type]);
 
   const getProductsByTypeId = async () => {
     setLoad(true);

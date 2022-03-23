@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "../../assets/css/index.css";
 import { useSideBar } from "../../store/displayBar";
 
@@ -28,28 +28,30 @@ const Modal = () => {
         </div>
 
         <ul className="mt-3">
-          <Link to={"/"} onClick={() => setSidebar(false)}>
+          <NavLink activeclassname='active' className={'block'} to={"/"} onClick={() => setSidebar(false)}>
             {" "}
-            <li className="text-gray-200 uppercase py-2">
+            <li className="block text-gray-200 uppercase py-2">
               <i className="fa-solid fa-house"></i> Home
             </li>
-          </Link>
-         {type && type.map(item =>   <Link key={item._id} to={`/${item.type}?id=${item._id}`} onClick={() => setSidebar(false)}>
+          </NavLink>
+          <NavLink activeclassname='active' className={'block'} to={"/products"} onClick={() => setSidebar(false)}>
+            {" "}
             <li className="text-gray-200 uppercase py-2">
-              <i className="fa-brands fa-atlassian"></i> {item.type}
+              <i className="fa-solid fa-house"></i> Products
             </li>
-          </Link>)}
+          </NavLink>
+        
          
-          <Link to={"/cart"} onClick={() => setSidebar(false)}>
+          <NavLink activeclassname='active' className={'block'} to={"/cart"} onClick={() => setSidebar(false)}>
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-cart-shopping"></i> Cart
             </li>
-          </Link>
-          <Link to={"/contact"} onClick={() => setSidebar(false)}>
+          </NavLink>
+          <NavLink activeclassname='active' className={'block'} to={"/contact"} onClick={() => setSidebar(false)}>
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-address-card"></i> Contact
             </li>
-          </Link>
+          </NavLink>
           {!userInfo && (
             <Link to={"/login"} onClick={() => setSidebar(false)}>
               {" "}
