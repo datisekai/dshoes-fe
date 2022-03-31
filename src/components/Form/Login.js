@@ -19,6 +19,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const queryParams = useQuery();
   const query = queryParams.get("productId");
+  const action = queryParams.get("action")
 
   const emailRef = useRef();
 
@@ -39,9 +40,9 @@ const Login = () => {
         setHeaderAxios(res.data.token);
         toast.success("Login successfull");
         getUser();
-        query ? navigate(`/detail/${query}`) : navigate("/");
+        query ? navigate(`/detail/${query}`) : action && action === 'check-out' ? navigate('/check-out') : navigate('/');
       } catch (err) {
-        toast.error(err.response.data.message);
+        err && toast.error(err.response.data.message);
       }
       setLoading(false);
     }
@@ -74,13 +75,13 @@ const Login = () => {
               <br />
               <input
                 ref={emailRef}
-                type="text"
+                type="email"
                 name=""
                 id="email"
                 value={email}
                 placeholder="Ex: datly@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}
-                className="px-4 py-1 w-full rounded-md"
+                className="px-4 py-1 w-full rounded-md outline-none"
                 required
               />
             </div>
@@ -96,7 +97,7 @@ const Login = () => {
                 id="password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Ex: datly1223"
-                className="px-4 py-1 w-full rounded-md"
+                className="px-4 py-1 w-full rounded-md outline-none"
                 required
               />
             </div>
@@ -112,7 +113,7 @@ const Login = () => {
               <button
                 className="w-full mt-2 md:mt-0 md:w-[49%] text-md bg-gradient-to-r from-red-400 to-blue-400 hover:opacity-90 text-gray-100 rounded-md px-5 py-1  transition-transform"
                 onClick={() =>
-                  query ? navigate(`/register?productId=${query}`) : navigate("/register")
+                  query ? navigate(`/register?productId=${query}`) : action && action === 'check-out' ? navigate('/register?action=check-out') : navigate("/register")
                 }
               >
                 Create Account

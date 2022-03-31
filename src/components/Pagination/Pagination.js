@@ -6,7 +6,7 @@ const Pagination = ({ pagination, handle }) => {
   return (
     <div className="flex justify-between max-w-[1200px] bg-[#2A2A2A] mx-auto py-2 px-5 rounded-lg items-center">
       <div className="text-center text-gray-100 text-sm sm:text-md">
-        Showing {pagination && pagination.skip} to {pagination && pagination.to}{" "}
+        Showing {pagination && pagination.skip} to {pagination && pagination.to + pagination.skip - 1}{" "}
         of {pagination && pagination.total} results
       </div>
       <div className="flex justify-center">

@@ -37,7 +37,7 @@ const Modal = () => {
           <NavLink activeclassname='active' className={'block'} to={"/products"} onClick={() => setSidebar(false)}>
             {" "}
             <li className="text-gray-200 uppercase py-2">
-              <i className="fa-solid fa-house"></i> Products
+            <i className="fa-brands fa-product-hunt"></i> Products
             </li>
           </NavLink>
         
@@ -45,6 +45,11 @@ const Modal = () => {
           <NavLink activeclassname='active' className={'block'} to={"/cart"} onClick={() => setSidebar(false)}>
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-cart-shopping"></i> Cart
+            </li>
+          </NavLink>
+          <NavLink activeclassname='active' className={'block'} to={"/history-order"} onClick={() => setSidebar(false)}>
+            <li className="text-gray-200 uppercase py-2">
+            <i className="fa-brands fa-jedi-order"></i> Order
             </li>
           </NavLink>
           <NavLink activeclassname='active' className={'block'} to={"/contact"} onClick={() => setSidebar(false)}>

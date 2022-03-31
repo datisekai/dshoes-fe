@@ -12,27 +12,16 @@ const cartReducer = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const { carts } = { ...state };
-      const isFoundProduct =
-        carts &&
-        carts.some(
-          (item) =>
-            item.productId === action.payload.productId &&
-            item.size === action.payload.size &&
-            item.color === action.payload.color
-        );
-      if (isFoundProduct) {
-        const newCart = carts.map((item) => {
-          if (
-            item.productId === action.payload.productId &&
-            item.size === action.payload.size &&
-            item.color === action.payload.color
-          ) {
+      const isFound = carts?.some((item) => item._id === action.payload._id);
+      if (isFound) {
+        const newCarts = carts?.map((item) => {
+          if (item._id === action.payload._id) {
             return { ...item, quantify: item.quantify + 1 };
           }
           return item;
         });
-        localStorage.setItem("cart", JSON.stringify(newCart));
-        return { ...state, carts: newCart };
+        localStorage.setItem("cart", JSON.stringify(newCarts));
+        return { ...state, carts: newCarts };
       }
       localStorage.setItem("cart", JSON.stringify([...carts, action.payload]));
       return { ...state, carts: [...state.carts, action.payload] };
@@ -41,11 +30,7 @@ const cartReducer = createSlice({
       const { carts } = { ...state };
 
       const newCart = carts.map((item) => {
-        if (
-          item.productId === action.payload.productId &&
-          item.size === action.payload.size &&
-          item.color === action.payload.color
-        ) {
+        if (item._id === action.payload._id) {
           return { ...item, quantify: item.quantify + 1 };
         }
         return item;
@@ -57,11 +42,7 @@ const cartReducer = createSlice({
       const { carts } = { ...state };
 
       const newCart = carts.map((item) => {
-        if (
-          item.productId === action.payload.productId &&
-          item.size === action.payload.size &&
-          item.color === action.payload.color
-        ) {
+        if (item._id === action.payload._id) {
           return { ...item, quantify: item.quantify - 1 };
         }
         return item;
@@ -71,21 +52,17 @@ const cartReducer = createSlice({
     },
     removeProduct: (state, action) => {
       const { carts } = { ...state };
-      const newCart =
-      carts &&
-      carts.filter(
-        (item) =>
-        item.productId !== action.payload.productId &&
-        item.size !== action.payload.size &&
-        item.color !== action.payload.color
-        );
-        console.log(carts);
+      const newCart = carts?.filter((item) => item._id !== action.payload._id);
       localStorage.setItem("cart", JSON.stringify(newCart));
       return { ...state, carts: newCart };
     },
+    removeCart:(state, action) => {
+      localStorage.setItem("cart", JSON.stringify([]));
+      return {...state, carts:[]}
+    }
   },
 });
 
-export const { addToCart, increaseCart, decreaseCart, removeProduct } =
+export const { addToCart, increaseCart, decreaseCart, removeProduct,removeCart } =
   cartReducer.actions;
 export default cartReducer.reducer;

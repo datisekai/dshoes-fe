@@ -8,6 +8,7 @@ const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
     <div className="w-full md:w-[50%] lg:w-[60%]">
       <h1 className="underlined-blue uppercase text-gray-100 text-2xl">Bag</h1>
       <div className="mt-2">
+        {!carts || carts.length === 0 && <img className="object-cover w-full aspect-video" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png"></img>}
         {carts &&
           carts.map((item, index) => (
             <div
@@ -26,7 +27,7 @@ const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
                 </p>
                 <p className="text-gray-200 text-md">Size {item.size}</p>
                 <div className="flex">
-                  <div className="">
+                  <div className="flex items-center">
                     <label htmlFor="" className="text-gray-200 text-md">
                       Quantify
                     </label>
@@ -58,6 +59,7 @@ const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
                   thousandSeparator={true}
                   suffix=" VND"
                   value={item.prices}
+                  displayType='text'
                 />
               </h3>
             </div>

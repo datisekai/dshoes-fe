@@ -38,6 +38,7 @@ const ContentHome = () => {
 
   useEffect(() => {
     getProductsByTypeId();
+    console.log(type);
   }, [type]);
 
   const getProductsByTypeId = async () => {

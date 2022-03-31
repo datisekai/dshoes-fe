@@ -21,6 +21,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const queryParams = useQuery()
   const query = queryParams.get("productId");
+  const action = queryParams.get('action')
 
   const emailRef = useRef();
 
@@ -46,7 +47,7 @@ const Register = () => {
         setHeaderAxios(res.data.token);
         toast.success("Register successfull");
         getUser();
-        query ? navigate(`/detail/${query}`) : navigate("/");
+        query ? navigate(`/detail/${query}`) : action && action === 'check-out' ? navigate('/check-out') : navigate("/");
       } catch (err) {
         err.response && toast.error(err.response.data.message);
       }
@@ -82,7 +83,7 @@ const Register = () => {
               </label>
               <br />
               <input
-                type="text"
+                type="email"
                 name=""
                 id="email"
                 value={email}
@@ -155,7 +156,7 @@ const Register = () => {
               </button>
               <button
                 className="w-full mt-2 md:mt-0  md:w-[49%] text-md rounded-md px-5 md:px-2 bg-gradient-to-r from-blue-400 to-red-400 lg:px-5 py-1 text-gray-100 hover:opacity-90 transition-transform"
-                onClick={() => query ? navigate(`/login?productId=${query}`) : navigate('/login')}
+                onClick={() => query ? navigate(`/login?productId=${query}`) : action && action === 'check-out' ? navigate('/login?action=check-out') : navigate('/login')}
               >
                 Login Now
               </button>

@@ -33,3 +33,13 @@ body::-webkit-scrollbar {
     background-color: hsl(200, 20%, 95%);
   }
 }
+
+#cartsCheckout::-webkit-scrollbar{
+  width: 5px;
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+#cartsCheckout::-webkit-scrollbar-thumb {
+  background-color: #999;
+}

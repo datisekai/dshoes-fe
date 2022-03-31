@@ -1,24 +1,33 @@
 import axios from "axios";
-import { lazy, Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { base_auth } from "./api/config";
+import { toast } from "react-toastify";
+import { base_auth, base_products } from "./api/config";
 import "./App.css";
+import Loading from "./components/Loading/Loading";
 import Modal from "./components/Modal/Modal";
 import TopLoading from "./components/TopLoading/TopLoading";
+import CartPage from "./pages/Cart/CartPage";
+import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
+import ContactPage from "./pages/Contact/ContactPage";
+import DetailPage from "./pages/Detail/DetailPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import Home from "./pages/Home/Home";
+import LoginPage from "./pages/Login/LoginPage";
 import Menu from "./pages/Menu/Menu";
+import DetailOrderPage from "./pages/Order/DetailOrderPage";
+import OrderPage from "./pages/Order/OrderPage";
+import RegisterPage from "./pages/Register/RegisterPage";
+import SearchPage from "./pages/Search/SearchPage";
+import { setType } from "./redux/typeReducer";
 import { setUser } from "./redux/userReducer";
+import PrivateRoute from "./utils/PrivateRoute";
 import setHeaderAxios from "./utils/setHeaderAxios";
-const Home = lazy(() => import("./pages/Home/Home"));
-const SearchPage = lazy(() => import("./pages/Search/SearchPage"));
-const RegisterPage = lazy(() => import("./pages/Register/RegisterPage"));
-const DetailPage = lazy(() => import("./pages/Detail/DetailPage"));
-const ContactPage = lazy(() => import("./pages/Contact/ContactPage"));
-const CartPage = lazy(() => import("./pages/Cart/CartPage"));
-const LoginPage = lazy(() => import("./pages/Login/LoginPage"));
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user.user)
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
@@ -37,6 +46,25 @@ function App() {
     }
   };
 
+  
+  useEffect(() => {
+    getTypes();
+  }, []);
+  
+  const getTypes = async () => {
+    try {
+      const res = await axios.get(
+        `${base_products}/types/all`
+        );
+        dispatch(setType(res.data.types));
+      } catch (err) {
+        err.response && toast(err.response.message);
+      }
+    };
+    
+    if(typeof user === 'undefined') return <Loading/>
+
+
   return (
     <div className="App">
       <Suspense fallback={<TopLoading />}>
@@ -50,6 +78,10 @@ function App() {
           <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/products/:type" element={<Menu />}></Route>
           <Route path="/products" element={<Menu />}></Route>
+          <Route path="/check-out" element={<PrivateRoute><CheckOutPage /></PrivateRoute>}></Route>
+          <Route path="/history-order" element={<PrivateRoute><OrderPage/></PrivateRoute>}></Route>
+          <Route path="/history-order/:id" element={<PrivateRoute><DetailOrderPage/></PrivateRoute>}></Route>
+          <Route path="*" element={<ErrorPage/>}></Route>
         </Routes>
       </Suspense>
       <Modal />

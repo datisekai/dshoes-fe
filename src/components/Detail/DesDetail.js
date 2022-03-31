@@ -20,6 +20,7 @@ const DesDetail = ({ desc, handleAddToCart }) => {
           className="bg-transparent text-gray-100 outline-none"
           thousandSeparator={true}
           suffix=" VND"
+          displayType="text"
           value={desc && desc.product.prices}
         />
       </h2>
@@ -79,6 +80,7 @@ const DesDetail = ({ desc, handleAddToCart }) => {
             image: desc.product.image[0],
             name: desc.product.name,
             prices: desc.product.prices,
+            _id:`${desc.product._id}-${color}-${size}`
           })
         }
         className="w-full mt-5 px-4 py-1 rounded-lg text-gray-100 hover:opacity-90 bg-gradient-to-r from-blue-400 to-red-400 transition-all"

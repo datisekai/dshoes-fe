@@ -11,7 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import useWidth from "../../customHook/useWidth";
 import { Link } from "react-router-dom";
-import Shoe from './Shoe'
+import Shoe from "./Shoe";
 
 const Shoes = ({ type, list }) => {
   SwiperCore.use([Navigation, Autoplay, Pagination, EffectCoverflow]);
@@ -33,28 +33,35 @@ const Shoes = ({ type, list }) => {
     slide = 1.5;
   }
   return (
-    <div className="max-w-[1200px] mx-auto py-[30px] px-[12px]">
-      <h1 className="underlined-blue text-gray-200 text-2xl uppercase">
-        {type}
-      </h1>
-      <div className="mt-6">
-        <Swiper
-          navigation
-          grabCursor={true}
-          spaceBetween={space}
-          slidesPerView={slide}
-          autoplay
-        >
-          {list && list.map((item, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <Shoe product={item}/>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </div>
-    </div>
+    <>
+      {" "}
+      {list && list.length > 0 && (
+        <div className="max-w-[1200px] mx-auto py-[30px] px-[12px]">
+          <h1 className="underlined-blue text-gray-200 text-2xl uppercase">
+            {type}
+          </h1>
+          <div className="mt-6">
+            <Swiper
+              navigation
+              grabCursor={true}
+              spaceBetween={space}
+              slidesPerView={slide}
+              autoplay
+            >
+              {list &&
+                list.length > 0 &&
+                list.map((item, index) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <Shoe product={item} />
+                    </SwiperSlide>
+                  );
+                })}
+            </Swiper>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -6,14 +6,13 @@ import { useNavigate } from "react-router-dom";
 import Back from "../../components/Back/Back";
 
 const ContactPage = () => {
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
       <Header />
       <div className="min-h-screen bg-[#222222]">
-        <Back/>
+        <Back />
         <div className="max-w-[1200px] mx-auto p-5">
           <h1 className="underlined-blue text-xl uppercase text-gray-100">
             Contact
@@ -22,6 +21,7 @@ const ContactPage = () => {
             <h2 className="w-full md:w-[30%] text-2xl text-gray-300">
               Infomation
             </h2>
+
             <div className="grid grid-cols-2 gap-5">
               <div className="px-5">
                 <h2 className="text-red-400 text-md">Support</h2>
@@ -76,7 +76,12 @@ const ContactPage = () => {
             </div>
           </div>
 
-          <button className="w-full uppercase text-gray-100 px-5 py-2 bg-gradient-to-r from-blue-400 to-red-400 hover:opacity-90 transition-all mt-3  rounded-md" onClick={() => navigate('/')}>Go back home</button>
+          <button
+            className="w-full uppercase text-gray-100 px-5 py-2 bg-gradient-to-r from-blue-400 to-red-400 hover:opacity-90 transition-all mt-3  rounded-md"
+            onClick={() => navigate("/")}
+          >
+            Go back home
+          </button>
         </div>
       </div>
       <Footer />

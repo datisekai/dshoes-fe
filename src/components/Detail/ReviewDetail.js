@@ -35,7 +35,7 @@ const ReviewDetail = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:5098/api/comments?userId=${userInfo._id}&productId=${id}`,
+        `${base_comments}?userId=${userInfo._id}&productId=${id}`,
         { content }
       );
       if (res.data.success) {
