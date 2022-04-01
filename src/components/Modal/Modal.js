@@ -7,7 +7,7 @@ import { useSideBar } from "../../store/displayBar";
 const Modal = () => {
   const sidebar = useSideBar((state) => state.sidebar);
   const setSidebar = useSideBar((state) => state.setSidebar);
-  const userInfo = useSelector((state) => state.user.user.userInfo);
+  const userInfo = useSelector((state) => state.user);
   const { type } = useSelector((state) => state.type);
 
   return (
@@ -57,7 +57,7 @@ const Modal = () => {
               <i className="fa-solid fa-address-card"></i> Contact
             </li>
           </NavLink>
-          {!userInfo && (
+          {userInfo && !userInfo.user && (
             <Link to={"/login"} onClick={() => setSidebar(false)}>
               {" "}
               <li className="text-red-400 uppercase py-2">
