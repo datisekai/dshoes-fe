@@ -50,7 +50,7 @@ const Shoes = ({ type, list }) => {
             >
               {list &&
                 list.length > 0 &&
-                list.map((item, index) => {
+                list?.map((item, index) => {
                   return (
                     <SwiperSlide key={index}>
                       <Shoe product={item} />

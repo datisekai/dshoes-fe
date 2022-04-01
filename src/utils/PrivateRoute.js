@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
-  const user = useSelector((state) => state.user.user.userInfo);
+  const user = useSelector((state) => state.user);
 
-  if (!user) {
+  if (user && !user.user) {
     return <Navigate to={`/login`} />;
   } 
 

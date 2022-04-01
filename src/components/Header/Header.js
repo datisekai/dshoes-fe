@@ -38,8 +38,6 @@ const Header = () => {
     });
   };
 
-  console.log(userInfo);
-
   return (
     <div className="bg-[#2A2A2A]">
       <header className="flex justify-between items-center max-w-[1200px] mx-auto">
@@ -96,13 +94,13 @@ const Header = () => {
               Order
             </li>
           </NavLink>}
-          {userInfo && userInfo.user && (
+          {userInfo?.user && (
             <li
               className="px-1 sm:px-2 md:px-3 lg:px-4 text-red-400 hover:text-red-500 transition-transform cursor-pointer"
               id="menuLoginParent"
             >
               <img
-                src={`https://joeschmoe.io/api/v1/${userInfo.user.userInfo.email}`}
+                src={`https://joeschmoe.io/api/v1/${userInfo?.user?.userInfo?.email}`}
                 className="w-[45px] h-[45px] rounded-full "
                 alt=""
               />
@@ -112,7 +110,7 @@ const Header = () => {
               >
                 <li className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700">
                   <i className="fa-solid fa-id-card"></i>{" "}
-                  {userInfo.user.userInfo.email && userInfo.user.userInfo.email}
+                  {userInfo?.user?.userInfo?.email && userInfo?.user?.userInfo?.email}
                 </li>
                 <li
                   className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700"
@@ -131,7 +129,7 @@ const Header = () => {
               id="menuLoginParent"
             >
               <img
-                src={`https://joeschmoe.io/api/v1/${userInfo.user.userInfo.email}`}
+                src={`https://joeschmoe.io/api/v1/${userInfo?.user?.userInfo?.email}`}
                 className="w-[30px] h-[30px] rounded-full "
                 alt=""
               />
@@ -141,7 +139,7 @@ const Header = () => {
               >
                 <li className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700 truncate">
                   <i className="fa-solid fa-id-card"></i>{" "}
-                  {userInfo.user.userInfo.email && userInfo.user.userInfo.email}
+                  {userInfo?.user?.userInfo?.email && userInfo?.user?.userInfo?.email}
                 </li>
                 <li
                   className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700"

@@ -8,11 +8,11 @@ import "../../assets/css/index.css";
 const Sumary = ({ carts }) => {
   const total = carts?.reduce((pre, cur) => pre + cur.prices * cur.quantify, 0);
   const navigate = useNavigate();
-  const email = useSelector((state) => state.user.user.userInfo);
+  const user = useSelector((state) => state.user);
 
   const handleCheckOut = () => {
     if (carts && carts.length > 0) {
-      !email ? navigate("/login?action=check-out") : navigate("/check-out");
+      !user ? navigate("/login?action=check-out") : navigate("/check-out");
     } else {
       toast.error("No products in your shopping cart!");
     }

@@ -42,7 +42,7 @@ const Menu = () => {
   const getTypes = async () => {
     try {
       const res = await axios.get(
-        "https://dshoes-server-production.up.railway.app/api/products/types/all"
+        `${base_products}/types/all`
       );
       dispatch(setType(res.data.types));
     } catch (err) {
@@ -114,7 +114,7 @@ const Menu = () => {
     setLoad(true);
     try {
       const res = await axios.post(
-        `http://localhost:5098/api/products/search?limit=${limit}&page=${page}`,
+        `${base_products}/search?limit=${limit}&page=${page}`,
         { to, from, kind, text }
       );
       dispatch(setProduct(res.data.results));

@@ -37,8 +37,7 @@ const ContentHome = () => {
   const { type } = useSelector((state) => state.type);
 
   useEffect(() => {
-    getProductsByTypeId();
-    console.log(type);
+    getProductsByTypeId()
   }, [type]);
 
   const getProductsByTypeId = async () => {

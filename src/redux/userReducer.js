@@ -12,7 +12,7 @@ const userReducer = createSlice({
       };
     },
     deleteUser: (state, action) => {
-      return { ...state, user: {} };
+      return { ...state, user: undefined };
     },
   },
 });

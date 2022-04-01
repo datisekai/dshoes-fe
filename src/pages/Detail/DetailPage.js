@@ -18,14 +18,14 @@ import { setLocal } from "../../utils/local";
 import { scrollTop } from "../../utils/ScrollTop";
 import Title from "../../utils/Title";
 
-const DetailPage = () => {
+const DetailPage = () => {  
   const { id } = useParams();
   const [shoes, setShoes] = useState();
   const [load, setLoad] = useState(false);
   const [same, setSame] = useState();
   const [loadSame, setLoadSame] = useState(false);
   const carts = useSelector((state) => state.cart.carts);
-  const userInfo = useSelector((state) => state.user.user.userInfo);
+  const userInfo = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -69,7 +69,7 @@ const DetailPage = () => {
   };
 
   const handleAddToCart = (product) => {
-    if (userInfo && userInfo.email) {
+    if (userInfo && userInfo.user) {
       if (!product.color || !product.size) {
         toast.error("Please check size or color!");
       } else {
