@@ -9,7 +9,7 @@ import swal from "sweetalert";
 import { toast } from "react-toastify";
 
 const ReviewDetail = () => {
-  const userInfo = useSelector((state) => state.user.user.userInfo);
+  const userInfo = useSelector((state) => state.user);
   const { id } = useParams();
   const [comments, setComments] = useState();
   const [content, setContent] = useState("");
@@ -35,7 +35,7 @@ const ReviewDetail = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${base_comments}?userId=${userInfo._id}&productId=${id}`,
+        `${base_comments}?userId=${userInfo?.user?.userInfo?._id}&productId=${id}`,
         { content }
       );
       if (res.data.success) {
