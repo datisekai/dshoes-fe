@@ -62,7 +62,7 @@ function App() {
       }
     };
     
-    if(typeof user === 'undefined') return <Loading/>
+    if(sessionStorage.getItem('token')&&typeof user === 'undefined') return <Loading/>
 
 
   return (
