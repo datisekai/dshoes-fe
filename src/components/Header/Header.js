@@ -15,7 +15,7 @@ import { useSideBar } from "../../store/displayBar";
 const Header = () => {
   const sidebar = useSideBar((state) => state.sidebar);
   const setSidebar = useSideBar((state) => state.setSidebar);
-  const userInfo = useSelector((state) => state.user.user.userInfo);
+  const userInfo = useSelector((state) => state.user.user.userInfo || undefined);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const search = useSelector((state) => state.search.text);
