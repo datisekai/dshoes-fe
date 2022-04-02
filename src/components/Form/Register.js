@@ -11,49 +11,67 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userReducer";
 import { FlippingSquare } from "react-cssfx-loading/lib";
 import { useQuery } from "../../customHook/useQuery";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [rep, setRep] = useState("");
-  const [phone, setPhone] = useState("");
   const [load, setLoad] = useState(false);
   const dispatch = useDispatch();
-  const queryParams = useQuery()
+  const queryParams = useQuery();
   const query = queryParams.get("productId");
-  const action = queryParams.get('action')
+  const action = queryParams.get("action");
 
   const emailRef = useRef();
 
-  useEffect(() => {
-    emailRef.current.focus();
-  }, []);
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    if (!checkEmail(email) || !checkPhone(phone)) {
-      toast.error("Sai định dang email or phone!");
-    } else if (!checkMatch(pass, rep)) {
-      toast.error("Password và repeat không trùng nhau!");
-    } else {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      phoneNumber: "",
+      password: "",
+      confirm: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().required("Required").matches(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,'Must be the format email'),
+      phoneNumber: Yup.string()
+        .required("Required")
+        .matches(
+          /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
+          "Must be the format phone number"
+        ),
+      password: Yup.string()
+        .required("Required")
+        .min(6, "Must be more than 6 characters"),
+      confirm: Yup.string()
+        .required("Required")
+        .oneOf([Yup.ref("password"), null], "Password must match"),
+    }),
+    onSubmit: async (values) => {
       try {
         setLoad(true);
         const res = await axios.post(`${base_auth}/register`, {
-          email,
-          password: pass,
-          phoneNumber: phone,
+          email:values.email,
+          password: values.password,
+          phoneNumber: values.phoneNumber,
         });
         sessionStorage.setItem("token", res.data.token);
         setHeaderAxios(res.data.token);
         toast.success("Register successfull");
         getUser();
-        query ? navigate(`/detail/${query}`) : action && action === 'check-out' ? navigate('/check-out') : navigate("/");
+        query
+          ? navigate(`/detail/${query}`)
+          : action && action === "check-out"
+          ? navigate("/check-out")
+          : navigate("/");
       } catch (err) {
         err.response && toast.error(err.response.data.message);
       }
       setLoad(false);
-    }
-  };
+    },
+  });
+
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
 
   const getUser = async () => {
     try {
@@ -68,7 +86,7 @@ const Register = () => {
 
   return (
     <div className="min-h-[90vh] bg-[#222222] pt-10">
-      <div className="bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[500px] mx-auto flex justify-between items-center relative">
+      <div className="bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[600px] mx-auto flex justify-between items-center relative">
         <img
           src="https://prices.vn/photos/8/blog/review-giay-nike-nam.jpg"
           alt=""
@@ -76,7 +94,7 @@ const Register = () => {
         />
         <div className="w-[100%] md:w-[50%] lg:w-[40%] p-5">
           <h1 className="text-[#333] underlined-blue text-xl">WELCOME BACK</h1>
-          <form onSubmit={handleRegister}>
+          <form onSubmit={formik.handleSubmit}>
             <div className="mt-3">
               <label htmlFor="email" className="text-[#666]">
                 Email Address
@@ -84,15 +102,16 @@ const Register = () => {
               <br />
               <input
                 type="email"
-                name=""
+                name="email"
                 id="email"
-                value={email}
+                value={formik.values.email}
                 ref={emailRef}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={formik.handleChange}
                 placeholder="Ex: datly@gmail.com"
-                className="px-4 py-1 w-full rounded-md"
+                className="px-4 py-1 w-full rounded-md outline-none"
                 required
               />
+              <p className="text-red-400">{formik.errors.email && formik.errors.email}</p>
             </div>
             <div className="mt-3">
               <label htmlFor="password" className="text-[#666]">
@@ -101,16 +120,17 @@ const Register = () => {
               <br />
               <input
                 type="text"
-                name=""
-                id="password"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                name="phoneNumber"
+                id="phoneNumber"
+                value={formik.values.phoneNumber}
+                onChange={formik.handleChange}
                 placeholder="Ex: 0886249022"
-                className="px-4 py-1 w-full rounded-md"
+                className="px-4 py-1 w-full rounded-md outline-none"
                 required
                 maxLength={10}
                 minLength={10}
               />
+              <p className="text-red-400">{formik.errors.phoneNumber && formik.errors.phoneNumber}</p>
             </div>
             <div className="mt-3">
               <label htmlFor="password" className="text-[#666]">
@@ -119,14 +139,15 @@ const Register = () => {
               <br />
               <input
                 type="text"
-                name=""
+                name="password"
                 id="password"
-                value={pass}
-                onChange={(e) => setPass(e.target.value)}
+                value={formik.values.password}
+                onChange={formik.handleChange}
                 placeholder="Ex: datly1223"
-                className="px-4 py-1 w-full rounded-md"
+                className="px-4 py-1 w-full rounded-md outline-none"
                 required
               />
+              <p className="text-red-400">{formik.errors.password && formik.errors.password}</p>
             </div>
 
             <div className="mt-3">
@@ -136,14 +157,15 @@ const Register = () => {
               <br />
               <input
                 type="text"
-                name=""
-                id="repeat"
-                value={rep}
-                onChange={(e) => setRep(e.target.value)}
+                name="confirm"
+                id="confirm"
+                value={formik.values.confirm}
+                onChange={formik.handleChange}
                 placeholder="Ex: datly1223"
-                className="px-4 py-1 w-full rounded-md"
+                className="px-4 py-1 w-full rounded-md outline-none"
                 required
               />
+              <p className="text-red-400">{formik.errors.confirm && formik.errors.confirm}</p>
             </div>
 
             <div className="mt-3 flex flex-col md:flex-row justify-between">
@@ -156,7 +178,13 @@ const Register = () => {
               </button>
               <button
                 className="w-full mt-2 md:mt-0  md:w-[49%] text-md rounded-md px-5 md:px-2 bg-gradient-to-r from-blue-400 to-red-400 lg:px-5 py-1 text-gray-100 hover:opacity-90 transition-transform"
-                onClick={() => query ? navigate(`/login?productId=${query}`) : action && action === 'check-out' ? navigate('/login?action=check-out') : navigate('/login')}
+                onClick={() =>
+                  query
+                    ? navigate(`/login?productId=${query}`)
+                    : action && action === "check-out"
+                    ? navigate("/login?action=check-out")
+                    : navigate("/login")
+                }
               >
                 Login Now
               </button>

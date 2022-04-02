@@ -6,13 +6,22 @@ import Pagination from "../../components/Pagination/Pagination";
 import SkeletonShoes from "../../components/Skeleton/SkeletonShoes";
 import { setText } from "../../redux/searchReducer";
 import Shoe from "./Shoe";
+import { Slider, TextField } from "@mui/material";
 
-const ShoesList = ({ type, list, pagination, handle, loading, types }) => {
+const ShoesList = ({ type, list, pagination, handle, loading, types,max }) => {
   const text = useSelector((state) => state.search.text);
   const flag = useSelector((state) => state.search.flag);
   const { handleApply, handleSetTo, handleSetFrom, handleSetKind } = handle;
   const dispatch = useDispatch();
   const [display, setDisplay] = useState(false);
+  const [value, setValue] = useState([0, 10000000]);
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
+    handleSetTo(newValue[0]);
+    handleSetFrom(newValue[1]);
+  };
+
+  console.log(value);
 
   return (
     <div className="bg-[#222222] min-h-[100vh] relative py-5 overflow-hidden">
@@ -58,100 +67,26 @@ const ShoesList = ({ type, list, pagination, handle, loading, types }) => {
           </ul>
 
           <div className={`${display ? "block" : "hidden"} md:block`}>
-            <h3 className="mt-3 text-gray-100 text-lg">Text</h3>
-            <form onSubmit={handleApply}>
-              <input
-                value={text}
-                onChange={(e) => dispatch(setText(e.target.value))}
-                type="text"
-                placeholder="Enter your text..."
-                className="px-2 py-1 text-gray-100 placeholder:text-sm outline-none border-b border-l border-blue-400 placeholder:text-gray-300 w-full mt-1 bg-[#222] rounded-md"
-              />
-            </form>
+         
+          <div className="mt-3">
+          <form action="" onSubmit={handleApply}>
+           <TextField id="outlined-basic" InputLabelProps={{style : {color : 'white'} }} label="Search" size="small" value={text} onChange={(e) => dispatch(setText(e.target.value))} inputProps={{style:{color:'white', backgroundColor:'#222'}}} variant="outlined" />
+           </form>
+          </div>
 
             <ul className="mt-3">
               <h3 className="text-gray-100 text-lg">Prices</h3>
-              <label
-                htmlFor={`input-1`}
-                className="flex items-center justify-between mt-1 text-gray-100 px-5 py-1 bg-[#222] rounded-md hover:opacity-75 transition-all cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  name="inputSize"
-                  id={`input-1`}
-                  value="duoi6tr"
-                  onChange={() => {
-                    handleSetTo(undefined);
-                    handleSetFrom(6000000);
-                  }}
-                />
-                <p className="capitalize">Under 6tr</p>
-              </label>
 
-              <label
-                htmlFor={`input-2`}
-                className="flex items-center justify-between mt-1 text-gray-100 px-5 py-1 bg-[#222] rounded-md hover:opacity-75 transition-all cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  name="inputSize"
-                  id={`input-2`}
-                  onChange={() => {
-                    handleSetTo(6000000);
-                    handleSetFrom(10000000);
-                  }}
-                />
-                <p className="capitalize"> 6tr - 10tr</p>
-              </label>
-              <label
-                htmlFor={`input-3`}
-                className="flex items-center justify-between mt-1 text-gray-100 px-5 py-1 bg-[#222] rounded-md hover:opacity-75 transition-all cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  name="inputSize"
-                  id={`input-3`}
-                  onChange={() => {
-                    handleSetTo(10000000);
-                    handleSetFrom(undefined);
-                  }}
-                />
-                <p className="capitalize">Over 10tr</p>
-              </label>
-              <label
-                htmlFor={`input-4`}
-                className="flex items-center justify-between mt-1 text-gray-100 px-5 py-1 bg-[#222] rounded-md hover:opacity-75 transition-all cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  name="inputSize"
-                  id={`input-4`}
-                  onChange={() => {
-                    handleSetTo(undefined);
-                    handleSetFrom(undefined);
-                  }}
-                />
-                <p className="capitalize">All</p>
-              </label>
-            </ul>
-            <p className="text-gray-100 mt-3 capitalize">Choose price range</p>
-            <div className="flex justify-between items-center flex-col mt-1">
-              <input
-                type="number"
-                className="w-[100%] text-gray-300 rounded-md px-2 text-md placeholder:text-sm outline-none text-left bg-[#222] placeholder:text-gray-300 "
-                placeholder="from"
-                onChange={(e) => handleSetTo(e.target.value)}
-              />{" "}
-              <span className="text-gray-300">
-                <i className="fa-solid fa-angles-down"></i>
-              </span>
-              <input
-                type="number"
-                className="w-[100%] text-gray-300 rounded-md px-2 text-md placeholder:text-sm outline-none text-left bg-[#222] placeholder:text-gray-300 "
-                placeholder="to"
-                onChange={(e) => handleSetFrom(e.target.value)}
+              <Slider
+                getAriaLabel={() => "Prices range"}
+                value={value}
+                onChange={handleChange}
+                valueLabelDisplay="auto"
+                min={0}
+                max={max}
               />
-            </div>
+            </ul>
+
             <div className="mt-3">
               <h3 className="text-gray-100 text-lg">Types</h3>
 

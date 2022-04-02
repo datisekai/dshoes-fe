@@ -2,6 +2,7 @@ import {
   faBarsStaggered
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -99,11 +100,8 @@ const Header = () => {
               className="px-1 sm:px-2 md:px-3 lg:px-4 text-red-400 hover:text-red-500 transition-transform cursor-pointer"
               id="menuLoginParent"
             >
-              <img
-                src={`https://joeschmoe.io/api/v1/${userInfo?.user?.userInfo?.email}`}
-                className="w-[45px] h-[45px] rounded-full "
-                alt=""
-              />
+       
+              <Avatar alt="Remy Sharp" src={`https://joeschmoe.io/api/v1/${userInfo?.user?.userInfo?.email}`} />
               <ul
                 className="absolute hidden z-10 right-0 2xl:right-auto bg-[#2a2a2a] px-1 py-2 transition-all rounded-md py-1"
                 id="menuLogin"

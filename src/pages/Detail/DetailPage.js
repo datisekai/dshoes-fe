@@ -69,7 +69,7 @@ const DetailPage = () => {
   };
 
   const handleAddToCart = (product) => {
-    if (userInfo && userInfo.user) {
+   
       if (!product.color || !product.size) {
         toast.error("Please check size or color!");
       } else {
@@ -85,11 +85,7 @@ const DetailPage = () => {
           }
         });
       }
-    } else {
-      product.productId
-        ? navigate(`/login?productId=${product.productId}`)
-        : navigate("/login");
-    }
+   
   };
 
 

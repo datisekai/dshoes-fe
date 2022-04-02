@@ -77,7 +77,7 @@ const ReviewDetail = () => {
   return (
     <div className="mt-3">
       <h2 className="text-gray-100">Reviewed</h2>
-      {userInfo && (
+      {userInfo && userInfo.user && (
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -93,8 +93,8 @@ const ReviewDetail = () => {
           />
         </form>
       )}
-      {!userInfo && (
-        <p className="text-gray-100 text-center">
+      {userInfo && !userInfo.user && (
+        <p className="text-gray-100 text-center mt-2">
           You must be <span onClick={() => navigate(`/login?productId=${id}`)} className="text-red-400 underline cursor-pointer hover:text-red-700 transition-all">logged in</span>{" "}
           to comment
         </p>

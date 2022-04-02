@@ -28,9 +28,11 @@ const Menu = () => {
   const [from, setFrom] = useState();
   const [kind, setKind] = useState();
   const text = useSelector((state) => state.search.text);
+  const [max, setMax] = useState(10000000);
 
   useEffect(() => {
     getTypes();
+    getMax()
   }, []);
 
   useEffect(() => {
@@ -41,15 +43,21 @@ const Menu = () => {
 
   const getTypes = async () => {
     try {
-      const res = await axios.get(
-        `${base_products}/types/all`
-      );
+      const res = await axios.get(`${base_products}/types/all`);
       dispatch(setType(res.data.types));
     } catch (err) {
       err.response && toast(err.response.message);
     }
   };
 
+  const getMax = async () => {
+    try {
+      const res = await axios.get(`${base_products}/max`);
+      setMax(res.data.max);
+    } catch (err) {
+      err.response && toast(err.response.message);
+    }
+  };
   const handleSetTo = (to) => {
     setTo(to);
   };
@@ -144,6 +152,7 @@ const Menu = () => {
         }}
         loading={load}
         types={types}
+        max={max}
       />
 
       <Footer />
