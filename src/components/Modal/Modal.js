@@ -28,31 +28,57 @@ const Modal = () => {
         </div>
 
         <ul className="mt-3">
-          <NavLink activeclassname='active' className={'block'} to={"/"} onClick={() => setSidebar(false)}>
+          <NavLink
+            activeclassname="active"
+            className={"block"}
+            to={"/"}
+            onClick={() => setSidebar(false)}
+          >
             {" "}
             <li className="block text-gray-200 uppercase py-2">
               <i className="fa-solid fa-house"></i> Home
             </li>
           </NavLink>
-          <NavLink activeclassname='active' className={'block'} to={"/products"} onClick={() => setSidebar(false)}>
+          <NavLink
+            activeclassname="active"
+            className={"block"}
+            to={"/products"}
+            onClick={() => setSidebar(false)}
+          >
             {" "}
             <li className="text-gray-200 uppercase py-2">
-            <i className="fa-brands fa-product-hunt"></i> Products
+              <i className="fa-brands fa-product-hunt"></i> Products
             </li>
           </NavLink>
-        
-         
-          <NavLink activeclassname='active' className={'block'} to={"/cart"} onClick={() => setSidebar(false)}>
+
+          <NavLink
+            activeclassname="active"
+            className={"block"}
+            to={"/cart"}
+            onClick={() => setSidebar(false)}
+          >
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-cart-shopping"></i> Cart
             </li>
           </NavLink>
-          <NavLink activeclassname='active' className={'block'} to={"/history-order"} onClick={() => setSidebar(false)}>
-            <li className="text-gray-200 uppercase py-2">
-            <i className="fa-brands fa-jedi-order"></i> Order
-            </li>
-          </NavLink>
-          <NavLink activeclassname='active' className={'block'} to={"/contact"} onClick={() => setSidebar(false)}>
+          {userInfo && userInfo.user && (
+            <NavLink
+              activeclassname="active"
+              className={"block"}
+              to={"/history-order"}
+              onClick={() => setSidebar(false)}
+            >
+              <li className="text-gray-200 uppercase py-2">
+                <i className="fa-brands fa-jedi-order"></i> Order
+              </li>
+            </NavLink>
+          )}
+          <NavLink
+            activeclassname="active"
+            className={"block"}
+            to={"/contact"}
+            onClick={() => setSidebar(false)}
+          >
             <li className="text-gray-200 uppercase py-2">
               <i className="fa-solid fa-address-card"></i> Contact
             </li>

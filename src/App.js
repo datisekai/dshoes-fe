@@ -23,11 +23,12 @@ import SearchPage from "./pages/Search/SearchPage";
 import { setType } from "./redux/typeReducer";
 import { setUser } from "./redux/userReducer";
 import PrivateRoute from "./utils/PrivateRoute";
+import PrivateAdmin from "./utils/PrivateAdmin";
 import setHeaderAxios from "./utils/setHeaderAxios";
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.user)
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
@@ -46,24 +47,21 @@ function App() {
     }
   };
 
-  
   useEffect(() => {
     getTypes();
   }, []);
-  
+
   const getTypes = async () => {
     try {
-      const res = await axios.get(
-        `${base_products}/types/all`
-        );
-        dispatch(setType(res.data.types));
-      } catch (err) {
-        err.response && toast(err.response.message);
-      }
-    };
-    
-    if(sessionStorage.getItem('token')&&typeof user === 'undefined') return <Loading/>
+      const res = await axios.get(`${base_products}/types/all`);
+      dispatch(setType(res.data.types));
+    } catch (err) {
+      err.response && toast(err.response.message);
+    }
+  };
 
+  if (sessionStorage.getItem("token") && typeof user === "undefined")
+    return <Loading />;
 
   return (
     <div className="App">
@@ -74,14 +72,43 @@ function App() {
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/cart" element={<CartPage />}></Route>
           <Route path="/contact" element={<ContactPage />}></Route>
-          <Route path="/detail/:id" element={<DetailPage />}></Route>
+          <Route path="/products/detail/:id" element={<DetailPage />}></Route>
           <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/products/:type" element={<Menu />}></Route>
           <Route path="/products" element={<Menu />}></Route>
-          <Route path="/check-out" element={<PrivateRoute><CheckOutPage /></PrivateRoute>}></Route>
-          <Route path="/history-order" element={<PrivateRoute><OrderPage/></PrivateRoute>}></Route>
-          <Route path="/history-order/:id" element={<PrivateRoute><DetailOrderPage/></PrivateRoute>}></Route>
-          <Route path="*" element={<ErrorPage/>}></Route>
+          <Route
+            path="/check-out"
+            element={
+              <PrivateRoute>
+                <CheckOutPage />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/history-order"
+            element={
+              <PrivateRoute>
+                <OrderPage />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/history-order/:id"
+            element={
+              <PrivateRoute>
+                <DetailOrderPage />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route path="*" element={<ErrorPage />}></Route>
+          <Route
+            path="/admin"
+            element={
+              <PrivateAdmin>
+                <ErrorPage />
+              </PrivateAdmin>
+            }
+          ></Route>
         </Routes>
       </Suspense>
       <Modal />

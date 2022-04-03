@@ -18,7 +18,7 @@ const Shoe = ({ product }) => {
   }, []);
 
   return (
-    <Link to={`/detail/${product._id}`}>
+    <Link to={`/products/detail/${product._id}`}>
       <img
         className="w-[100%] h-[250px] md:h-[300px] rounded-md relative bg-no-repeat bg-cover aspect-video"
         alt={`${product.image && product.image.length > 0 && product.image[0]}`}

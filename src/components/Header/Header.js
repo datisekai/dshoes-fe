@@ -1,14 +1,11 @@
-import {
-  faBarsStaggered
-} from "@fortawesome/free-solid-svg-icons";
+import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar } from "@mui/material";
+import { Avatar, Menu } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
-import "../../assets/css/index.css";
 import { logo } from "../../config/base";
 import { deleteUser } from "../../redux/userReducer";
 import { useSideBar } from "../../store/displayBar";
@@ -20,7 +17,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const search = useSelector((state) => state.search.text);
-
 
   const handleLogout = () => {
     swal({
@@ -39,6 +35,26 @@ const Header = () => {
     });
   };
 
+  const menuMobile = (
+    <Menu>
+      <Menu.Item>
+        <li className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700 truncate">
+          <i className="fa-solid fa-id-card"></i>{" "}
+          {userInfo?.user?.userInfo?.email && userInfo?.user?.userInfo?.email}
+        </li>
+      </Menu.Item>
+      <Menu.Item>
+        <li
+          className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700"
+          onClick={handleLogout}
+        >
+          <i className="fa-solid fa-right-from-bracket"></i> Logout
+        </li>
+      </Menu.Item>
+    </Menu>
+  );
+
+
   return (
     <div className="bg-[#2A2A2A]">
       <header className="flex justify-between items-center max-w-[1200px] mx-auto">
@@ -52,7 +68,7 @@ const Header = () => {
             />
           </Link>
         </div>
-        
+
         <ul className=" justify-end hidden md:flex items-center ">
           <NavLink to="/" activeclassname="active">
             {" "}
@@ -76,7 +92,7 @@ const Header = () => {
             </li>
           </NavLink>
 
-          <NavLink activeclassname='active' to="/contact">
+          <NavLink activeclassname="active" to="/contact">
             {" "}
             <li className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 hover:text-gray-400 transition-transform cursor-pointer">
               Contact
@@ -89,26 +105,40 @@ const Header = () => {
               </li>
             </Link>
           )}
-        {userInfo && userInfo.user && <NavLink activeclassname='active' to="/history-order">
-            {" "}
-            <li className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 hover:text-gray-400 transition-transform cursor-pointer">
-              Order
-            </li>
-          </NavLink>}
+
+          {userInfo && userInfo.user && (
+            <NavLink activeclassname="active" to="/history-order">
+              {" "}
+              <li className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 hover:text-gray-400 transition-transform cursor-pointer">
+                Order
+              </li>
+            </NavLink>
+          )}
+          {userInfo && userInfo.user && userInfo.user.roles.length > 2 && (
+            <NavLink activeclassname="active" to="/admin">
+              {" "}
+              <li className="px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 hover:text-gray-400 transition-transform cursor-pointer">
+                Admin
+              </li>
+            </NavLink>
+          )}
           {userInfo?.user && (
             <li
               className="px-1 sm:px-2 md:px-3 lg:px-4 text-red-400 hover:text-red-500 transition-transform cursor-pointer"
               id="menuLoginParent"
             >
-       
-              <Avatar alt="Remy Sharp" src={`https://joeschmoe.io/api/v1/${userInfo?.user?.userInfo?.email}`} />
+              <Avatar
+                alt="Remy Sharp"
+                src={`https://joeschmoe.io/api/v1/${userInfo?.user?.userInfo?.email}`}
+              />
               <ul
                 className="absolute hidden z-10 right-0 2xl:right-auto bg-[#2a2a2a] px-1 py-2 transition-all rounded-md py-1"
                 id="menuLogin"
               >
                 <li className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700">
                   <i className="fa-solid fa-id-card"></i>{" "}
-                  {userInfo?.user?.userInfo?.email && userInfo?.user?.userInfo?.email}
+                  {userInfo?.user?.userInfo?.email &&
+                    userInfo?.user?.userInfo?.email}
                 </li>
                 <li
                   className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700"
@@ -137,7 +167,8 @@ const Header = () => {
               >
                 <li className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700 truncate">
                   <i className="fa-solid fa-id-card"></i>{" "}
-                  {userInfo?.user?.userInfo?.email && userInfo?.user?.userInfo?.email}
+                  {userInfo?.user?.userInfo?.email &&
+                    userInfo?.user?.userInfo?.email}
                 </li>
                 <li
                   className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700"
@@ -147,8 +178,8 @@ const Header = () => {
                 </li>
               </ul>
             </li>
+            
           )}
-         
           <li className="text-red-300 px-2 cursor-pointer">
             <FontAwesomeIcon
               icon={faBarsStaggered}

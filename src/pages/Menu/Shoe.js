@@ -5,7 +5,7 @@ import ImgLazy from "../../utils/ImgLazy";
 
 const Shoe = ({ product }) => {
   return (
-    <Link to={`/detail/${product._id}`} key={product._id}>
+    <Link to={`/products/detail/${product._id}`} key={product._id}>
       <div className="relative">
         <ImgLazy
           lazy_src={product.image[0]}

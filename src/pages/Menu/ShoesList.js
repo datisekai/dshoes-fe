@@ -68,9 +68,9 @@ const ShoesList = ({ type, list, pagination, handle, loading, types,max }) => {
 
           <div className={`${display ? "block" : "hidden"} md:block`}>
          
-          <div className="mt-3">
+          <div className="mt-3 w-full">
           <form action="" onSubmit={handleApply}>
-           <TextField id="outlined-basic" InputLabelProps={{style : {color : 'white'} }} label="Search" size="small" value={text} onChange={(e) => dispatch(setText(e.target.value))} inputProps={{style:{color:'white', backgroundColor:'#222'}}} variant="outlined" />
+           <TextField id="outlined-basic" InputLabelProps={{style : {color : 'white'} }} label="Search" size="small" value={text} onChange={(e) => dispatch(setText(e.target.value))} inputProps={{style:{color:'white', backgroundColor:'#222'}}} className='w-full' variant="outlined" />
            </form>
           </div>
 
