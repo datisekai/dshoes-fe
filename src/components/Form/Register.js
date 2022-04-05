@@ -88,7 +88,7 @@ const Register = () => {
     <div className="min-h-[90vh] bg-[#222222] pt-10">
       <div className="bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[600px] mx-auto flex justify-between items-center relative">
         <img
-          src="https://prices.vn/photos/8/blog/review-giay-nike-nam.jpg"
+          src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80"
           alt=""
           className="md:w-[50%] lg:w-[60%] hidden md:block rounded-md h-full object-cover"
         />
