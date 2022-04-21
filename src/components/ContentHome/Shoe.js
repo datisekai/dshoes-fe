@@ -18,14 +18,14 @@ const Shoe = ({ product }) => {
   }, []);
 
   return (
-    <Link to={`/products/detail/${product._id}`}>
+    <Link to={`/products/detail/${product?._id}`}>
       <img
         className="w-[100%] h-[250px] md:h-[300px] rounded-md relative bg-no-repeat bg-cover aspect-video"
-        alt={`${product.image && product.image.length > 0 && product.image[0]}`}
+        alt={`${product?.image && product?.image?.length > 0 && product?.image[0]}`}
         ref={imgRef}
       ></img>
       <h1 className="absolute bottom-0 py-3 left-[25%] text-md md:text-xl text-red-500 uppercase">
-        {product.name}
+        {product?.name}
       </h1>
     </Link>
   );

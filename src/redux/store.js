@@ -1,5 +1,6 @@
 
 import { configureStore } from '@reduxjs/toolkit'
+import cacheReducer from './cacheReducer';
 import cartReducer from './cartReducer';
 import productReducer from './productReducer';
 import searchReducer from './searchReducer';
@@ -12,7 +13,8 @@ const store = configureStore({
         type:typeReducer,
         cart:cartReducer,
         search:searchReducer,
-        product:productReducer
-    }
+        product:productReducer,
+        cache:cacheReducer
+    },
 });
 export default store;

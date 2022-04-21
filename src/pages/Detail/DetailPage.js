@@ -12,21 +12,22 @@ import DesDetail from "../../components/Detail/DesDetail";
 import ImageDetail from "../../components/Detail/ImageDetail";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import useGet from "../../customHook/useGet";
 import "../../index.css";
 import { addToCart } from "../../redux/cartReducer";
 import { setLocal } from "../../utils/local";
 import { scrollTop } from "../../utils/ScrollTop";
 import Title from "../../utils/Title";
+import Loading from '../../components/Loading/Loading'
 
-const DetailPage = () => {  
+const DetailPage = () => {
   const { id } = useParams();
   const [shoes, setShoes] = useState();
   const [load, setLoad] = useState(false);
   const [same, setSame] = useState();
   const [loadSame, setLoadSame] = useState(false);
-  const carts = useSelector((state) => state.cart.carts);
-  const userInfo = useSelector((state) => state.user);
-  const navigate = useNavigate();
+  const url = `${base_products}/${id}`;
+  const { data, loading, error } = useGet(url);
 
   const dispatch = useDispatch();
 
@@ -39,19 +40,9 @@ const DetailPage = () => {
   }, [id, shoes]);
 
   useEffect(() => {
-    getDetail();
-  }, [id]);
+    setShoes(data);
+  }, [data]);
 
-  const getDetail = async () => {
-    try {
-      setLoad(true);
-      const res = await axios.get(`${base_products}/${id}`);
-      setShoes(res.data);
-    } catch (err) {
-      err.response && toast.error(err.response.message);
-    }
-    setLoad(false);
-  };
 
   useEffect(() => {
     shoes && getSameProduct(shoes.product.typeId._id);
@@ -69,26 +60,22 @@ const DetailPage = () => {
   };
 
   const handleAddToCart = (product) => {
-   
-      if (!product.color || !product.size) {
-        toast.error("Please check size or color!");
-      } else {
-        swal({
-          title: "Are you sure?",
-          icon: "info",
-          buttons: true,
-          dangerMode: true,
-        }).then((willDelete) => {
-          if (willDelete) {
-            dispatch(addToCart(product));
-            toast.success("Add to cart successfull !");
-          }
-        });
-      }
-   
+    if (!product.color || !product.size) {
+      toast.error("Please check size or color!");
+    } else {
+      swal({
+        title: "Are you sure?",
+        icon: "info",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          dispatch(addToCart(product));
+          toast.success("Add to cart successfull !");
+        }
+      });
+    }
   };
-
-
 
   return (
     <>
@@ -115,10 +102,11 @@ const DetailPage = () => {
         ) : (
           <Shoes type={"Same products"} list={same && same} />
         )}
-        {load && (
-          <div className="fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay">
-            <BarWave color="#007BFF" duration="2s" />
-          </div>
+        {loading && (
+          // <div className="fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay">
+          //   <BarWave color="#007BFF" duration="2s" />
+          // </div>
+          <Loading/>
         )}
       </div>
       <Footer />

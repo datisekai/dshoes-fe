@@ -82,13 +82,29 @@ const Register = () => {
     }
   };
 
+  const imgForm = [
+    "https://media.istockphoto.com/photos/object-patternsneakers-picture-id1304862992?b=1&k=20&m=1304862992&s=170667a&w=0&h=Emf1s0oY7xw7HjOCloT7XHLXlkdznJ9Tve-l9FZWBBA=",
+    "https://media.istockphoto.com/photos/stylish-storage-bench-with-different-pairs-of-shoes-near-beige-wall-picture-id1318603129?b=1&k=20&m=1318603129&s=170667a&w=0&h=SRidBAonrKLyu8fidBy-LZRe2iwHPgzmLrdMKvriIPk=",
+    "https://media.istockphoto.com/photos/young-man-shopping-shoes-picture-id1292261872?b=1&k=20&m=1292261872&s=170667a&w=0&h=AA5F-5LPlJJjqpUqB5UjCuYhk5YnNEEcEAqa5Ya4lEA=",
+    "https://media.istockphoto.com/photos/young-woman-runner-tying-her-shoes-preparing-for-a-jog-outside-at-picture-id1298108434?b=1&k=20&m=1298108434&s=170667a&w=0&h=6i76GZiEXBkow7bj3827YQwmLn-a1a7XXyogQHqq2jE=",
+    "https://media.istockphoto.com/photos/white-sneaker-on-a-blue-gradient-background-mens-fashion-sport-shoe-picture-id1303978937?b=1&k=20&m=1303978937&s=170667a&w=0&h=az5Y96agxAdHt3XAv7PP9pThdiDpcQ3otWWn9YuJQRc=",
+    "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2hvZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+  ];
+
+  const [img, setImg] = useState('');
+
+  useEffect(() => {
+    setImg(imgForm[Math.floor(Math.random()*imgForm.length)]);
+  },[])
+
+
   const navigate = useNavigate();
 
   return (
     <div className="min-h-[90vh] bg-[#222222] pt-10">
       <div className="bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[600px] mx-auto flex justify-between items-center relative">
         <img
-          src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80"
+          src={img}
           alt=""
           className="md:w-[50%] lg:w-[60%] hidden md:block rounded-md h-full object-cover"
         />

@@ -20,9 +20,6 @@ const ShoesList = ({ type, list, pagination, handle, loading, types,max }) => {
     handleSetTo(newValue[0]);
     handleSetFrom(newValue[1]);
   };
-
-  console.log(value);
-
   return (
     <div className="bg-[#222222] min-h-[100vh] relative py-5 overflow-hidden">
       <div className="max-w-[1200px] mx-auto my-0 flex flex-col md:flex-row justify-between">

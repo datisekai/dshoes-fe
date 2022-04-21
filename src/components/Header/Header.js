@@ -35,25 +35,6 @@ const Header = () => {
     });
   };
 
-  const menuMobile = (
-    <Menu>
-      <Menu.Item>
-        <li className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700 truncate">
-          <i className="fa-solid fa-id-card"></i>{" "}
-          {userInfo?.user?.userInfo?.email && userInfo?.user?.userInfo?.email}
-        </li>
-      </Menu.Item>
-      <Menu.Item>
-        <li
-          className="px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700"
-          onClick={handleLogout}
-        >
-          <i className="fa-solid fa-right-from-bracket"></i> Logout
-        </li>
-      </Menu.Item>
-    </Menu>
-  );
-
 
   return (
     <div className="bg-[#2A2A2A]">

@@ -75,10 +75,11 @@ const ReviewDetail = () => {
     });
   };
 
+
   return (
     <div className="mt-3">
       <h2 className="text-gray-100">Reviewed</h2>
-      {userInfo && userInfo.user && (
+      {userInfo && userInfo.user && userInfo.user.roles.includes(3) &&(
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -98,6 +99,11 @@ const ReviewDetail = () => {
         <p className="text-gray-100 text-center mt-2">
           You must be <span onClick={() => navigate(`/login?productId=${id}`)} className="text-red-400 underline cursor-pointer hover:text-red-700 transition-all">logged in</span>{" "}
           to comment
+        </p>
+      )}
+      {userInfo && userInfo.user && !userInfo.user.roles.includes(3) && (
+        <p className="text-red-400  text-center mt-2">
+          You do not have the right to comment
         </p>
       )}
       <div className="mt-6">

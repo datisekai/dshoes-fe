@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import axiosClient from "../../api/axiosClient";
 import { base_products } from "../../api/config";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import { saveCache } from "../../redux/cacheReducer";
 import { setProduct } from "../../redux/productReducer";
 import { setFlag, setText } from "../../redux/searchReducer";
 import { setType } from "../../redux/typeReducer";
@@ -29,10 +31,11 @@ const Menu = () => {
   const [kind, setKind] = useState();
   const text = useSelector((state) => state.search.text);
   const [max, setMax] = useState(10000000);
+  const { cache } = useSelector((state) => state.cache);
 
   useEffect(() => {
     getTypes();
-    getMax()
+    getMax();
   }, []);
 
   useEffect(() => {
@@ -87,11 +90,13 @@ const Menu = () => {
     try {
       let res;
       if (type && type !== "results") {
-        res = await axios.get(
-          `${base_products}/type/${id}?limit=${limit}&page=${page}`
-        );
+        const url = `${base_products}/type/${id}?limit=${limit}&page=${page}`;
+
+        res = await axios.get(url);
       } else {
-        res = await axios.get(`${base_products}?limit=${limit}&page=${page}`);
+        const url = `?limit=${limit}&page=${page}`;
+
+        res = await axiosClient.get(url);
       }
       dispatch(setProduct(res.data.products));
       setTotal(res.data.total);
@@ -129,7 +134,6 @@ const Menu = () => {
       setTotal(res.data.total);
       setSkip((page - 1) * limit + 1);
       setLoad(false);
-      console.log(res);
     } catch (err) {}
   };
 
