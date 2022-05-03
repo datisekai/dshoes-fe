@@ -36,11 +36,11 @@ const Shoes = ({ type, list }) => {
     <>
       {" "}
       {list && list.length > 0 && (
-        <div className="max-w-[1200px] mx-auto py-[30px] px-[12px]">
-          <h1 className="underlined-blue text-gray-200 text-2xl uppercase">
+        <div className='max-w-[1200px] mx-auto py-[30px] px-[12px]'>
+          <h1 className='underlined-blue text-gray-200 text-2xl uppercase'>
             {type}
           </h1>
-          <div className="mt-6">
+          <div className='mt-6'>
             <Swiper
               navigation
               grabCursor={true}
@@ -51,11 +51,13 @@ const Shoes = ({ type, list }) => {
               {list &&
                 list.length > 0 &&
                 list?.map((item, index) => {
-                  return (
-                    <SwiperSlide key={index}>
-                      <Shoe product={item} />
-                    </SwiperSlide>
-                  );
+                  if (item.status === 1) {
+                    return (
+                      <SwiperSlide key={index}>
+                        <Shoe product={item} />
+                      </SwiperSlide>
+                    );
+                  }
                 })}
             </Swiper>
           </div>

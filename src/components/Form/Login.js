@@ -31,11 +31,11 @@ const Login = () => {
     "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2hvZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
   ];
 
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState("");
 
   useEffect(() => {
-    setImg(imgForm[Math.floor(Math.random()*imgForm.length)]);
-  },[])
+    setImg(imgForm[Math.floor(Math.random() * imgForm.length)]);
+  }, []);
 
   useEffect(() => {
     emailRef.current.focus();
@@ -55,7 +55,7 @@ const Login = () => {
         toast.success("Login successfull");
         getUser();
         query
-          ? navigate(`/detail/${query}`)
+          ? navigate(`/products/detail/${query}`)
           : action && action === "check-out"
           ? navigate("/check-out")
           : navigate("/");
@@ -76,60 +76,60 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-[90vh] bg-[#222222] pt-10">
-      <div className="bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[500px] mx-auto flex justify-between items-center relative">
+    <div className='min-h-[90vh] bg-[#222222] pt-10'>
+      <div className='bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[500px] mx-auto flex justify-between items-center relative'>
         <img
           src={img}
-          alt=""
-          className="md:w-[50%] lg:w-[60%] hidden md:block rounded-md h-full object-cover"
+          alt=''
+          className='md:w-[50%] lg:w-[60%] hidden md:block rounded-md h-full object-cover'
         />
-        <div className="w-[100%] md:w-[50%] lg:w-[40%] p-5">
-          <h1 className="text-[#333] underlined-blue text-xl">WELCOME BACK</h1>
+        <div className='w-[100%] md:w-[50%] lg:w-[40%] p-5'>
+          <h1 className='text-[#333] underlined-blue text-xl'>WELCOME BACK</h1>
           <form onSubmit={handleLogin}>
-            <div className="mt-3">
-              <label htmlFor="email" className="text-[#666]">
+            <div className='mt-3'>
+              <label htmlFor='email' className='text-[#666]'>
                 Email Address
               </label>
               <br />
               <input
                 ref={emailRef}
-                type="email"
-                name=""
-                id="email"
+                type='email'
+                name=''
+                id='email'
                 value={email}
-                placeholder="Ex: datly@gmail.com"
+                placeholder='Ex: datly@gmail.com'
                 onChange={(e) => setEmail(e.target.value)}
-                className="px-4 py-1 w-full rounded-md outline-none"
+                className='px-4 py-1 w-full rounded-md outline-none'
                 required
               />
             </div>
-            <div className="mt-3">
-              <label htmlFor="password" className="text-[#666]">
+            <div className='mt-3'>
+              <label htmlFor='password' className='text-[#666]'>
                 Password
               </label>
               <br />
               <input
-                type="password"
-                name=""
+                type='password'
+                name=''
                 value={password}
-                id="password"
+                id='password'
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Ex: datly1223"
-                className="px-4 py-1 w-full rounded-md outline-none"
+                placeholder='Ex: datly1223'
+                className='px-4 py-1 w-full rounded-md outline-none'
                 required
               />
             </div>
 
-            <div className="mt-3 flex flex-col md:flex-row justify-between">
+            <div className='mt-3 flex flex-col md:flex-row justify-between'>
               <button
                 disabled={loading ? true : false}
-                type="submit"
-                className="w-full md:w-[49%] text-md bg-gradient-to-r from-blue-400 to-red-400 hover:opacity-90 rounded-md px-5 md:px-2 lg:px-5 py-1 text-gray-100 transition-transform"
+                type='submit'
+                className='w-full md:w-[49%] text-md bg-gradient-to-r from-blue-400 to-red-400 hover:opacity-90 rounded-md px-5 md:px-2 lg:px-5 py-1 text-gray-100 transition-transform'
               >
                 Login Now
               </button>
               <button
-                className="w-full mt-2 md:mt-0 md:w-[49%] text-md bg-gradient-to-r from-red-400 to-blue-400 hover:opacity-90 text-gray-100 rounded-md px-5 py-1  transition-transform"
+                className='w-full mt-2 md:mt-0 md:w-[49%] text-md bg-gradient-to-r from-red-400 to-blue-400 hover:opacity-90 text-gray-100 rounded-md px-5 py-1  transition-transform'
                 onClick={() =>
                   query
                     ? navigate(`/register?productId=${query}`)
@@ -143,22 +143,22 @@ const Login = () => {
             </div>
           </form>
 
-          <div className="mt-3">
-            <p className="text-[#888] text-sm">Login with social</p>
-            <div className="flex justify-start">
-              <i className="text-3xl px-1 cursor-pointer text-[#007bff] fa-brands fa-facebook"></i>
-              <i className="text-3xl px-1 cursor-pointer text-red-400 fa-brands fa-google-plus-square"></i>
-              <i className="text-3xl px-1 cursor-pointer fa-brands fa-github-square"></i>
+          <div className='mt-3'>
+            <p className='text-[#888] text-sm'>Login with social</p>
+            <div className='flex justify-start'>
+              <i className='text-3xl px-1 cursor-pointer text-[#007bff] fa-brands fa-facebook'></i>
+              <i className='text-3xl px-1 cursor-pointer text-red-400 fa-brands fa-google-plus-square'></i>
+              <i className='text-3xl px-1 cursor-pointer fa-brands fa-github-square'></i>
             </div>
           </div>
         </div>
         {loading && (
-          <div className="fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center overlay">
+          <div className='fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center overlay'>
             <Hypnosis
-              color="#FF0000"
-              width="70px"
-              height="70px"
-              duration="3s"
+              color='#FF0000'
+              width='70px'
+              height='70px'
+              duration='3s'
             />
           </div>
         )}

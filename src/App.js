@@ -64,20 +64,24 @@ function App() {
     return <Loading />;
 
   return (
-    <div className="App">
+    <div className='App'>
       <Suspense fallback={<TopLoading />}>
         <Routes>
-          <Route exact path="/" element={<Home />}></Route>
-          <Route path="/search" element={<SearchPage />}></Route>
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/cart" element={<CartPage />}></Route>
-          <Route path="/contact" element={<ContactPage />}></Route>
-          <Route path="/products/detail/:id" element={<DetailPage />}></Route>
-          <Route path="/register" element={<RegisterPage />}></Route>
-          <Route path="/products/:type" element={<Menu />}></Route>
-          <Route path="/products" element={<Menu />}></Route>
+          <Route exact path='/' element={<Home />}></Route>
+          <Route path='/search' element={<SearchPage />}></Route>
+          <Route path='/login' element={<LoginPage />}></Route>
+          <Route path='/cart' element={<CartPage />}></Route>
+          <Route path='/contact' element={<ContactPage />}></Route>
+          <Route path='/products/detail/:id' element={<DetailPage />}></Route>
           <Route
-            path="/check-out"
+            path='/products/detail/:id/:slug'
+            element={<DetailPage />}
+          ></Route>
+          <Route path='/register' element={<RegisterPage />}></Route>
+          <Route path='/products/:type' element={<Menu />}></Route>
+          <Route path='/products' element={<Menu />}></Route>
+          <Route
+            path='/check-out'
             element={
               <PrivateRoute>
                 <CheckOutPage />
@@ -85,7 +89,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/history-order"
+            path='/history-order'
             element={
               <PrivateRoute>
                 <OrderPage />
@@ -93,16 +97,16 @@ function App() {
             }
           ></Route>
           <Route
-            path="/history-order/:id"
+            path='/history-order/:id'
             element={
               <PrivateRoute>
                 <DetailOrderPage />
               </PrivateRoute>
             }
           ></Route>
-          <Route path="*" element={<ErrorPage />}></Route>
+          <Route path='*' element={<ErrorPage />}></Route>
           <Route
-            path="/admin"
+            path='/admin'
             element={
               <PrivateAdmin>
                 <ErrorPage />

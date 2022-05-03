@@ -31,7 +31,12 @@ const Register = () => {
       confirm: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().required("Required").matches(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,'Must be the format email'),
+      email: Yup.string()
+        .required("Required")
+        .matches(
+          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+          "Must be the format email"
+        ),
       phoneNumber: Yup.string()
         .required("Required")
         .matches(
@@ -49,7 +54,7 @@ const Register = () => {
       try {
         setLoad(true);
         const res = await axios.post(`${base_auth}/register`, {
-          email:values.email,
+          email: values.email,
           password: values.password,
           phoneNumber: values.phoneNumber,
         });
@@ -58,7 +63,7 @@ const Register = () => {
         toast.success("Register successfull");
         getUser();
         query
-          ? navigate(`/detail/${query}`)
+          ? navigate(`/products/detail/${query}`)
           : action && action === "check-out"
           ? navigate("/check-out")
           : navigate("/");
@@ -91,109 +96,128 @@ const Register = () => {
     "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2hvZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
   ];
 
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState("");
 
   useEffect(() => {
-    setImg(imgForm[Math.floor(Math.random()*imgForm.length)]);
-  },[])
-
+    setImg(imgForm[Math.floor(Math.random() * imgForm.length)]);
+  }, []);
 
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-[90vh] bg-[#222222] pt-10">
-      <div className="bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[600px] mx-auto flex justify-between items-center relative">
+    <div className='min-h-[90vh] bg-[#222222] pt-10'>
+      <div className='bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[600px] mx-auto flex justify-between items-center relative'>
         <img
           src={img}
-          alt=""
-          className="md:w-[50%] lg:w-[60%] hidden md:block rounded-md h-full object-cover"
+          alt=''
+          className='md:w-[50%] lg:w-[60%] hidden md:block rounded-md h-full object-cover'
         />
-        <div className="w-[100%] md:w-[50%] lg:w-[40%] p-5">
-          <h1 className="text-[#333] underlined-blue text-xl">WELCOME BACK</h1>
+        <div className='w-[100%] md:w-[50%] lg:w-[40%] p-5'>
+          <h1 className='text-[#333] underlined-blue text-xl'>WELCOME BACK</h1>
           <form onSubmit={formik.handleSubmit}>
-            <div className="mt-3">
-              <label htmlFor="email" className="text-[#666]">
+            <div className='mt-3'>
+              <label htmlFor='email' className='text-[#666]'>
                 Email Address
               </label>
               <br />
               <input
-                type="email"
-                name="email"
-                id="email"
+                type='email'
+                name='email'
+                id='email'
                 value={formik.values.email}
                 ref={emailRef}
                 onChange={formik.handleChange}
-                placeholder="Ex: datly@gmail.com"
-                className="px-4 py-1 w-full rounded-md outline-none"
+                onBlur={formik.handleBlur}
+                placeholder='Ex: datly@gmail.com'
+                className='px-4 py-1 w-full rounded-md outline-none'
                 required
               />
-              <p className="text-red-400">{formik.errors.email && formik.errors.email}</p>
+              <p className='text-red-400'>
+                {formik.errors.email &&
+                  formik.touched.email &&
+                  formik.errors.email}
+              </p>
             </div>
-            <div className="mt-3">
-              <label htmlFor="password" className="text-[#666]">
+            <div className='mt-3'>
+              <label htmlFor='password' className='text-[#666]'>
                 Phone Number
               </label>
               <br />
               <input
-                type="text"
-                name="phoneNumber"
-                id="phoneNumber"
+                type='text'
+                name='phoneNumber'
+                id='phoneNumber'
                 value={formik.values.phoneNumber}
                 onChange={formik.handleChange}
-                placeholder="Ex: 0886249022"
-                className="px-4 py-1 w-full rounded-md outline-none"
+                onBlur={formik.handleBlur}
+                placeholder='Ex: 0886249022'
+                className='px-4 py-1 w-full rounded-md outline-none'
                 required
                 maxLength={10}
                 minLength={10}
               />
-              <p className="text-red-400">{formik.errors.phoneNumber && formik.errors.phoneNumber}</p>
+              <p className='text-red-400'>
+                {formik.errors.phoneNumber &&
+                  formik.touched.phoneNumber &&
+                  formik.errors.phoneNumber}
+              </p>
             </div>
-            <div className="mt-3">
-              <label htmlFor="password" className="text-[#666]">
+            <div className='mt-3'>
+              <label htmlFor='password' className='text-[#666]'>
                 Password
               </label>
               <br />
               <input
-                type="text"
-                name="password"
-                id="password"
+                type='password'
+                name='password'
+                id='password'
                 value={formik.values.password}
                 onChange={formik.handleChange}
-                placeholder="Ex: datly1223"
-                className="px-4 py-1 w-full rounded-md outline-none"
+                onBlur={formik.handleBlur}
+                placeholder='Ex: datly1223'
+                className='px-4 py-1 w-full rounded-md outline-none'
                 required
               />
-              <p className="text-red-400">{formik.errors.password && formik.errors.password}</p>
+              <p className='text-red-400'>
+                {formik.errors.password &&
+                  formik.touched.password &&
+                  formik.errors.password}
+              </p>
             </div>
 
-            <div className="mt-3">
-              <label htmlFor="repeat" className="text-[#666]">
+            <div className='mt-3'>
+              <label htmlFor='repeat' className='text-[#666]'>
                 Repeat Password
               </label>
               <br />
               <input
-                type="text"
-                name="confirm"
-                id="confirm"
+                type='password'
+                name='confirm'
+                id='confirm'
                 value={formik.values.confirm}
                 onChange={formik.handleChange}
-                placeholder="Ex: datly1223"
-                className="px-4 py-1 w-full rounded-md outline-none"
+                onBlur={formik.handleBlur}
+                placeholder='Ex: datly1223'
+                className='px-4 py-1 w-full rounded-md outline-none'
                 required
               />
-              <p className="text-red-400">{formik.errors.confirm && formik.errors.confirm}</p>
+              <p className='text-red-400'>
+                {formik.errors.confirm &&
+                  formik.touched.confirm &&
+                  formik.errors.confirm}
+              </p>
             </div>
 
-            <div className="mt-3 flex flex-col md:flex-row justify-between">
+            <div className='mt-3 flex flex-col md:flex-row justify-between'>
               <button
-                type="submit"
+                type='submit'
                 disabled={load ? true : false}
-                className="w-full md:w-[49%] text-md bg-gradient-to-r from-red-400 to-blue-400 hover:opacity-90 text-gray-100 rounded-md px-5 py-1  transition-transform"
+                className='w-full md:w-[49%] text-md bg-gradient-to-r from-red-400 to-blue-400 hover:opacity-90 text-gray-100 rounded-md px-5 py-1  transition-transform'
               >
                 Create Account
               </button>
               <button
-                className="w-full mt-2 md:mt-0  md:w-[49%] text-md rounded-md px-5 md:px-2 bg-gradient-to-r from-blue-400 to-red-400 lg:px-5 py-1 text-gray-100 hover:opacity-90 transition-transform"
+                className='w-full mt-2 md:mt-0  md:w-[49%] text-md rounded-md px-5 md:px-2 bg-gradient-to-r from-blue-400 to-red-400 lg:px-5 py-1 text-gray-100 hover:opacity-90 transition-transform'
                 onClick={() =>
                   query
                     ? navigate(`/login?productId=${query}`)
@@ -207,22 +231,22 @@ const Register = () => {
             </div>
           </form>
 
-          <div className="mt-3">
-            <p className="text-[#888] text-sm">Login with social</p>
-            <div className="flex justify-start">
-              <i className="text-3xl px-1 cursor-pointer text-[#007bff] fa-brands fa-facebook"></i>
-              <i className="text-3xl px-1 cursor-pointer text-red-400 fa-brands fa-google-plus-square"></i>
-              <i className="text-3xl px-1 cursor-pointer fa-brands fa-github-square"></i>
+          <div className='mt-3'>
+            <p className='text-[#888] text-sm'>Login with social</p>
+            <div className='flex justify-start'>
+              <i className='text-3xl px-1 cursor-pointer text-[#007bff] fa-brands fa-facebook'></i>
+              <i className='text-3xl px-1 cursor-pointer text-red-400 fa-brands fa-google-plus-square'></i>
+              <i className='text-3xl px-1 cursor-pointer fa-brands fa-github-square'></i>
             </div>
           </div>
         </div>
         {load && (
-          <div className="absolute top-[40%] left-[35%] md:left-[50%]">
+          <div className='absolute top-[40%] left-[35%] md:left-[50%]'>
             <FlippingSquare
-              color="#00F95E"
-              width="100px"
-              height="100px"
-              duration="2s"
+              color='#00F95E'
+              width='100px'
+              height='100px'
+              duration='2s'
             />
           </div>
         )}
