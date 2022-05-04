@@ -16,7 +16,7 @@ const ReviewDetail = () => {
   const [content, setContent] = useState("");
   const [load, setLoad] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     getReview();
@@ -40,8 +40,8 @@ const ReviewDetail = () => {
         { content }
       );
       if (res.data.success) {
-        setContent('')
-        setComments([...comments, res.data.comment])
+        setContent("");
+        setComments([...comments, res.data.comment]);
       }
     } catch (err) {
       console.log(err);
@@ -75,62 +75,67 @@ const ReviewDetail = () => {
     });
   };
 
-
   return (
-    <div className="mt-3">
-      <h2 className="text-gray-100">Reviewed</h2>
-      {userInfo && userInfo.user && userInfo.user.roles.includes(3) &&(
+    <div className='mt-3'>
+      <h2 className='text-gray-100'>Reviewed</h2>
+      {userInfo && userInfo.user && userInfo.user.roles.includes(3) && (
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
-            name=""
-            id=""
+            type='text'
+            name=''
+            id=''
             value={content}
             required
             minLength={1}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Enter your review..."
-            className="px-5 py-1 rounded-md border-0 w-full text-[#ccc] border-b border-[#007BFF] bg-transparent mt-2 outline-none"
-            autoComplete="off"
+            placeholder='Enter your review...'
+            className='px-5 py-1 rounded-md border-0 w-full text-[#ccc] border-b border-[#007BFF] bg-transparent mt-2 outline-none'
+            autoComplete='off'
           />
         </form>
       )}
       {userInfo && !userInfo.user && (
-        <p className="text-gray-100 text-center mt-2">
-          You must be <span onClick={() => navigate(`/login?productId=${id}`)} className="text-red-400 underline cursor-pointer hover:text-red-700 transition-all">logged in</span>{" "}
+        <p className='text-gray-100 text-center mt-2'>
+          You must be{" "}
+          <span
+            onClick={() => navigate(`/login?productId=${id}`)}
+            className='text-red-400 underline cursor-pointer hover:text-red-700 transition-all'
+          >
+            logged in
+          </span>{" "}
           to comment
         </p>
       )}
       {userInfo && userInfo.user && !userInfo.user.roles.includes(3) && (
-        <p className="text-red-400  text-center mt-2">
+        <p className='text-red-400  text-center mt-2'>
           You do not have the right to comment
         </p>
       )}
-      <div className="mt-6">
+      <div className='mt-6'>
         {comments &&
           comments.map((item, index) => (
-            <div key={index} className="mt-3 flex items-center justify-between">
+            <div key={index} className='mt-3 flex items-center justify-between'>
               <div>
-                <h3 className="text-gray-100 text-md underline">
-                  {item.userId.email}
+                <h3 className='text-gray-100 text-md underline'>
+                  {item?.userId?.email}
                 </h3>
-                <p className="text-sm text-[#ccc]">
-                  {calculateCreatedTime(item.createdAt)}
+                <p className='text-sm text-[#ccc]'>
+                  {calculateCreatedTime(item?.createdAt)}
                 </p>
-                <p className="text-[#ccc] text-sm py-2">{item.content}</p>
+                <p className='text-[#ccc] text-sm py-2'>{item.content}</p>
               </div>
               {userInfo && userInfo._id === item.userId._id && (
                 <i
                   onClick={() => handleDelete(item._id)}
-                  className="text-gray-300 hover:text-gray-500 transition-all cursor-pointer px-5 py-1 fa-solid fa-trash-can"
+                  className='text-gray-300 hover:text-gray-500 transition-all cursor-pointer px-5 py-1 fa-solid fa-trash-can'
                 ></i>
               )}
             </div>
           ))}
       </div>
       {load && (
-        <div className="fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay">
-          <Coin color="#007BFF" duration="2s" />
+        <div className='fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay'>
+          <Coin color='#007BFF' duration='2s' />
         </div>
       )}
     </div>
