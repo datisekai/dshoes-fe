@@ -3,8 +3,10 @@ import "../../assets/css/index.css";
 import "boxicons";
 import NumberFormat from "react-number-format";
 import { Navigate, useNavigate } from "react-router-dom";
+import { to_slug } from "../../utils/toSlug";
 
 const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
+  console.log(carts);
   const navigate = useNavigate();
   return (
     <div className='w-full md:w-[50%] lg:w-[60%]'>
@@ -25,7 +27,11 @@ const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
             >
               <img
                 className='w-[150px] h-[150px] object-cover rounded-md w-[25%]'
-                onClick={() => navigate(`/products/detail/${item._id}`)}
+                onClick={() =>
+                  navigate(
+                    `/products/detail/${item.productId}/${to_slug(item.name)}`
+                  )
+                }
                 src={item.image}
               ></img>
               <div className='px-5 w-[45%]'>
