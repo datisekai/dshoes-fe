@@ -10,6 +10,7 @@ import { setUser } from "../../redux/userReducer";
 import setHeaderAxios from "../../utils/setHeaderAxios";
 import { checkEmail } from "../../utils/Validate";
 import { useQuery } from "../../customHook/useQuery";
+import Loading from "../Loading/Loading";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -152,16 +153,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-        {loading && (
-          <div className='fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center overlay'>
-            <Hypnosis
-              color='#FF0000'
-              width='70px'
-              height='70px'
-              duration='3s'
-            />
-          </div>
-        )}
+        {loading && <Loading />}
       </div>
     </div>
   );

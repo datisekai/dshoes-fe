@@ -13,6 +13,7 @@ import { FlippingSquare } from "react-cssfx-loading/lib";
 import { useQuery } from "../../customHook/useQuery";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import Loading from "../Loading/Loading";
 
 const Register = () => {
   const [load, setLoad] = useState(false);
@@ -240,16 +241,7 @@ const Register = () => {
             </div>
           </div>
         </div>
-        {load && (
-          <div className='absolute top-[40%] left-[35%] md:left-[50%]'>
-            <FlippingSquare
-              color='#00F95E'
-              width='100px'
-              height='100px'
-              duration='2s'
-            />
-          </div>
-        )}
+        {load && <Loading />}
       </div>
     </div>
   );
