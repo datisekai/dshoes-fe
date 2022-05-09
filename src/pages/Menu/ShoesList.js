@@ -21,22 +21,24 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
     handleSetFrom(newValue[1]);
   };
   return (
-    <div className='bg-[#222222] min-h-[100vh] relative py-5 overflow-hidden'>
-      <div className='max-w-[1200px] mx-auto my-0 flex flex-col md:flex-row justify-between'>
-        <div className='w-full md:w-[20%] bg-[#2a2a2a] mt-0 md:mt-6 rounded-md py-2 px-5'>
-          <div className='flex justify-between items-center'>
-            <h1 className='text-gray-100 text-xl underlined-blue'>Category</h1>
+    <div className='tw-bg-[#222222] tw-min-h-[100vh] tw-relative tw-py-5 tw-overflow-hidden'>
+      <div className='tw-max-w-[1200px] tw-mx-auto tw-my-0 tw-flex tw-flex-col md:tw-flex-row tw-justify-between'>
+        <div className='tw-w-full md:tw-w-[20%] tw-bg-[#2a2a2a] tw-mt-0 md:tw-mt-6 tw-rounded-md tw-py-2 tw-px-5'>
+          <div className='tw-flex tw-justify-between tw-items-center'>
+            <h1 className='tw-text-gray-100 tw-text-xl underlined-blue'>
+              Category
+            </h1>
             <i
               onClick={() => setDisplay(!display)}
-              className='block md:hidden text-gray-100 text-lg cursor-pointer fa-solid fa-filter'
+              className='tw-block md:tw-hidden tw-text-gray-100 tw-text-lg tw-cursor-pointer fa-solid fa-filter'
             ></i>
           </div>
-          <ul className='mt-5'>
+          <ul className='tw-mt-5'>
             <Link
               to={`/products`}
               className={`${
                 !type && "active"
-              } capitalize block text-gray-100 py-[4px] mt-1 hover:text-gray-300 transition-all`}
+              } tw-capitalize tw-block tw-text-gray-100 tw-py-[4px] tw-mt-1 hover:tw-text-gray-300 tw-transition-all`}
             >
               All Products
             </Link>
@@ -45,7 +47,7 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
                 to={`/products/results`}
                 className={`${
                   type === "results" && "active"
-                } capitalize block text-gray-100 py-[4px] mt-1 hover:text-gray-300 transition-all`}
+                } tw-capitalize tw-block tw-text-gray-100 tw-py-[4px] tw-mt-1 hover:tw-text-gray-300 tw-transition-all`}
               >
                 Results
               </Link>
@@ -58,7 +60,7 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
                     to={`/products/${item.type}?id=${item._id}`}
                     className={`${
                       item.type === type ? "active" : ""
-                    } capitalize block text-gray-100 py-[4px] mt-1 hover:text-gray-300 transition-all`}
+                    } tw-capitalize tw-block tw-text-gray-100 tw-py-[4px] tw-mt-1 hover:tw-text-gray-300 tw-transition-all`}
                   >
                     {item.type}
                   </Link>
@@ -68,8 +70,8 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
             })}
           </ul>
 
-          <div className={`${display ? "block" : "hidden"} md:block`}>
-            <div className='mt-3 w-full'>
+          <div className={`${display ? "tw-block" : "tw-hidden"} md:tw-block`}>
+            <div className='tw-mt-3 tw-w-full'>
               <form action='' onSubmit={handleApply}>
                 <TextField
                   id='outlined-basic'
@@ -81,14 +83,14 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
                   inputProps={{
                     style: { color: "white", backgroundColor: "#222" },
                   }}
-                  className='w-full'
+                  className='tw-w-full'
                   variant='outlined'
                 />
               </form>
             </div>
 
-            <ul className='mt-3'>
-              <h3 className='text-gray-100 text-lg'>Prices</h3>
+            <ul className='tw-mt-3'>
+              <h3 className='tw-text-gray-100 tw-text-lg'>Prices</h3>
 
               <Slider
                 getAriaLabel={() => "Prices range"}
@@ -100,15 +102,15 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
               />
             </ul>
 
-            <div className='mt-3'>
-              <h3 className='text-gray-100 text-lg'>Types</h3>
+            <div className='tw-mt-3'>
+              <h3 className='tw-text-gray-100 tw-text-lg'>Types</h3>
 
               {types &&
                 types.map((item) => (
                   <label
                     key={item._id}
                     htmlFor={`input-${item._id}`}
-                    className='flex items-center justify-between mt-1 text-gray-100 px-5 py-1 bg-[#222] rounded-md hover:opacity-75 transition-all cursor-pointer'
+                    className='tw-flex tw-items-center tw-justify-between tw-mt-1 tw-text-gray-100 tw-px-5 tw-py-1 tw-bg-[#222] tw-rounded-md hover:tw-opacity-75 tw-transition-all tw-cursor-pointer'
                   >
                     <input
                       type='radio'
@@ -121,7 +123,7 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
                 ))}
               <label
                 htmlFor={`input-none`}
-                className='flex items-center justify-between mt-1 text-gray-100 px-5 py-1 bg-[#222] rounded-md hover:opacity-75 transition-all cursor-pointer'
+                className='tw-flex tw-items-center tw-justify-between tw-mt-1 tw-text-gray-100 tw-px-5 tw-py-1 tw-bg-[#222] tw-rounded-md hover:tw-opacity-75 tw-transition-all tw-cursor-pointer'
               >
                 <input
                   type='radio'
@@ -129,22 +131,22 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
                   id={`input-none`}
                   onChange={() => handleSetKind(undefined)}
                 />
-                <p className='capitalize'>All</p>
+                <p className='tw-capitalize'>All</p>
               </label>
             </div>
             <button
               onClick={handleApply}
-              className='w-full mt-3 px-5 py-1 text-gray-100 bg-transparent border border-blue-400 rounded-md hover:bg-blue-700 transition-all'
+              className='tw-w-full tw-mt-3 tw-px-5 tw-py-1 tw-text-gray-100 tw-bg-transparent tw-border tw-border-blue-400 tw-rounded-md hover:tw-bg-blue-700 tw-transition-all'
             >
               Apply
             </button>
           </div>
         </div>
-        <div className='w-full md:w-[80%] px-5'>
-          <h1 className='text-gray-100 text-2xl p-5 underlined-blue uppercase'>
+        <div className='tw-w-full md:tw-w-[80%] tw-px-5'>
+          <h1 className='tw-text-gray-100 tw-text-2xl tw-p-5 underlined-blue tw-uppercase'>
             {(type && type) || "ALL PRODUCT"}
           </h1>
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8 p-2 sm:p-4 md:p-5'>
+          <div className='tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-4 tw-gap-4 sm:tw-gap-8 tw-p-2 sm:tw-p-4 md:tw-p-5'>
             {loading && <SkeletonShoes item={8} />}
 
             {list &&
@@ -158,7 +160,7 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
           </div>
           {list && list.length < 1 && (
             <img
-              className='w-full text-center object-cover'
+              className='tw-w-full tw-text-center tw-object-cover'
               src='https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png'
             ></img>
           )}

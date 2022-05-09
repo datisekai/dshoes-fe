@@ -38,29 +38,29 @@ const Header = () => {
   };
 
   return (
-    <div className='bg-[#2A2A2A]'>
-      <header className='flex justify-between items-center max-w-[1200px] mx-auto'>
+    <div className='tw-bg-[#2A2A2A]'>
+      <header className='tw-flex tw-justify-between tw-items-center tw-max-w-[1200px] tw-mx-auto'>
         <div className=''>
           <Link to='/'>
             {" "}
             <img
-              className='w-[130px] sm:w-[150px] md:w-[170px] lg:w-[150px] cursor-pointer'
+              className='tw-w-[130px]  sm:tw-w-[150px] md:tw-w-[170px] lg:tw-w-[150px] tw-cursor-pointer'
               src={logo}
               alt=''
             />
           </Link>
         </div>
 
-        <ul className=' justify-end hidden md:flex items-center '>
+        <ul className=' tw-justify-end tw-hidden md:tw-flex tw-items-center '>
           <NavLink to='/' activeclassname='active'>
             {" "}
-            <li className='px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 transition-transform cursor-pointer'>
+            <li className='tw-px-1 sm:tw-px-2 md:tw-px-3 lg:tw-px-4 tw-text-gray-300 tw-transition-transform tw-cursor-pointer'>
               Home
             </li>
           </NavLink>
           <NavLink activeclassname='active' to='/products'>
             <li
-              className='px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 transition-transform cursor-pointer relative'
+              className='tw-px-1 sm:tw-px-2 md:tw-px-3 lg:tw-px-4 tw-text-gray-300 tw-transition-transform tw-cursor-pointer tw-relative'
               id='menuParent'
             >
               Products
@@ -69,9 +69,9 @@ const Header = () => {
 
           <NavLink activeclassname='active' to='/cart'>
             {" "}
-            <li className='px-1 sm:px-2 relative md:px-3 lg:px-4 text-gray-300 transition-transform cursor-pointer'>
+            <li className='tw-px-1 sm:tw-px-2 tw-relative md:tw-px-3 lg:tw-px-4 tw-text-gray-300 tw-transition-transform tw-cursor-pointer'>
               Cart
-              <p className='absolute top-[-10px] bg-red-500 rounded-full w-[20px] h-[20px] text-xs right-[-4px] flex items-center justify-center'>
+              <p className='tw-absolute tw-top-[-10px] tw-bg-red-500 tw-rounded-full tw-w-[20px] tw-h-[20px] tw-text-xs tw-right-[-4px] tw-flex tw-items-center tw-justify-center'>
                 {limitCart(carts?.length || 0)}
               </p>
             </li>
@@ -79,13 +79,13 @@ const Header = () => {
 
           <NavLink activeclassname='active' to='/contact'>
             {" "}
-            <li className='px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 transition-transform cursor-pointer'>
+            <li className='tw-px-1 sm:tw-px-2 md:tw-px-3 lg:tw-px-4 tw-text-gray-300 tw-transition-transform tw-cursor-pointer'>
               Contact
             </li>
           </NavLink>
           {userInfo && !userInfo.user && (
             <Link to='/login'>
-              <li className='px-1 sm:px-2 md:px-3 lg:px-4 text-red-400 hover:text-red-500 transition-transform cursor-pointer'>
+              <li className='tw-px-1 sm:tw-px-2 md:tw-px-3 lg:tw-px-4 tw-text-red-400 hover:tw-text-red-500 tw-transition-transform tw-cursor-pointer'>
                 Login
               </li>
             </Link>
@@ -94,7 +94,7 @@ const Header = () => {
           {userInfo && userInfo.user && (
             <NavLink activeclassname='active' to='/history-order'>
               {" "}
-              <li className='px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 transition-transform cursor-pointer'>
+              <li className='tw-px-1 sm:tw-px-2 md:tw-px-3 lg:tw-px-4 tw-text-gray-300 tw-transition-transform tw-cursor-pointer'>
                 Order
               </li>
             </NavLink>
@@ -102,14 +102,14 @@ const Header = () => {
           {userInfo && userInfo.user && userInfo.user.roles.length > 2 && (
             <NavLink activeclassname='active' to='/admin'>
               {" "}
-              <li className='px-1 sm:px-2 md:px-3 lg:px-4 text-gray-300 transition-transform cursor-pointer'>
+              <li className='tw-px-1 sm:tw-px-2 md:tw-px-3 lg:tw-px-4 tw-text-gray-300 tw-transition-transform tw-cursor-pointer'>
                 Admin
               </li>
             </NavLink>
           )}
           {userInfo?.user && (
             <li
-              className='px-1 sm:px-2 md:px-3 lg:px-4 text-red-400 hover:text-red-500 transition-transform cursor-pointer'
+              className='tw-px-1 sm:tw-px-2 md:tw-px-3 lg:tw-px-4 tw-text-red-400 hover:tw-text-red-500 tw-transition-transform tw-cursor-pointer'
               id='menuLoginParent'
             >
               <Avatar
@@ -117,16 +117,16 @@ const Header = () => {
                 src={`https://joeschmoe.io/api/v1/${userInfo?.user?.userInfo?.email}`}
               />
               <ul
-                className='absolute hidden z-10 right-0 2xl:right-auto bg-[#2a2a2a] px-1 py-2 transition-all rounded-md py-1'
+                className='tw-absolute tw-hidden tw-z-10 tw-right-0 2xl:tw-right-auto tw-bg-[#2a2a2a] tw-px-1 tw-py-2 tw-transition-all tw-rounded-md tw-py-1'
                 id='menuLogin'
               >
-                <li className='px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700'>
+                <li className='tw-px-1 tw-py-1 tw-mt-1 tw-text-sm tw-uppercase tw-transition-all hover:tw-text-red-700'>
                   <i className='fa-solid fa-id-card'></i>{" "}
                   {userInfo?.user?.userInfo?.email &&
                     userInfo?.user?.userInfo?.email}
                 </li>
                 <li
-                  className='px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700'
+                  className='tw-px-1 tw-py-1 tw-mt-1 tw-text-sm tw-uppercase tw-transition-all hover:tw-text-red-700'
                   onClick={handleLogout}
                 >
                   <i className='fa-solid fa-right-from-bracket'></i> Logout
@@ -135,28 +135,28 @@ const Header = () => {
             </li>
           )}
         </ul>
-        <ul className='md:hidden flex justify-center items-center px-4'>
+        <ul className='md:tw-hidden tw-flex tw-justify-center tw-items-center tw-px-4'>
           {userInfo && userInfo.user && (
             <li
-              className='px-1 sm:px-2 md:px-3 lg:px-4 text-red-400 hover:text-red-500 transition-transform cursor-pointer relative'
+              className='tw-px-1 sm:tw-px-2 md:tw-px-3 lg:tw-px-4 tw-text-red-400 hover:tw-text-red-500 tw-transition-transform tw-cursor-pointer tw-relative'
               id='menuLoginParent'
             >
               <img
                 src={`https://joeschmoe.io/api/v1/${userInfo?.user?.userInfo?.email}`}
-                className='w-[30px] h-[30px] rounded-full '
+                className='tw-w-[30px] tw-h-[30px] tw-rounded-full '
                 alt=''
               />
               <ul
-                className='absolute hidden z-10 right-0 bg-[#2a2a2a] px-1 py-2 transition-all rounded-md py-1'
+                className='tw-absolute tw-hidden tw-z-10 tw-right-0 tw-bg-[#2a2a2a] tw-px-1 tw-py-2 tw-transition-all tw-rounded-md tw-py-1'
                 id='menuLogin'
               >
-                <li className='px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700 truncate'>
+                <li className='tw-px-1 tw-py-1 tw-mt-1 tw-text-sm tw-uppercase tw-transition-all hover:tw-text-red-700 tw-truncate'>
                   <i className='fa-solid fa-id-card'></i>{" "}
                   {userInfo?.user?.userInfo?.email &&
                     userInfo?.user?.userInfo?.email}
                 </li>
                 <li
-                  className='px-1 py-1 mt-1 text-sm uppercase transition-all hover:text-red-700'
+                  className='tw-px-1 tw-py-1 tw-mt-1 tw-text-sm tw-uppercase tw-transition-all hover:tw-text-red-700'
                   onClick={handleLogout}
                 >
                   <i className='fa-solid fa-right-from-bracket'></i> Logout
@@ -164,7 +164,7 @@ const Header = () => {
               </ul>
             </li>
           )}
-          <li className='text-red-300 px-2 cursor-pointer'>
+          <li className='tw-text-red-300 tw-px-2 tw-cursor-pointer'>
             <FontAwesomeIcon
               icon={faBarsStaggered}
               onClick={() => {

@@ -10,7 +10,7 @@ import { calculateCreatedTime } from "../../utils/changeTime";
 const Order = () => {
   const [orders, setOrders] = useState();
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     getData();
@@ -27,40 +27,64 @@ const Order = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#222]">
-      <div className="max-w-[1200px] mx-auto p-5">
-        <h2 className="text-gray-100 text-xl uppercase underlined-blue">
+    <div className='tw-min-h-screen tw-bg-[#222]'>
+      <div className='tw-max-w-[1200px] tw-mx-auto tw-p-5'>
+        <h2 className='tw-text-gray-100 tw-text-xl tw-uppercase underlined-blue'>
           Order
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
-         {orders?.map(item =>  <div key={item._id} className="bg-[#2a2a2a] p-3 mt-3 rounded-md">
-            <div className="flex justify-between items-center">
-              <div>
-                <div className="flex items-center">
-                  {" "}
-                  <h3 className="pr-1 text-gray-300 text-sm uppercase">{item.name || userInfo.email}</h3>
-                  <p className="bg-green-400 px-1 rounded-md text-[15px] capitalize text-gray-800">{item.status === 1 ? 'Process' : 'Delivered'}</p>
+        <div className='tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3 md:tw-gap-5'>
+          {orders?.map((item) => (
+            <div
+              key={item._id}
+              className='tw-bg-[#2a2a2a] tw-p-3 tw-mt-3 tw-rounded-md'
+            >
+              <div className='tw-flex tw-justify-between tw-items-center'>
+                <div>
+                  <div className='tw-flex tw-items-center'>
+                    {" "}
+                    <h3 className='tw-pr-1 tw-text-gray-300 tw-text-sm tw-uppercase'>
+                      {item.name || userInfo.email}
+                    </h3>
+                    <p className='tw-bg-green-400 tw-px-1 tw-rounded-md tw-text-[15px] tw-capitalize tw-text-gray-800'>
+                      {item.status === 1 ? "Process" : "Delivered"}
+                    </p>
+                  </div>
+                  <p className='tw-text-gray-300'>Address: {item.address}</p>
+                  <p className='tw-text-gray-300'>
+                    Sum:{" "}
+                    <NumberFormat
+                      className='tw-bg-transparent tw-outline-none tw-w-full'
+                      thousandSeparator={true}
+                      suffix=' VND'
+                      value={item.sum}
+                      displayType='text'
+                    />
+                  </p>
+                  <p className='tw-text-gray-300'>
+                    CreateAt: {calculateCreatedTime(item.createdAt)}
+                  </p>
                 </div>
-                <p className="text-gray-300">Address: {item.address}</p>
-                <p className="text-gray-300">Sum: <NumberFormat
-                  className="bg-transparent outline-none w-full"   
-                  thousandSeparator={true}
-                  suffix=" VND"
-                  value={item.sum}
-                  displayType='text'
-                /></p>
-                <p className="text-gray-300">CreateAt: {calculateCreatedTime(item.createdAt)}</p>
+                <img
+                  className='tw-w-[60px] tw-h-[60px] tw-rounded-full'
+                  src={`https://joeschmoe.io/api/v1/${userInfo.email}`}
+                  alt=''
+                />
               </div>
-              <img
-                className="w-[60px] h-[60px] rounded-full"
-                src={`https://joeschmoe.io/api/v1/${userInfo.email}`}
-                alt=""
-              />
+              <button
+                onClick={() => navigate(`/history-order/${item._id}`)}
+                className='tw-uppercase tw-w-full tw-py-1 tw-px-5 tw-bg-gradient-to-r tw-from-red-400 tw-to-blue-400 tw-rounded-md tw-mt-2 tw-text-md tw-text-gray-300 hover:tw-opacity-80 tw-transition-all'
+              >
+                View Order
+              </button>
             </div>
-                <button onClick={() => navigate(`/history-order/${item._id}`)} className="uppercase w-full py-1 px-5 bg-gradient-to-r from-red-400 to-blue-400 rounded-md mt-2 text-md text-gray-300 hover:opacity-80 transition-all">View Order</button>
-          </div>)}
+          ))}
         </div>
-        {orders && orders.length === 0 && <img className="mx-auto aspect-video object-cover" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png"></img>}
+        {orders && orders.length === 0 && (
+          <img
+            className='tw-mx-auto tw-aspect-video tw-object-cover'
+            src='https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png'
+          ></img>
+        )}
       </div>
     </div>
   );

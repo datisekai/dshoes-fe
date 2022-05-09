@@ -39,7 +39,7 @@ const CartPage = () => {
     }).then((willDelete) => {
       if (willDelete) {
         dispatch(removeProduct(product));
-        toast.success('Delete successfull!')
+        toast.success("Delete successfull!");
       }
     });
   };
@@ -47,15 +47,15 @@ const CartPage = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen relative bg-[#222222]">
-        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row p-5">
+      <div className='tw-min-h-screen tw-relative tw-bg-[#222222]'>
+        <div className='tw-max-w-[1200px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row tw-p-5'>
           <Bag
             carts={carts}
             handleAdd={handleAdd}
             handleMinus={handleMinus}
             handleDelete={handleDelete}
           />
-          <Sumary carts={carts}/>
+          <Sumary carts={carts} />
         </div>
       </div>
       <Footer />

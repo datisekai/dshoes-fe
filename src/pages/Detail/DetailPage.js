@@ -18,7 +18,7 @@ import { addToCart } from "../../redux/cartReducer";
 import { setLocal } from "../../utils/local";
 import { scrollTop } from "../../utils/ScrollTop";
 import Title from "../../utils/Title";
-import Loading from '../../components/Loading/Loading'
+import Loading from "../../components/Loading/Loading";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -42,7 +42,6 @@ const DetailPage = () => {
   useEffect(() => {
     setShoes(data);
   }, [data]);
-
 
   useEffect(() => {
     shoes && getSameProduct(shoes.product.typeId._id);
@@ -81,9 +80,9 @@ const DetailPage = () => {
     <>
       <Title Title={shoes && shoes.success && shoes.product.name} />
       <Header />
-      <div className="min-h-screen bg-[#222222] relative">
+      <div className='tw-min-h-screen tw-bg-[#222222] tw-relative'>
         <Back />
-        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between pt-2 p-8">
+        <div className='tw-max-w-[1200px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row tw-justify-between tw-pt-2 tw-p-8'>
           <ImageDetail image={shoes && shoes.success && shoes.product.image} />
           <DesDetail
             handleAddToCart={handleAddToCart}
@@ -91,12 +90,12 @@ const DetailPage = () => {
           />
         </div>
         {loadSame ? (
-          <div className="flex justify-center items-center pb-10">
+          <div className='tw-flex tw-justify-center tw-items-center tw-pb-10'>
             <Messaging
-              color="#007BFF"
-              width="12px"
-              height="12px"
-              duration="1s"
+              color='#007BFF'
+              width='12px'
+              height='12px'
+              duration='1s'
             />
           </div>
         ) : (
@@ -106,7 +105,7 @@ const DetailPage = () => {
           // <div className="fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay">
           //   <BarWave color="#007BFF" duration="2s" />
           // </div>
-          <Loading/>
+          <Loading />
         )}
       </div>
       <Footer />

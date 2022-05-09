@@ -37,7 +37,7 @@ const ContentHome = () => {
   const { type } = useSelector((state) => state.type);
 
   useEffect(() => {
-    getProductsByTypeId()
+    getProductsByTypeId();
   }, [type]);
 
   const getProductsByTypeId = async () => {
@@ -55,20 +55,20 @@ const ContentHome = () => {
   };
 
   return (
-    <div className="min-h-[100vh] bg-[#222222] relative">
-      <div className="max-w-[1200px] py-5 mx-auto">
+    <div className='tw-min-h-[100vh] tw-bg-[#222222] tw-relative'>
+      <div className='tw-max-w-[1200px] tw-py-5 tw-mx-auto'>
         <Swiper
           pagination
           grabCursor={true}
           spaceBetween={0}
           slidesPerView={1}
           autoplay
-          effect="coverflow"
+          effect='coverflow'
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
               <div
-                className="w-[100%] h-[200px] sm:h-[220px] md:h-[250px] lg:h-[400px] rounded-md relative bg-no-repeat bg-cover aspect-video"
+                className='tw-w-[100%] tw-h-[200px] sm:tw-h-[220px] md:tw-h-[250px] lg:tw-h-[400px] tw-rounded-md tw-relative tw-bg-no-repeat tw-bg-cover tw-aspect-video'
                 style={{ backgroundImage: `url(${slide})` }}
               ></div>
             </SwiperSlide>
@@ -76,7 +76,7 @@ const ContentHome = () => {
         </Swiper>
       </div>
       {recently && recently.length > 0 && (
-        <Shoes type="RECENTLY" list={recently} />
+        <Shoes type='RECENTLY' list={recently} />
       )}
       {products &&
         products.length > 0 &&
@@ -84,12 +84,12 @@ const ContentHome = () => {
           <Shoes key={index} type={type[index].type} list={item} />
         ))}
       {load && (
-        <div className="p-5 flex justify-center items-center">
+        <div className='tw-p-5 tw-flex tw-justify-center tw-items-center'>
           <FadingBalls
-            color="#FF0000"
-            width="12px"
-            height="12px"
-            duration="2s"
+            color='#FF0000'
+            width='12px'
+            height='12px'
+            duration='2s'
           />
         </div>
       )}

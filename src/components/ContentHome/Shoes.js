@@ -36,11 +36,11 @@ const Shoes = ({ type, list }) => {
     <>
       {" "}
       {list && list.length > 0 && (
-        <div className='max-w-[1200px] mx-auto py-[30px] px-[12px]'>
-          <h1 className='underlined-blue text-gray-200 text-2xl uppercase'>
+        <div className='tw-max-w-[1200px] tw-mx-auto tw-py-[30px] tw-px-[12px]'>
+          <h1 className='underlined-blue tw-text-gray-200 tw-text-2xl tw-uppercase'>
             {type}
           </h1>
-          <div className='mt-6'>
+          <div className='tw-mt-6'>
             <Swiper
               navigation
               grabCursor={true}

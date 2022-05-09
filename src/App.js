@@ -25,6 +25,7 @@ import { setUser } from "./redux/userReducer";
 import PrivateRoute from "./utils/PrivateRoute";
 import PrivateAdmin from "./utils/PrivateAdmin";
 import setHeaderAxios from "./utils/setHeaderAxios";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   const dispatch = useDispatch();
@@ -106,10 +107,10 @@ function App() {
           ></Route>
           <Route path='*' element={<ErrorPage />}></Route>
           <Route
-            path='/admin'
+            path='/admin/*'
             element={
               <PrivateAdmin>
-                <ErrorPage />
+                <Admin />
               </PrivateAdmin>
             }
           ></Route>

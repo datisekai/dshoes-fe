@@ -22,49 +22,51 @@ const DetailOrder = () => {
     }
   };
   return (
-    <div className="bg-[#222] min-h-screen">
-      <div className="max-w-[1200px] mx-auto p-5">
-        <div className="w-full">
-          <div className="flex justify-between items-center">
-            <h1 className="underlined-blue uppercase text-gray-100 text-2xl">
+    <div className='tw-bg-[#222] tw-min-h-screen'>
+      <div className='tw-max-w-[1200px] tw-mx-auto tw-p-5'>
+        <div className='tw-w-full'>
+          <div className='tw-flex tw-justify-between tw-items-center'>
+            <h1 className='underlined-blue tw-uppercase tw-text-gray-100 tw-text-2xl'>
               Detail
             </h1>
-            <h3
+            <h6
               onClick={() => navigate(-1)}
-              className="text-gray-300 text-md hover:text-gray-500 transition-all cursor-pointer"
+              className='tw-text-gray-300 tw-text-md hover:tw-text-gray-500 tw-transition-all tw-cursor-pointer'
             >
-              <i className="fa-solid fa-arrow-left"></i> Back
-            </h3>
+              <i className='fa-solid fa-arrow-left'></i> Back
+            </h6>
           </div>
-          <div className="mt-2">
+          <div className='mt-2'>
             {details?.map((item) => (
-              <div className="mt-3 border-b border-solid border-[#ccc] flex  py-5">
+              <div className='tw-mt-3 tw-border-b tw-border-solid tw-border-[#ccc] tw-flex  tw-py-5'>
                 <img
-                  className="w-[120px] h-[120px] object-cover rounded-md"
+                  className='tw-w-[120px] tw-h-[120px] tw-object-cover tw-rounded-md'
                   src={item.productId.image[0]}
                 ></img>
-                <div className="px-5 w-[45%]">
-                  <h2 className="text-gray-100 text-md">
+                <div className='tw-px-5 tw-w-[45%]'>
+                  <h5 className='tw-text-gray-100 tw-text-md'>
                     {item.productId.name}
-                  </h2>
-                  <p className="text-red-300 text-sm">Women's Shoes</p>
-                  <p className="text-gray-200 text-md">
-                    <span className="capitalize">{item.color}</span> Shoes
+                  </h5>
+                  <p className='tw-text-red-300 tw-text-sm'>Women's Shoes</p>
+                  <p className='tw-text-gray-200 tw-text-md'>
+                    <span className='tw-capitalize'>{item.color}</span> Shoes
                   </p>
-                  <p className="text-gray-200 text-md">Size {item.size}</p>
-                  <p className="text-gray-200 text-md">
+                  <p className='tw-text-gray-200 tw-text-md'>
+                    Size {item.size}
+                  </p>
+                  <p className='tw-text-gray-200 tw-text-md'>
                     Quantify {item.quantify}
                   </p>
                 </div>
-                <h3 className="text-gray-100">
+                <h5 className='tw-text-gray-100'>
                   <NumberFormat
-                    className="bg-transparent text-gray-100 outline-none w-full"
+                    className='tw-bg-transparent tw-text-gray-100 tw-outline-none tw-w-full'
                     thousandSeparator={true}
-                    suffix=" VND"
+                    suffix=' VND'
                     value={item.productId.prices}
-                    displayType="text"
+                    displayType='text'
                   />
-                </h3>
+                </h5>
               </div>
             ))}
           </div>

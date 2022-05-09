@@ -25,13 +25,13 @@ const Shoe = ({ product }) => {
       }`}
     >
       <img
-        className='w-[100%] h-[250px] md:h-[300px] rounded-md relative bg-no-repeat bg-cover aspect-video'
+        className='tw-w-[100%] tw-h-[250px] md:tw-h-[300px] tw-rounded-md tw-relative tw-bg-no-repeat tw-bg-cover tw-aspect-video'
         alt={`${
           product?.image && product?.image?.length > 0 && product?.image[0]
         }`}
         ref={imgRef}
       ></img>
-      <h1 className='absolute bottom-0 py-3 left-[25%] text-md md:text-xl text-red-500 uppercase'>
+      <h1 className='tw-absolute tw-bottom-0 tw-py-3 tw-left-[25%] tw-text-md md:tw-text-xl tw-text-red-500 tw-uppercase'>
         {product?.name}
       </h1>
     </Link>

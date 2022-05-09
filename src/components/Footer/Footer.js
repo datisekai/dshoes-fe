@@ -3,22 +3,18 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="bg-[#2A2A2A] w-full text-center py-3 text-gray-200">
+    <div className='tw-bg-[#2A2A2A] tw-w-full tw-text-center tw-py-3 tw-text-gray-200'>
       SGU @2022 -{" "}
       <a
-        className="underline mr-1"
-        href="https://www.facebook.com/datisekai/"
+        className='tw-underline tw-mr-1'
+        href='https://www.facebook.com/datisekai/'
         target={"_blank"}
       >
-        Datisekai 
+        Datisekai
       </a>
-      {'&'}
-      <a
-        className="underline ml-1"
-        href="#"
-        target={"_blank"}
-      >
-         Duccanhole
+      {"&"}
+      <a className='tw-underline tw-ml-1' href='#' target={"_blank"}>
+        Duccanhole
       </a>
     </div>
   );

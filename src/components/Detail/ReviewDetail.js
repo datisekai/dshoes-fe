@@ -89,17 +89,17 @@ const ReviewDetail = () => {
             minLength={1}
             onChange={(e) => setContent(e.target.value)}
             placeholder='Enter your review...'
-            className='px-5 py-1 rounded-md border-0 w-full text-[#ccc] border-b border-[#007BFF] bg-transparent mt-2 outline-none'
+            className='tw-px-5 tw-py-1 tw-rounded-md tw-border-0 tw-w-full tw-text-[#ccc] tw-border-b tw-border-[#007BFF] tw-bg-transparent tw-mt-2 tw-outline-none'
             autoComplete='off'
           />
         </form>
       )}
       {userInfo && !userInfo.user && (
-        <p className='text-gray-100 text-center mt-2'>
+        <p className='tw-text-gray-100 tw-text-center tw-mt-2'>
           You must be{" "}
           <span
             onClick={() => navigate(`/login?productId=${id}`)}
-            className='text-red-400 underline cursor-pointer hover:text-red-700 transition-all'
+            className='tw-text-red-400 tw-underline tw-cursor-pointer hover:tw-text-red-700 tw-transition-all'
           >
             logged in
           </span>{" "}
@@ -107,34 +107,39 @@ const ReviewDetail = () => {
         </p>
       )}
       {userInfo && userInfo.user && !userInfo.user.roles.includes(3) && (
-        <p className='text-red-400  text-center mt-2'>
+        <p className='tw-text-red-400  tw-text-center tw-mt-2'>
           You do not have the right to comment
         </p>
       )}
-      <div className='mt-6'>
+      <div className='tw-mt-6'>
         {comments &&
           comments.map((item, index) => (
-            <div key={index} className='mt-3 flex items-center justify-between'>
+            <div
+              key={index}
+              className='tw-mt-3 tw-flex tw-items-center tw-justify-between'
+            >
               <div>
-                <h3 className='text-gray-100 text-md underline'>
+                <h3 className='tw-text-gray-100 tw-text-md tw-underline'>
                   {item?.userId?.email}
                 </h3>
-                <p className='text-sm text-[#ccc]'>
+                <p className='tw-text-sm tw-text-[#ccc]'>
                   {calculateCreatedTime(item?.createdAt)}
                 </p>
-                <p className='text-[#ccc] text-sm py-2'>{item.content}</p>
+                <p className='tw-text-[#ccc] tw-text-sm tw-py-2'>
+                  {item.content}
+                </p>
               </div>
               {userInfo && userInfo._id === item.userId._id && (
                 <i
                   onClick={() => handleDelete(item._id)}
-                  className='text-gray-300 hover:text-gray-500 transition-all cursor-pointer px-5 py-1 fa-solid fa-trash-can'
+                  className='tw-text-gray-300 hover:tw-text-gray-500 tw-transition-all tw-cursor-pointer tw-px-5 tw-py-1 fa-solid fa-trash-can'
                 ></i>
               )}
             </div>
           ))}
       </div>
       {load && (
-        <div className='fixed bottom-0 top-0 left-0 right-0 flex justify-center items-center overlay'>
+        <div className='tw-fixed tw-bottom-0 tw-top-0 tw-left-0 tw-right-0 tw-flex tw-justify-center tw-items-center tw-overlay'>
           <Coin color='#007BFF' duration='2s' />
         </div>
       )}

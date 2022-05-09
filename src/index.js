@@ -8,6 +8,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <React.StrictMode>

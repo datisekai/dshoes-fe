@@ -3,10 +3,10 @@ import "../../assets/css/index.css";
 
 const Loading = () => {
   return (
-    <div className="fixed top-0 bottom-0 right-0 left-0 bg-[#222] flex justify-center items-center">
-      <div className="circle-loading"></div>
+    <div className='tw-fixed tw-top-0 tw-bottom-0 tw-right-0 tw-left-0 tw-bg-[#222] tw-flex tw-justify-center tw-items-center'>
+      <div className='circle-loading'></div>
     </div>
   );
 };
 
-export default Loading; 
+export default Loading;

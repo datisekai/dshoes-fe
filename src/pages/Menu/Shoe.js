@@ -10,22 +10,22 @@ const Shoe = ({ product }) => {
       to={`/products/detail/${product._id}/${to_slug(product.name)}`}
       key={product._id}
     >
-      <div className='relative'>
+      <div className='tw-relative'>
         <ImgLazy
           lazy_src={product.image[0]}
-          className='w-[266px] h-[220px] md:h-[266px] rounded-md relative'
+          className='tw-w-[266px] tw-h-[220px] md:tw-h-[266px] tw-rounded-md tw-relative'
         />
 
-        <div className='absolute bottom-[20%] left-[20%] w-full'>
+        <div className='tw-absolute tw-bottom-[20%] tw-left-[20%] tw-w-full'>
           <NumberFormat
-            className='bg-transparent text-blue-400 text-sm md:text-md lg:text-lg outline-none'
+            className='tw-bg-transparent tw-text-blue-400 tw-text-sm md:tw-text-md lg:tw-text-lg tw-outline-none'
             thousandSeparator={true}
             suffix=' VND'
             displayType='text'
             value={product.prices}
           />
         </div>
-        <h2 className='text-gray-100 truncate py-2'>{product.name}</h2>
+        <h6 className='tw-text-gray-100 tw-truncate tw-py-2'>{product.name}</h6>
       </div>
     </Link>
   );

@@ -77,18 +77,20 @@ const Login = () => {
   };
 
   return (
-    <div className='min-h-[90vh] bg-[#222222] pt-10'>
-      <div className='bg-gray-100 w-[90%] sm:w-[80%] md:w-[70%] rounded-md h-[500px] mx-auto flex justify-between items-center relative'>
+    <div className='tw-min-h-[90vh] tw-bg-[#222222] tw-pt-10'>
+      <div className='tw-bg-gray-100 tw-w-[90%] sm:tw-w-[80%] md:tw-w-[70%] tw-rounded-md tw-h-[500px] tw-mx-auto tw-flex tw-justify-between tw-items-center tw-relative'>
         <img
           src={img}
           alt=''
-          className='md:w-[50%] lg:w-[60%] hidden md:block rounded-md h-full object-cover'
+          className='md:tw-w-[50%] lg:tw-w-[60%] tw-hidden md:tw-block tw-rounded-md tw-h-full tw-object-cover'
         />
-        <div className='w-[100%] md:w-[50%] lg:w-[40%] p-5'>
-          <h1 className='text-[#333] underlined-blue text-xl'>WELCOME BACK</h1>
+        <div className='tw-w-[100%] md:tw-w-[50%] lg:tw-w-[40%] tw-p-5'>
+          <h1 className='tw-text-[#333] underlined-blue tw-text-xl'>
+            WELCOME BACK
+          </h1>
           <form onSubmit={handleLogin}>
-            <div className='mt-3'>
-              <label htmlFor='email' className='text-[#666]'>
+            <div className='tw-mt-3'>
+              <label htmlFor='email' className='tw-text-[#666]'>
                 Email Address
               </label>
               <br />
@@ -100,12 +102,12 @@ const Login = () => {
                 value={email}
                 placeholder='Ex: datly@gmail.com'
                 onChange={(e) => setEmail(e.target.value)}
-                className='px-4 py-1 w-full rounded-md outline-none'
+                className='tw-px-4 tw-py-1 tw-w-full tw-rounded-md tw-outline-none'
                 required
               />
             </div>
-            <div className='mt-3'>
-              <label htmlFor='password' className='text-[#666]'>
+            <div className='tw-mt-3'>
+              <label htmlFor='password' className='tw-text-[#666]'>
                 Password
               </label>
               <br />
@@ -116,21 +118,21 @@ const Login = () => {
                 id='password'
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder='Ex: datly1223'
-                className='px-4 py-1 w-full rounded-md outline-none'
+                className='tw-px-4 tw-py-1 tw-w-full tw-rounded-md tw-outline-none'
                 required
               />
             </div>
 
-            <div className='mt-3 flex flex-col md:flex-row justify-between'>
+            <div className='tw-mt-3 tw-flex tw-flex-col md:tw-flex-row tw-justify-between'>
               <button
                 disabled={loading ? true : false}
                 type='submit'
-                className='w-full md:w-[49%] text-md bg-gradient-to-r from-blue-400 to-red-400 hover:opacity-90 rounded-md px-5 md:px-2 lg:px-5 py-1 text-gray-100 transition-transform'
+                className='tw-w-full md:tw-w-[49%] tw-text-md tw-bg-gradient-to-r tw-from-blue-400 tw-to-red-400 hover:tw-opacity-90 tw-rounded-md tw-px-5 md:tw-px-2 lg:tw-px-5 tw-py-1 tw-text-gray-100 tw-transition-transform'
               >
                 Login Now
               </button>
               <button
-                className='w-full mt-2 md:mt-0 md:w-[49%] text-md bg-gradient-to-r from-red-400 to-blue-400 hover:opacity-90 text-gray-100 rounded-md px-5 py-1  transition-transform'
+                className='tw-w-full tw-mt-2 md:tw-mt-0 md:tw-w-[49%] tw-text-md tw-bg-gradient-to-r tw-from-red-400 tw-to-blue-400 hover:tw-opacity-90 tw-text-gray-100 tw-rounded-md tw-px-5 tw-py-1  transition-transform'
                 onClick={() =>
                   query
                     ? navigate(`/register?productId=${query}`)
@@ -144,12 +146,12 @@ const Login = () => {
             </div>
           </form>
 
-          <div className='mt-3'>
-            <p className='text-[#888] text-sm'>Login with social</p>
-            <div className='flex justify-start'>
-              <i className='text-3xl px-1 cursor-pointer text-[#007bff] fa-brands fa-facebook'></i>
-              <i className='text-3xl px-1 cursor-pointer text-red-400 fa-brands fa-google-plus-square'></i>
-              <i className='text-3xl px-1 cursor-pointer fa-brands fa-github-square'></i>
+          <div className='tw-mt-3'>
+            <p className='tw-text-[#888] tw-text-sm'>Login with social</p>
+            <div className='tw-flex tw-justify-start'>
+              <i className='tw-text-3xl tw-px-1 tw-cursor-pointer tw-text-[#007bff] fa-brands fa-facebook'></i>
+              <i className='tw-text-3xl tw-px-1 tw-cursor-pointer tw-text-red-400 fa-brands fa-google-plus-square'></i>
+              <i className='tw-text-3xl tw-px-1 tw-cursor-pointer fa-brands fa-github-square'></i>
             </div>
           </div>
         </div>
