@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { productURL } from "../../../api/Admin/config";
 import validateProduct from "../validateProduct";
+import setHeader from "../../../api/Admin/setHeader";
 
 export default function FormEditProduct(props) {
   //name
@@ -54,7 +55,7 @@ export default function FormEditProduct(props) {
     }
     fetchData();
   }, [props.id]);
-  const handleAddFile = (e) => {
+  const handleAddFile = async(e) => {
     const size = e.target.files[0].size;
     if (size > 100000) {
       toast.warning("Please choose image less than 100mb", {
@@ -62,17 +63,31 @@ export default function FormEditProduct(props) {
       });
       return;
     }
+    const type = e.target.files[0].type;
     if (type.indexOf("image") === -1) {
       toast.warning("Please choose image file", {
         position: "top-center",
       });
       return;
     }
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      setImages((images) => [...images, reader.result]);
-    };
+    // const reader = new FileReader();
+    // reader.readAsDataURL(e.target.files[0]);
+    // reader.onload = () => {
+    //   setImages((images) => [...images, reader.result]);
+    // };
+    try{
+      delete axios.defaults.headers.common["Authorization"];
+      const form = new FormData();
+      const image = e.target.files[0];
+      form.append("file", image);
+      form.append("upload_preset", "qmpupf7a");
+      const res = await axios.post("https://api.cloudinary.com/v1_1/do8rqqyn4/upload", form);
+      setImages([...images, res.data.secure_url]);
+    }
+    catch(err){
+      console.log(err);
+    }
+    setHeader(sessionStorage.getItem("token"));
   };
   const handleEditProduct = async (e) => {
     e.preventDefault();
