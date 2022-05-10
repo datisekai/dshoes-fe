@@ -13,6 +13,7 @@ import validateProduct from "../validateProduct";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setTypes as setTypesRedux } from "../../../app/typeReducer";
+import setHeader from "../../../api/Admin/setHeader";
 
 export default function FormAddNew(props) {
   //name
@@ -69,24 +70,26 @@ export default function FormAddNew(props) {
       return;
     }
     // convert image to base64
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      setImages([...images, reader.result]);
-    };
-    // let imgs = [];
-    // for (let image of images) {
-    //     const form = new FormData();
-    //     form.append('file', image);
-    //     form.append('upload_preset', 'qmpupf7a');
-    //     imgs.push(form);
-    // }
-    // delete axios.defaults.headers.common["Authorization"];
-    // await axios.all(
-    //     imgs.map((item) => axios.post("https://api.cloudinary.com/v1_1/do8rqqyn4/upload", item))
-    // );
-    // setImages([...imgs]);
-    // setHeader(sessionStorage.getItem('token'));
+    // const reader = new FileReader();
+    // reader.readAsDataURL(e.target.files[0]);
+    // reader.onload = () => {
+    //   setImages([...images, reader.result]);
+    // };
+    let imgs = [];
+    for (let image of images) {
+      const form = new FormData();
+      form.append("file", image);
+      form.append("upload_preset", "qmpupf7a");
+      imgs.push(form);
+    }
+    delete axios.defaults.headers.common["Authorization"];
+    await axios.all(
+      imgs.map((item) =>
+        axios.post("https://api.cloudinary.com/v1_1/do8rqqyn4/upload", item)
+      )
+    );
+    setImages([...imgs]);
+    setHeader(sessionStorage.getItem("token"));
   };
   //add new product to database
   const addNewProduct = async function (e) {

@@ -12,12 +12,14 @@ function NavBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [route, setRoute] = useState([]);
-  const role = useSelector((state) => state.user.role);
+  const role = useSelector((state) => state.user.user.roles);
   const handleLogout = () => {
     sessionStorage.removeItem("token");
     window.location.href = "/";
     window.location.reload();
   };
+
+  console.log(route);
   useEffect(() => {
     async function getRoute() {
       try {
@@ -49,7 +51,7 @@ function NavBar() {
           <Nav className='flex-column'>
             <Link
               className='text-light text-decoration-none nav-item text-center nav-item mt-3 hvr-underline-from-center'
-              to='/'
+              to='/admin'
             >
               Home
             </Link>
@@ -62,12 +64,13 @@ function NavBar() {
                 return (
                   <Link
                     className='text-light text-decoration-none nav-item text-center nav-item mt-3 hvr-underline-from-center'
-                    to={item.route}
+                    to={`/admin/${item.route.slice(1)}`}
                     key={index}
                   >
                     {item.category_name}
                   </Link>
                 );
+
               return null;
             })}
           </Nav>
@@ -123,7 +126,7 @@ function NavBar() {
                   return (
                     <Link
                       className='text-light text-decoration-none nav-item text-center nav-item mt-3 hvr-underline-from-center'
-                      to={item.route}
+                      to={`/admin/${item.route.slice(1)}`}
                       key={index}
                     >
                       {item.category_name}

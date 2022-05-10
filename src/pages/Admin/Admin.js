@@ -8,10 +8,12 @@ import AccessDenied from "./AccessDenied";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { Route, Routes } from "react-router-dom";
 import Account from "./Account";
+import NavBar from "../../layout/NavBar";
 
 const Admin = () => {
   return (
     <div>
+      <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Product />} />
