@@ -20,17 +20,23 @@ import { toast } from "react-toastify";
 import { productURL, authURL, orderURL } from "../../api/Admin/config";
 
 export default function GeneralInfor() {
-  const loadingProducts = useSelector((state) => state.products.loading);
-  const loadingAccounts = useSelector((state) => state.accounts.loading);
-  const loadingOrders = useSelector((state) => state.orders.loading);
+  const loadingProducts = useSelector(
+    ((state) => state.products?.loading) || false
+  );
+  const loadingAccounts = useSelector(
+    ((state) => state.accounts?.loading) || false
+  );
+  const loadingOrders = useSelector(
+    ((state) => state.orders?.loading) || false
+  );
   const [totalProducts, setTotalProducts] = useState(
-    useSelector((state) => state.products.total)
+    useSelector(((state) => state.products?.total) || 0)
   );
   const [totalAccounts, setTotalAccounts] = useState(
-    useSelector((state) => state.accounts.total)
+    useSelector(((state) => state.accounts?.total) || 0)
   );
   const [totalOrders, setTotalOrders] = useState(
-    useSelector((state) => state.orders.total)
+    useSelector(((state) => state.orders?.total) || 0)
   );
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();

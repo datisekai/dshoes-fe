@@ -100,7 +100,7 @@ function NavBar() {
               >
                 <Link
                   className='text-light nav-item text-center text-center fs-3 btn hvr-underline-from-center'
-                  to='/'
+                  to='/admin'
                 >
                   <BsHouseDoorFill />
                 </Link>

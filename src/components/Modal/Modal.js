@@ -85,6 +85,20 @@ const Modal = () => {
               <i className='fa-solid fa-address-card'></i> Contact
             </li>
           </NavLink>
+
+          {userInfo && userInfo?.user?.roles.length > 2 && (
+            <NavLink
+              activeclassname='active'
+              className={"tw-block"}
+              to={"/admin"}
+              onClick={() => setSidebar(false)}
+            >
+              <li className='tw-text-gray-200 tw-uppercase tw-py-2'>
+                <i className='fa-solid fa-address-card'></i> ADMIN
+              </li>
+            </NavLink>
+          )}
+
           {userInfo && !userInfo.user && (
             <Link to={"/login"} onClick={() => setSidebar(false)}>
               {" "}

@@ -38,9 +38,16 @@ export default function Statistic() {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setMoneyProduct(statistic.map((item) => item.totalMoney));
+    setNameMoney(statistic.map((item) => item.product.name));
+    setNameQuantity(statistic.map((item) => item.product.name));
+    setQuantityProduct(statistic.map((item) => item.totalQuantity));
+  }, [statistic]);
+
   const handleSearch = async (e) => {
     e.preventDefault();
-    console.log(from, to);
     setLoading(true);
     const d1 = Math.min(new Date(from).getTime(), new Date(to).getTime());
     const d2 = Math.max(new Date(from).getTime(), new Date(to).getTime());
@@ -109,12 +116,14 @@ export default function Statistic() {
               <Form.Control
                 className='mx-2 w-25'
                 type='date'
+                value={from}
                 onChange={(e) => setFrom(e.target.value)}
               />
               <Form.Label className='mx-2'>To</Form.Label>
               <Form.Control
                 className='mx-2 w-25'
                 type='date'
+                value={to}
                 onChange={(e) => setTo(e.target.value)}
               />
               <Button type='submit' className='mx-2' variant='primary'>
@@ -128,13 +137,10 @@ export default function Statistic() {
                 defaultValue=''
                 onChange={(e) => handleSelectTop(e.target.value)}
               >
-                <option value='' disabled>
-                  Select
-                </option>
+                <option value='all'>All</option>
                 <option value='top3'>Top 3</option>
                 <option value='top5'>Top 5</option>
                 <option value='top10'>Top 10</option>
-                <option value='all'>All</option>
               </Form.Control>
             </Form>
             <div className='col-sm-8 mt-2'>

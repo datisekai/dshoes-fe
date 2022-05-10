@@ -6,11 +6,18 @@ import Orders from "./Orders";
 import Statistic from "./Statistic";
 import AccessDenied from "./AccessDenied";
 import ErrorPage from "../ErrorPage/ErrorPage";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Account from "./Account";
 import NavBar from "../../layout/NavBar";
+import { useSelector } from "react-redux";
 
 const Admin = () => {
+  const { user } = useSelector((state) => state.user);
+
+  if (user.roles.length <= 2) {
+    return <Navigate to={"/"} />;
+  }
+
   return (
     <div>
       <NavBar />

@@ -16,7 +16,6 @@ export default function FormSetRole(props) {
         setRoleUser(res1.data.roleUser.map((item) => item.roleId));
         const res2 = await axios.get(`${url}/role_cate`);
         setRoles(res2.data.role_cate);
-        console.log(res2.data.role_cate);
       } catch (e) {
         toast.error(e.message);
       } finally {
@@ -25,9 +24,12 @@ export default function FormSetRole(props) {
     }
     fetchData();
   }, [props.id]);
+
+  console.log(roleUser);
+
   const handleRoleChange = (checked, item) => {
     if (checked) {
-      setRoleUser([...new Set([...roleUser, item.id])]);
+      setRoleUser([...new Set([...roleUser, item])]);
     } else {
       setRoleUser(roleUser.filter((role) => role !== item));
     }
