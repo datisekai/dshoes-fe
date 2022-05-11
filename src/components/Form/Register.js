@@ -233,15 +233,6 @@ const Register = () => {
               </button>
             </div>
           </form>
-
-          <div className='tw-mt-3'>
-            <p className='tw-text-[#888] tw-text-sm'>Login with social</p>
-            <div className='tw-flex tw-justify-start'>
-              <i className='tw-text-3xl tw-px-1 tw-cursor-pointer tw-text-[#007bff] fa-brands fa-facebook'></i>
-              <i className='tw-text-3xl tw-px-1 tw-cursor-pointer tw-text-red-400 fa-brands fa-google-plus-square'></i>
-              <i className='tw-text-3xl tw-px-1 tw-cursor-pointer fa-brands fa-github-square'></i>
-            </div>
-          </div>
         </div>
         {load && <Loading />}
       </div>
