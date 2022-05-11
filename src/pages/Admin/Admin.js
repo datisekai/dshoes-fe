@@ -1,5 +1,4 @@
 import Home from "./Home";
-
 import Product from "./Product";
 import Orders from "./Orders";
 import Statistic from "./Statistic";
