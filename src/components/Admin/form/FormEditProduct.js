@@ -28,6 +28,7 @@ export default function FormEditProduct(props) {
   const [size, setSize] = useState([]);
   const [sizeValue, setSizeValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingImage, setLoadingImage] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -76,6 +77,7 @@ export default function FormEditProduct(props) {
     //   setImages((images) => [...images, reader.result]);
     // };
     try{
+      setLoadingImage(true);
       delete axios.defaults.headers.common["Authorization"];
       const form = new FormData();
       const image = e.target.files[0];
@@ -86,6 +88,9 @@ export default function FormEditProduct(props) {
     }
     catch(err){
       console.log(err);
+    }
+    finally{
+      setLoadingImage(false);
     }
     setHeader(sessionStorage.getItem("token"));
   };
@@ -154,7 +159,8 @@ export default function FormEditProduct(props) {
                   <Accordion.Body>
                     <div className='d-flex flex-wrap'>
                       {
-                        //render images
+                        loadingImage?
+                        <>loading ...</>:
                         images.map((image, index) => (
                           <div className='p-2' key={index}>
                             <div>

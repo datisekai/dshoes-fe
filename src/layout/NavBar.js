@@ -18,8 +18,6 @@ function NavBar() {
     window.location.href = "/";
     window.location.reload();
   };
-
-  console.log(route);
   useEffect(() => {
     async function getRoute() {
       try {

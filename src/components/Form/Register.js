@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../assets/css/index.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import { checkEmail, checkMatch, checkPhone } from "../../utils/Validate";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { base_auth } from "../../api/config";
 import setHeaderAxios from "../../utils/setHeaderAxios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userReducer";
-import { FlippingSquare } from "react-cssfx-loading/lib";
 import { useQuery } from "../../customHook/useQuery";
 import * as Yup from "yup";
 import { useFormik } from "formik";

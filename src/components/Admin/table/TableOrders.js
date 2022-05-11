@@ -147,11 +147,11 @@ export default function TableOrders(props) {
     },
     {
       key: 1,
-      value: "Available",
+      value: "Waiting",
     },
     {
       key: 0,
-      value: "Unavailable",
+      value: "Success",
     },
   ];
   const handleSelectChange = (data) => {
