@@ -22,21 +22,14 @@ export default function FormAddNew(props) {
   const [images, setImages] = useState([]);
   //size
   const [size, setSize] = useState(0);
-  const [arrSize, setArrSize] = useState([35, 36, 37, 38, 39, 30]);
+  const [arrSize, setArrSize] = useState([]);
   //color
   const [color, setColor] = useState("");
-  const [arrColor, setArrColor] = useState([
-    "black",
-    "white",
-    "red",
-    "blue",
-    "green",
-    "yellow",
-  ]);
+  const [arrColor, setArrColor] = useState([]);
   //price
   const [price, setPrice] = useState(0);
   //description
-  const [description, setDescription] = useState("comming soon...");
+  const [description, setDescription] = useState("");
   //type
   const [types, setTypes] = useState([]);
   const [type, setType] = useState("");
@@ -46,7 +39,7 @@ export default function FormAddNew(props) {
   useEffect(() => {
     async function getTypes() {
       const res = await axios.get(`${productURL}/types/all`);
-      setTypes(res.data.types);
+      setTypes([...res.data.types.filter((type) => type.display === true)]);
       dispatch(setTypesRedux(res.data.types));
     }
     getTypes();
@@ -75,20 +68,30 @@ export default function FormAddNew(props) {
     // reader.onload = () => {
     //   setImages([...images, reader.result]);
     // };
-    let imgs = [];
-    for (let image of images) {
+    // for (let image of images) {
+    //   const form = new FormData();
+    //   form.append("file", image);
+    //   form.append("upload_preset", "qmpupf7a");
+    //   imgs.push(form);
+    // }
+    // delete axios.defaults.headers.common["Authorization"];
+    // await axios.all(
+    //   imgs.map((item) =>
+    //     axios.post("https://api.cloudinary.com/v1_1/do8rqqyn4/upload", item)
+    //   )
+    // );
+    try{
+      delete axios.defaults.headers.common["Authorization"];
       const form = new FormData();
+      const image = e.target.files[0];
       form.append("file", image);
       form.append("upload_preset", "qmpupf7a");
-      imgs.push(form);
+      const res = await axios.post("https://api.cloudinary.com/v1_1/do8rqqyn4/upload", form);
+      setImages([...images, res.data.secure_url]);
     }
-    delete axios.defaults.headers.common["Authorization"];
-    await axios.all(
-      imgs.map((item) =>
-        axios.post("https://api.cloudinary.com/v1_1/do8rqqyn4/upload", item)
-      )
-    );
-    setImages([...imgs]);
+    catch(err){
+      console.log(err);
+    }
     setHeader(sessionStorage.getItem("token"));
   };
   //add new product to database

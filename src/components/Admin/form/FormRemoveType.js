@@ -44,9 +44,11 @@ export default function FormRemoveType(props) {
           Choose type
         </option>
         {types.map((item, index) => (
+          item.display? 
           <option key={index} value={item._id}>
             {item.type}
-          </option>
+          </option>:
+          <></>
         ))}
       </Form.Control>
       <Button className='mx-auto mt-3 w-75' type='submit' disabled={loading}>
