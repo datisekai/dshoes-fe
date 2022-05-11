@@ -45,7 +45,13 @@ const Order = () => {
                     <h3 className='tw-pr-1 tw-text-gray-300 tw-text-sm tw-uppercase'>
                       {item.name || userInfo.email}
                     </h3>
-                    <p className='tw-bg-green-400 tw-px-1 tw-rounded-md tw-text-[15px] tw-capitalize tw-text-gray-800'>
+                    <p
+                      className={` tw-px-1 tw-rounded-md tw-text-[15px] tw-capitalize tw-text-gray-800 ${
+                        item.status === 1
+                          ? "tw-bg-yellow-400"
+                          : "tw-bg-green-400"
+                      }`}
+                    >
                       {item.status === 1 ? "Process" : "Delivered"}
                     </p>
                   </div>

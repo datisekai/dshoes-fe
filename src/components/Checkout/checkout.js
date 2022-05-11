@@ -15,6 +15,7 @@ import {
   removeCart,
   removeProduct,
 } from "../../redux/cartReducer";
+import formatMoney from "../Admin/formatMoney";
 
 const Checkout = () => {
   const carts = useSelector((state) => state.cart.carts);
@@ -49,7 +50,7 @@ const Checkout = () => {
       if (carts && carts.length > 0) {
         swal({
           title: "Are you sure?",
-          text: `The amount to be paid is ${total} VND`,
+          text: `The amount to be paid is ${formatMoney(total)}`,
           icon: "info",
           buttons: true,
           dangerMode: true,

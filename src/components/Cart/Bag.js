@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import "../../assets/css/index.css";
 import "boxicons";
+import React from "react";
 import NumberFormat from "react-number-format";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "../../assets/css/index.css";
 import { to_slug } from "../../utils/toSlug";
 
 const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
@@ -37,7 +37,7 @@ const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
                 src={item.image}
               ></img>
               <div className='tw-px-5 tw-w-[45%]'>
-                <h2 className='tw-text-gray-100 tw-text-md'>{item.name}</h2>
+                <h5 className='tw-text-gray-100 tw-text-md'>{item.name}</h5>
                 <p className='tw-text-red-300 tw-text-sm'>Women's Shoes</p>
                 <p className='tw-text-gray-200 tw-text-md'>
                   <span className='tw-capitalize'>{item.color}</span> Shoes
@@ -72,7 +72,7 @@ const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
                   Remove
                 </button>
               </div>
-              <h3 className='tw-w-[30%] tw-text-gray-100'>
+              <h5 className='tw-w-[30%] tw-text-gray-100'>
                 <NumberFormat
                   className='tw-bg-transparent tw-text-gray-100 tw-outline-none tw-w-full'
                   thousandSeparator={true}
@@ -80,7 +80,7 @@ const Bag = ({ carts, handleAdd, handleMinus, handleDelete }) => {
                   value={item.prices}
                   displayType='text'
                 />
-              </h3>
+              </h5>
             </div>
           ))}
       </div>

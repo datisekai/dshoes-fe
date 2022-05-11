@@ -119,9 +119,9 @@ const ReviewDetail = () => {
               className='tw-mt-3 tw-flex tw-items-center tw-justify-between'
             >
               <div>
-                <h3 className='tw-text-gray-100 tw-text-md tw-underline'>
+                <h6 className='tw-text-gray-100 tw-text-md tw-underline'>
                   {item?.userId?.email}
-                </h3>
+                </h6>
                 <p className='tw-text-sm tw-text-[#ccc]'>
                   {calculateCreatedTime(item?.createdAt)}
                 </p>

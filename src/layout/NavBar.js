@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Offcanvas, Nav, OverlayTrigger } from "react-bootstrap";
 import { BsList, BsHouseDoorFill, BsBoxArrowLeft } from "react-icons/bs";
 import { Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { url } from "../api/Admin/config";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -52,6 +52,7 @@ function NavBar() {
             <Link
               className='text-light text-decoration-none nav-item text-center nav-item mt-3 hvr-underline-from-center'
               to='/admin'
+              activeclassname='active'
             >
               Home
             </Link>
@@ -60,16 +61,18 @@ function NavBar() {
                         <Link className='text-light text-decoration-none nav-item text-center nav-item mt-3' to='/orders'><BsCartFill /> Orders</Link>
                         <Link className='text-light text-decoration-none nav-item text-center nav-item mt-3' to='/statistic'><BsBarChartFill /> Statistics</Link>*/}
             {route.map((item, index) => {
-              if (role.includes(item.roleId))
+              if (role.includes(item.roleId)) {
                 return (
                   <Link
-                    className='text-light text-decoration-none nav-item text-center nav-item mt-3 hvr-underline-from-center'
+                    className={`text-light nav-item text-center nav-item mt-3 hvr-underline-from-center
+                   `}
                     to={`/admin/${item.route.slice(1)}`}
                     key={index}
                   >
                     {item.category_name}
                   </Link>
                 );
+              }
 
               return null;
             })}
@@ -125,7 +128,8 @@ function NavBar() {
                 if (role.includes(item.roleId))
                   return (
                     <Link
-                      className='text-light text-decoration-none nav-item text-center nav-item mt-3 hvr-underline-from-center'
+                      className={`tw-text-white text-decoration-none nav-item text-center nav-item mt-3 hvr-underline-from-center
+                      `}
                       to={`/admin/${item.route.slice(1)}`}
                       key={index}
                     >

@@ -81,6 +81,17 @@ body::-webkit-scrollbar {
   position: relative;
   overflow: hidden;
 }
+
+.activeNavbar{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: whitesmoke;
+  height: 4px;
+}
+
 .hvr-underline-from-center:before {
   content: "";
   position: absolute;
