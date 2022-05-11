@@ -12,6 +12,8 @@ import { checkEmail } from "../../utils/Validate";
 import { useQuery } from "../../customHook/useQuery";
 import Loading from "../Loading/Loading";
 
+//test
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
