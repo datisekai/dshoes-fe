@@ -46,7 +46,7 @@ export default function FormEditProduct(props) {
         //set types
         const response = await fetch(`${productURL}/types/all`);
         const data = await response.json();
-        setTypes(data.types);
+        setTypes([...data.types.filter((type) => type.display === true)]);
       } catch (e) {
         toast.error(e.message);
       } finally {

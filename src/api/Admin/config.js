@@ -1,4 +1,4 @@
-export const url = "https://dshoes-server-production-cbe2.up.railway.app/api";
+export const url = "http://172.20.10.2:5098/api";
 export const productURL = `${url}/products`;
 export const orderURL = `${url}/orders`;
 export const authURL = `${url}/auth`;

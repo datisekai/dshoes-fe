@@ -29,7 +29,7 @@ export default function FormAddNew(props) {
   //price
   const [price, setPrice] = useState(0);
   //description
-  const [description, setDescription] = useState("comming soon...");
+  const [description, setDescription] = useState("");
   //type
   const [types, setTypes] = useState([]);
   const [type, setType] = useState("");
@@ -39,7 +39,7 @@ export default function FormAddNew(props) {
   useEffect(() => {
     async function getTypes() {
       const res = await axios.get(`${productURL}/types/all`);
-      setTypes(res.data.types);
+      setTypes([...res.data.types.filter((type) => type.display === true)]);
       dispatch(setTypesRedux(res.data.types));
     }
     getTypes();
