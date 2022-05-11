@@ -81,7 +81,7 @@ export default function FormOrders(props) {
         <Form.Label>Status</Form.Label>
         <Form.Control
           as='select'
-          defaultValue={status}
+          defaultValue={props.order.status}
           onChange={(e) => setStatus(e.target.value)}
         >
           <option value={1}>Waiting</option>
