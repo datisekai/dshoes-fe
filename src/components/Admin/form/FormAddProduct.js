@@ -34,6 +34,7 @@ export default function FormAddNew(props) {
   const [types, setTypes] = useState([]);
   const [type, setType] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingImg, setLoadingImg] = useState(false);
   //dispatch
   const dispatch = useDispatch();
   useEffect(() => {
@@ -81,6 +82,7 @@ export default function FormAddNew(props) {
     //   )
     // );
     try{
+      setLoadingImg(true);
       delete axios.defaults.headers.common["Authorization"];
       const form = new FormData();
       const image = e.target.files[0];
@@ -91,6 +93,9 @@ export default function FormAddNew(props) {
     }
     catch(err){
       console.log(err);
+    }
+    finally{
+      setLoadingImg(false);
     }
     setHeader(sessionStorage.getItem("token"));
   };
@@ -166,7 +171,9 @@ export default function FormAddNew(props) {
               </Accordion.Header>
               <Accordion.Body>
                 <div className='d-flex flex-wrap'>
-                  {images.map((image, index) => (
+                  {loadingImg ? 
+                  <>loading...</>:
+                  images.map((image, index) => (
                     <div className='p-2' key={index}>
                       <div>
                         <img src={image} alt='' width='100' />

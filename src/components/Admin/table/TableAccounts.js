@@ -116,7 +116,7 @@ export default function TableAccount(props) {
   }, [reload, resetPage, props.reload]);
   return (
     <>
-      <div className='text-center'>
+      <div className="mx-2">
         <b
           className='text-light'
           style={{ cursor: "pointer" }}
