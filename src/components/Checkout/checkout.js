@@ -251,9 +251,9 @@ const Checkout = () => {
             )}
           </div>
           <div className='tw-mt-3 tw-bg-gradient-to-r  tw-py-2 tw-from-red-400 tw-to-violet-400 tw-rounded-md tw-border-t tw-border-blue-900 tw-px-2'>
-            <h2 className='tw-uppercase tw-text-md tw-text-gray-100'>
+            <h5 className='tw-uppercase tw-text-md tw-text-gray-100'>
               Summary
-            </h2>
+            </h5>
             <div className='tw-flex tw-justify-between'>
               <p className='tw-text-md tw-capitalize tw-text-gray-200'>Count</p>
               <p className='tw-text-md tw-capitalize tw-text-gray-200'>

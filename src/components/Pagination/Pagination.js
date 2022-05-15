@@ -3,12 +3,19 @@ import React from "react";
 const Pagination = ({ pagination, handle }) => {
   const { handleNext, handlePre } = handle;
   const totalPage = Math.ceil(pagination.total / pagination.limit);
+  console.log(totalPage);
   return (
     <div className='tw-flex tw-justify-between tw-max-w-[1200px] tw-bg-[#2A2A2A] tw-mx-auto tw-py-2 tw-px-5 tw-rounded-lg tw-items-center'>
       <div className='tw-text-center tw-text-gray-100 tw-text-sm sm:tw-text-md'>
         Showing {pagination && pagination.skip} to{" "}
         {pagination && pagination.to + pagination.skip - 1} of{" "}
         {pagination && pagination.total} results
+      </div>
+
+      <div className=''>
+        <button>1</button>
+        <button>1</button>
+        <button>1</button>
       </div>
       <div className='tw-flex tw-justify-center'>
         <button
