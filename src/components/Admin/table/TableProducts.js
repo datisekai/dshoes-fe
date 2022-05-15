@@ -92,7 +92,7 @@ export default function TableProduct(props) {
     }
     setLoading(true);
     try {
-      const response = await fetch(`${productURL}?page=${page}`);
+      const response = await fetch(`${productURL}/admin?page=${page}`);
       const data = await response.json();
       setProducts(data.products);
       setDefaultProducts(data.products);
