@@ -133,6 +133,28 @@ export default function FormEditProduct(props) {
       setLoading(false);
     }
   };
+  const add = (field) => {
+    if(field==='size'){
+      if(sizeValue===0 || sizeValue==='') return;
+      setSize([...size, sizeValue]);
+      setSizeValue('');
+    }
+    else if(field==='color'){
+      if(colorValue==='') return;
+      setColor([...color, colorValue]);
+      setColorValue('');
+    }
+  };
+  const remove = (field) => {
+    if(field==='size'){
+      setSize(size.filter((value) => value !== parseInt(sizeValue)));
+      setSizeValue('');
+    }
+    else if(field==='color'){
+      setColor(color.filter((value) => value !== colorValue));
+      setColorValue('');
+    }
+  }
   return (
     <>
       <Form className='text-start' onSubmit={handleEditProduct}>
@@ -200,21 +222,18 @@ export default function FormEditProduct(props) {
                   type='number'
                   placeholder='Enter size'
                   min={0}
+                  value={sizeValue}
                   onChange={(e) => setSizeValue(e.target.value)}
                 />
                 <Button
                   variant='outline-secondary'
-                  onClick={() => setSize((size) => [...size, sizeValue])}
+                  onClick={() => add('size')}
                 >
                   Add
                 </Button>
                 <Button
                   variant='outline-secondary'
-                  onClick={() =>
-                    setSize(
-                      size.filter((value) => value !== parseInt(sizeValue))
-                    )
-                  }
+                  onClick={() => remove('size')}
                 >
                   Remove
                 </Button>
@@ -236,19 +255,18 @@ export default function FormEditProduct(props) {
                 <Form.Control
                   type='text'
                   placeholder='Enter color'
+                  value={colorValue}
                   onChange={(e) => setColorValue(e.target.value)}
                 />
                 <Button
                   variant='outline-secondary'
-                  onClick={() => setColor([...color, colorValue])}
+                  onClick={() => add('color')}
                 >
                   Add
                 </Button>
                 <Button
                   variant='outline-secondary'
-                  onClick={() =>
-                    setColor(color.filter((value) => value !== colorValue))
-                  }
+                  onClick={() => remove('color')}
                 >
                   Remove
                 </Button>

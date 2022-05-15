@@ -76,7 +76,7 @@ export default function Product(props) {
           <Modal.Title>Add new type</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FormAddType type='add' />
+          <FormAddType type='add' close={()=>setAddType(false)}/>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>

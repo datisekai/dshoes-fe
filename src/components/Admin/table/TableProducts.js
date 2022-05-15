@@ -26,13 +26,44 @@ import ProductsAction from "../action/productActions";
 import formatMoney from "../formatMoney";
 import axios from "axios";
 
+const sortData = [
+  {
+    key: "default",
+    value: "Sort by",
+  },
+  {
+    key: "sortByName",
+    value: "Name",
+  },
+  {
+    key: "sortByPrice",
+    value: "Price",
+  },
+];
+const filterData = [
+  {
+    key: "default",
+    value: "Filter by",
+  },
+  {
+    key: "all",
+    value: "All",
+  },
+  {
+    key: 1,
+    value: "Available",
+  },
+  {
+    key: 0,
+    value: "Unavailable",
+  },
+];
+
 export default function TableProduct(props) {
   const [products, setProducts] = useState([]);
   const [defaultProducts, setDefaultProducts] = useState([]);
   const [dialogDelete, setDialogDelete] = useState(false);
   const [dialogEdit, setDialogEdit] = useState(false);
-  const [dialogFilter, setDialogFilter] = useState(false);
-  const [valueFilter, setValueFilter] = useState("");
   const [idProduct, setIdProduct] = useState("");
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -51,6 +82,14 @@ export default function TableProduct(props) {
         setDefaultProducts(data.products);
         setTotal(data.total);
         dispatch(setLoadingData(true));
+        const res = await axios.get(`${productURL}/types/all`);
+        const types = res.data.types.filter(value => value.display === true);
+        types.forEach(element => {
+          filterData.push({
+            key: 'types:' + element.type,
+            value: element.type.charAt(0).toUpperCase() + element.type.slice(1),
+          });
+        });
       } catch (e) {
         toast.error("Failed to load data from server.");
       } finally {
@@ -115,57 +154,13 @@ export default function TableProduct(props) {
       resetPage();
     }
   }, [reload, resetPage, props.reload]);
-  const sortData = [
-    {
-      key: "default",
-      value: "Sort by",
-    },
-    {
-      key: "sortByName",
-      value: "Name",
-    },
-    {
-      key: "sortByPrice",
-      value: "Price",
-    },
-  ];
-  const filterData = [
-    {
-      key: "default",
-      value: "Filter by",
-    },
-    {
-      key: "all",
-      value: "All",
-    },
-    {
-      key: "filterByType",
-      value: "Type",
-    },
-    {
-      key: 1,
-      value: "Available",
-    },
-    {
-      key: 0,
-      value: "Unavailable",
-    },
-  ];
   const handleSelectChange = (data) => {
-    if (data === "filterByType") {
-      setDialogFilter(true);
+    if (data.includes('types:')) {
+      const valueFilter = data.split(':')[1];
+      setProducts([
+        ...ProductsAction(defaultProducts, "filterByType", valueFilter),
+      ]);
     } else setProducts([...ProductsAction(defaultProducts, data)]);
-  };
-  const handleFilter = (e) => {
-    e.preventDefault();
-    if (valueFilter === "") {
-      setDialogFilter(false);
-      return;
-    }
-    setProducts([
-      ...ProductsAction(defaultProducts, "filterByType", valueFilter),
-    ]);
-    setDialogFilter(false);
   };
   return (
     <>
@@ -227,7 +222,7 @@ export default function TableProduct(props) {
                 </td>
                 <td>{product.createdAt.slice(0, 10)}</td>
                 <td>
-                  <Dropdown drop='start'>
+                  <Dropdown>
                     <Dropdown.Toggle
                       className='rounded-circle'
                       variant='primary'
@@ -316,36 +311,6 @@ export default function TableProduct(props) {
             cancel={(data) => setDialogEdit(data)}
             reload={(data) => setReload(data)}
           />
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modal>
-      <Modal
-        show={dialogFilter}
-        onHide={() => setDialogFilter(false)}
-        size='md'
-        centered
-        scrollable
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Filter by type</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className='text-center'>
-          <Form onSubmit={handleFilter}>
-            <Form.Group>
-              <Form.Control
-                type='text'
-                value={valueFilter}
-                onChange={(e) => setValueFilter(e.target.value)}
-              />
-            </Form.Group>
-            <Button
-              variant='primary'
-              type='submit'
-              className='mx-auto mt-3 w-75'
-            >
-              Filter
-            </Button>
-          </Form>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>

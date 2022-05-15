@@ -153,6 +153,28 @@ export default function FormAddNew(props) {
       props.cancel(false);
     }
   };
+  const add = (field) => {
+    if(field==='size'){
+      if(size===0 || size==='') return;
+      setArrSize([...arrSize, size]);
+      setSize('');
+    }
+    else if(field==='color'){
+      if(color==='') return;
+      setArrColor([...arrColor, color]);
+      setColor('');
+    }
+  };
+  const remove = (field) => {
+    if(field==='size'){
+      setArrSize(arrSize.filter((value) => value !== size));
+      setSize('');
+    }
+    else if(field==='color'){
+      setArrColor(arrColor.filter((value) => value !== color));
+      setColor('');
+    }
+  }
   return (
     <div>
       <Form onSubmit={addNewProduct}>
@@ -206,20 +228,18 @@ export default function FormAddNew(props) {
               type='number'
               placeholder='Enter size'
               min={0}
-              defaultValue={size}
+              value={size}
               onChange={(e) => setSize(e.target.value)}
             />
             <Button
               variant='outline-secondary'
-              onClick={() => setArrSize([...arrSize, size])}
+              onClick={() => add('size')}
             >
               Add
             </Button>
             <Button
               variant='outline-secondary'
-              onClick={() =>
-                setArrSize(arrSize.filter((value) => size !== value))
-              }
+              onClick={() => remove('size')}
             >
               Remove
             </Button>
@@ -246,15 +266,13 @@ export default function FormAddNew(props) {
             />
             <Button
               variant='outline-secondary'
-              onClick={() => setArrColor([...arrColor, color])}
+              onClick={() => add('color')}
             >
               Add
             </Button>
             <Button
               variant='outline-secondary'
-              onClick={() =>
-                setArrColor(arrColor.filter((value) => value !== color))
-              }
+              onClick={() => remove('color')}
             >
               Remove
             </Button>
