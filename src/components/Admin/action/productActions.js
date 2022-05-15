@@ -1,6 +1,5 @@
 
 export default function ProductsAction(state, type, value=null) {
-    console.log(type);
     switch(type){
         case 'sortByName':
             return sortByName(state);

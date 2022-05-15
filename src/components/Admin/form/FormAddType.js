@@ -48,6 +48,8 @@ export default function FormAddType(props) {
       };
       await axios.post(`${productURL}/type`, body);
       toast.success("Add new type successfully.");
+      setType("");
+      props.close();
     } catch (e) {
       console.error(e);
       toast.error("Add new type failed.");

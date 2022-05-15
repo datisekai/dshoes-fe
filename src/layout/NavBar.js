@@ -31,7 +31,6 @@ function NavBar() {
     getRoute();
   }, []);
 
-  console.log(route);
 
   return (
     <div className='d-flex flex-row shadow background'>
