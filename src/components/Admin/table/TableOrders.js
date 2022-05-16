@@ -27,6 +27,7 @@ import {
 } from "../../../app/orderReducer";
 import OrderActions from "../action/orderActions";
 import SelectBoxAction from "../action/selectBoxAction";
+import DetailHandle from "../DetailHandle";
 
 export default function TableOrders(props) {
   const [orders, setOrders] = useState([]);
@@ -39,6 +40,7 @@ export default function TableOrders(props) {
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showDetailDialog, setShowDetailDialog] = useState(false);
+  const [showDetailHandle, setShowDetailHandle] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [orderId, setOrderId] = useState("");
   const [reload, setReload] = useState(false);
@@ -75,6 +77,12 @@ export default function TableOrders(props) {
     setOrderId(id);
     setShowDetailDialog(true);
   };
+
+  const handleDetailHandle = (id) => {
+    setOrderId(id);
+    setShowDetailHandle(true);
+  };
+
   const handleDeleteOrder = async () => {
     try {
       setDisabled(true);
@@ -224,6 +232,16 @@ export default function TableOrders(props) {
                         variant='primary'
                       ></Dropdown.Toggle>
                       <Dropdown.Menu className='text-center bg-secondary'>
+                        {order.status == 0 && (
+                          <Button
+                            variant='secondary'
+                            style={{ backgroundColor: "#3949AB" }}
+                            className='mx-1'
+                            onClick={() => handleDetailHandle(order._id)}
+                          >
+                            <BsFileEarmarkTextFill />
+                          </Button>
+                        )}
                         <Button
                           variant='secondary'
                           style={{ backgroundColor: "#3949AB" }}
@@ -331,6 +349,21 @@ export default function TableOrders(props) {
         </Modal.Header>
         <Modal.Body>
           <DetailOrder id={orderId} />
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showDetailHandle}
+        onHide={() => setShowDetailHandle(false)}
+        centered
+        scrollable
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Staff Handle</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <DetailHandle id={orderId} />
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>

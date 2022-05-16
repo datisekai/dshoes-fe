@@ -125,3 +125,7 @@ ul{
 p{
   margin: 0 !important;
 }
+
+.text-white-pagination{
+  color: white !important;
+}

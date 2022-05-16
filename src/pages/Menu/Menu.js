@@ -114,6 +114,10 @@ const Menu = () => {
     }
   };
 
+  const handleClickPage = (page) => {
+    setPage(page);
+  };
+
   const handlePre = () => {
     if (page > 1) {
       setPage(page - 1);
@@ -153,6 +157,7 @@ const Menu = () => {
           handleSetTo,
           handleSetFrom,
           handleSetKind,
+          handleClickPage,
         }}
         loading={load}
         types={types}

@@ -11,7 +11,13 @@ import { Slider, TextField } from "@mui/material";
 const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
   const text = useSelector((state) => state.search.text);
   const flag = useSelector((state) => state.search.flag);
-  const { handleApply, handleSetTo, handleSetFrom, handleSetKind } = handle;
+  const {
+    handleApply,
+    handleSetTo,
+    handleSetFrom,
+    handleSetKind,
+    handleClickPage,
+  } = handle;
   const dispatch = useDispatch();
   const [display, setDisplay] = useState(false);
   const [value, setValue] = useState([0, 10000000]);
