@@ -13,6 +13,7 @@ import {
   BsFillTrashFill,
   BsArrowClockwise,
   BsFileEarmarkTextFill,
+  BsFileEarmarkPerson
 } from "react-icons/bs";
 import { orderURL } from "../../../api/Admin/config";
 import FormOrders from "../form/FormOrders";
@@ -232,39 +233,40 @@ export default function TableOrders(props) {
                         variant='primary'
                       ></Dropdown.Toggle>
                       <Dropdown.Menu className='text-center bg-secondary'>
-                        {order.status == 0 && (
+                        <div className="d-flex">
+                          {order.status == 0 && (
+                            <Button
+                              variant='warning'
+                              className='mx-1'
+                              onClick={() => handleDetailHandle(order._id)}
+                            >
+                              <BsFileEarmarkPerson />
+                            </Button>
+                          )}
                           <Button
                             variant='secondary'
                             style={{ backgroundColor: "#3949AB" }}
                             className='mx-1'
-                            onClick={() => handleDetailHandle(order._id)}
+                            onClick={() => handleDetailDialog(order._id)}
                           >
                             <BsFileEarmarkTextFill />
                           </Button>
-                        )}
-                        <Button
-                          variant='secondary'
-                          style={{ backgroundColor: "#3949AB" }}
-                          className='mx-1'
-                          onClick={() => handleDetailDialog(order._id)}
-                        >
-                          <BsFileEarmarkTextFill />
-                        </Button>
-                        <Button
-                          variant='secondary'
-                          style={{ backgroundColor: "#65a30d" }}
-                          className='mx-1'
-                          onClick={() => handleUpdateDialog(order)}
-                        >
-                          <BsFillPencilFill />
-                        </Button>
-                        <Button
-                          variant='danger'
-                          className='mx-1'
-                          onClick={() => handleDeleteDialog(order._id)}
-                        >
-                          <BsFillTrashFill />
-                        </Button>
+                          <Button
+                            variant='secondary'
+                            style={{ backgroundColor: "#65a30d" }}
+                            className='mx-1'
+                            onClick={() => handleUpdateDialog(order)}
+                          >
+                            <BsFillPencilFill />
+                          </Button>
+                          <Button
+                            variant='danger'
+                            className='mx-1'
+                            onClick={() => handleDeleteDialog(order._id)}
+                          >
+                            <BsFillTrashFill />
+                          </Button>
+                        </div>
                       </Dropdown.Menu>
                     </Dropdown>
                   </td>
