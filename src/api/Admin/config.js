@@ -1,4 +1,4 @@
-export const url = "http://localhost:5098/api";
+export const url = "https://dshoes-nodejs.vercel.app/api";
 export const productURL = `${url}/products`;
 export const orderURL = `${url}/orders`;
 export const authURL = `${url}/auth`;
